@@ -1,0 +1,17 @@
+.header {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+.link {
+  text-decoration: none;
+  color: #0024c5;
+  font: normal normal 20px/30px Roboto, sans-serif;
+}
