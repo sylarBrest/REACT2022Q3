@@ -6,3 +6,7 @@ export type TItemProps = {
 export type TTitleProps = {
   pageTitle: string;
 };
+
+export type TSearchBarProps = {
+  value: string;
+};
