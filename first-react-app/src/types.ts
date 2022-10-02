@@ -8,5 +8,9 @@ export type TTitleProps = {
 };
 
 export type TSearchBarProps = {
+  placeholder: string;
+};
+
+export type TSearchBarState = {
   value: string;
 };

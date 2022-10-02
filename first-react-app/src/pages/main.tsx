@@ -6,7 +6,7 @@ const MainPage = () => {
   return (
     <div className="container">
       <Title pageTitle="Main page" />
-      <SearchBar />
+      <SearchBar placeholder="Search..." />
     </div>
   );
 };
