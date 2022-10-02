@@ -2,9 +2,21 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .title {
   text-align: center;
   text-transform: uppercase;
+}
+
+.input {
+  align-self: flex-end;
+  width: 300px;
+  padding: 5px 15px;
+  font: normal normal 20px/30px Roboto, sans-serif;
+  border-radius: 20px;
+  outline: none;
 }
