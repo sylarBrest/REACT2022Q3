@@ -1,11 +1,12 @@
 import React from 'react';
+import Title from 'components/Main/Title';
 
 const MainPage = () => {
   return (
-    <main className="main">
-      <h1 className="title">Main page</h1>
+    <div className="container">
+      <Title pageTitle="Main page" />
       <p>Oops!.. Something went wrong...</p>
-    </main>
+    </div>
   );
 };
 

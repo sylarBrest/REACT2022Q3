@@ -1,6 +1,8 @@
-type TItemProps = {
+export type TItemProps = {
   path: string;
   name: string;
 };
 
-export default TItemProps;
+export type TTitleProps = {
+  pageTitle: string;
+};

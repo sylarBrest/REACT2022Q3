@@ -1,11 +1,12 @@
 import React from 'react';
+import Title from 'components/Main/Title';
 
 const NotFound = () => {
   return (
-    <main className="main">
-      <h1 className="title">404. Not found</h1>
+    <div className="container">
+      <Title pageTitle="404. Not found" />
       <p>Oops!.. Something went wrong...</p>
-    </main>
+    </div>
   );
 };
 

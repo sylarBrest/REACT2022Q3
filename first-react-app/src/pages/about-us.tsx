@@ -1,11 +1,12 @@
 import React from 'react';
+import Title from 'components/Main/Title';
 
 const AboutUs = () => {
   return (
-    <main className="main">
-      <h1 className="title">About us</h1>
+    <div className="container">
+      <Title pageTitle="About us" />
       <p>Hello! My name is Aliaksandr Astrouski</p>
-    </main>
+    </div>
   );
 };
 
