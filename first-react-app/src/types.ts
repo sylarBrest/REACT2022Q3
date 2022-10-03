@@ -14,3 +14,15 @@ export type TSearchBarProps = {
 export type TSearchBarState = {
   value: string;
 };
+
+export type TCardProps = {
+  id: number;
+  title: string;
+  imagePath: string;
+  description: string;
+  director: string;
+  genres: string[];
+  rating: number;
+  voices: number;
+  year: number;
+};

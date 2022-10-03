@@ -1,4 +1,3 @@
-import React from 'react';
 import Title from 'components/Main/Title';
 
 const AboutUs = () => {

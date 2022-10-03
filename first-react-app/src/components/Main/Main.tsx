@@ -1,4 +1,3 @@
-import React from 'react';
 import AboutUs from 'pages/about-us';
 import MainPage from 'pages/main';
 import NotFound from 'pages/not-found';

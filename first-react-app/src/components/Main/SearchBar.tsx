@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import { TSearchBarProps, TSearchBarState } from 'types';
 
 class SearchBar extends React.Component<TSearchBarProps, TSearchBarState> {
@@ -17,7 +17,7 @@ class SearchBar extends React.Component<TSearchBarProps, TSearchBarState> {
     localStorage.setItem('searchBarValue', this.state.value);
   }
 
-  saveValueOnChange = (event: ChangeEvent) => {
+  saveValueOnChange = (event: React.ChangeEvent) => {
     this.setState({ value: (event.target as HTMLInputElement).value || '' });
   };
 

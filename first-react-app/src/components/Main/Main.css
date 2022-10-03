@@ -20,3 +20,52 @@
   border-radius: 20px;
   outline: none;
 }
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-width: 300px;
+  border-radius: 5px;
+  background-color: rgb(149, 220, 223);
+}
+
+.card-title {
+  align-self: center;
+}
+
+.card-description,
+.card-genres,
+.card-numbers,
+.card-author-info {
+  padding: 0 5px;
+}
+
+.card-genres > span {
+  font-weight: 700;
+}
+
+.card-numbers {
+  display: flex;
+  gap: 5px;
+}
+
+.image-rating,
+.image-voices {
+  width: 20px;
+}
+
+.image-voices {
+  margin-left: auto;
+}
+
+.card-author-info {
+  display: flex;
+  justify-content: space-between;
+}
