@@ -19,12 +19,16 @@
   font: normal normal 20px/30px Roboto, sans-serif;
   border-radius: 20px;
   outline: none;
+  background: url('assets/svg/search.svg') no-repeat left 7px center;
+  background-size: 20px 20px;
+  padding-left:30px;
 }
 
 .cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  row-gap: 15px;
 }
 
 .card {
@@ -34,10 +38,16 @@
   max-width: 300px;
   border-radius: 5px;
   background-color: rgb(149, 220, 223);
+  padding: 0 0 5px;
 }
 
 .card-title {
   align-self: center;
+}
+
+.card-image {
+  height: 444px;
+  
 }
 
 .card-description,
@@ -45,6 +55,10 @@
 .card-numbers,
 .card-author-info {
   padding: 0 5px;
+}
+
+.card-genres {
+  margin-top: auto;
 }
 
 .card-genres > span {
