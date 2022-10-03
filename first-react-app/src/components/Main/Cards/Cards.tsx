@@ -58,7 +58,7 @@ const Cards = () => {
       <Card
         id={4}
         title="Fight Club"
-        imagePath={require('assets/img/shawshank.jpg')}
+        imagePath={require('assets/img/fight-club.jpg')}
         description={
           'An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.'
         }

@@ -7,6 +7,7 @@ class SearchBar extends React.Component<TSearchBarProps, TSearchBarState> {
     this.state = {
       value: localStorage.getItem('searchBarValue') || '',
     };
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -17,9 +18,9 @@ class SearchBar extends React.Component<TSearchBarProps, TSearchBarState> {
     localStorage.setItem('searchBarValue', this.state.value);
   }
 
-  saveValueOnChange = (event: React.ChangeEvent) => {
+  handleChange(event: React.ChangeEvent) {
     this.setState({ value: (event.target as HTMLInputElement).value || '' });
-  };
+  }
 
   render() {
     return (
@@ -28,7 +29,7 @@ class SearchBar extends React.Component<TSearchBarProps, TSearchBarState> {
         className="input"
         placeholder={this.props.placeholder}
         defaultValue={this.state.value}
-        onChange={this.saveValueOnChange}
+        onChange={this.handleChange}
       />
     );
   }
