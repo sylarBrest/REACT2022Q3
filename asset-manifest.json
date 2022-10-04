@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/sylarbrest-REACT2022Q3/static/css/main.166a7830.css",
+    "main.js": "/sylarbrest-REACT2022Q3/static/js/main.101954fb.js",
+    "static/js/787.3bf0dcc2.chunk.js": "/sylarbrest-REACT2022Q3/static/js/787.3bf0dcc2.chunk.js",
+    "static/media/avengers-infinity-war.jpg": "/sylarbrest-REACT2022Q3/static/media/avengers-infinity-war.b4dc54c4cdd61d28f09b.jpg",
+    "static/media/interstellar.jpg": "/sylarbrest-REACT2022Q3/static/media/interstellar.66b558f7fb5bd12a1cf4.jpg",
+    "static/media/back-to-the-future.jpg": "/sylarbrest-REACT2022Q3/static/media/back-to-the-future.f9d9f9c371fe76470c26.jpg",
+    "static/media/dark-knight.jpg": "/sylarbrest-REACT2022Q3/static/media/dark-knight.bc9282923691cc5c5ac2.jpg",
+    "static/media/fight-club.jpg": "/sylarbrest-REACT2022Q3/static/media/fight-club.c7ba2d5722a660fbed8a.jpg",
+    "static/media/shawshank.jpg": "/sylarbrest-REACT2022Q3/static/media/shawshank.0bf6b9b3da8fc3c6bc7f.jpg",
+    "static/media/godfather.jpg": "/sylarbrest-REACT2022Q3/static/media/godfather.41c4f305338718df6df9.jpg",
+    "static/media/forrest-gump.jpg": "/sylarbrest-REACT2022Q3/static/media/forrest-gump.a83b2bf5ed1a86231408.jpg",
+    "static/media/star.svg": "/sylarbrest-REACT2022Q3/static/media/star.fa5ef825407d55e92dd19cf99fcf5b1f.svg",
+    "static/media/search.svg": "/sylarbrest-REACT2022Q3/static/media/search.f7a26ab2c1e6ae877b07.svg",
+    "index.html": "/sylarbrest-REACT2022Q3/index.html",
+    "static/media/person.svg": "/sylarbrest-REACT2022Q3/static/media/person.8055a4f8b917eb7a459453342589e0c6.svg",
+    "main.166a7830.css.map": "/sylarbrest-REACT2022Q3/static/css/main.166a7830.css.map",
+    "main.101954fb.js.map": "/sylarbrest-REACT2022Q3/static/js/main.101954fb.js.map",
+    "787.3bf0dcc2.chunk.js.map": "/sylarbrest-REACT2022Q3/static/js/787.3bf0dcc2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.166a7830.css",
+    "static/js/main.101954fb.js"
+  ]
+}
