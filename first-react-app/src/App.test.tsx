@@ -1,4 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import Card from 'components/Main/Cards/Card';
+import Cards from 'components/Main/Cards/Cards';
 import SearchBar from 'components/Main/SearchBar';
 
 describe('SearchBar component', () => {
@@ -23,5 +25,36 @@ describe('SearchBar component', () => {
   it('should save value to LocalStorage when unmounting', () => {
     window.localStorage.setItem('searchBarValue', inputSearch.value);
     expect(window.localStorage.getItem('searchBarValue')).toBe(testValue);
+  });
+
+  it('should take value from LocalStorage when rendering', () => {
+    inputSearch.value = window.localStorage.getItem('searchBarValue') || '';
+    expect(inputSearch.value).toBe(testValue);
+  });
+});
+
+describe('Card component', () => {
+  it('should render onto the screen', () => {
+    render(
+      <Card
+        id={0}
+        title={'test'}
+        imagePath={''}
+        description={'lorem ipsum'}
+        director={'M. Test'}
+        genres={['test', 'true']}
+        rating={8}
+        voices={12000}
+        year={2022}
+      />
+    );
+    expect(screen.getByText('test, true')).toBeInTheDocument();
+  });
+});
+
+describe('Cards component', () => {
+  it('should render onto the screen', () => {
+    render(<Cards />);
+    expect(screen.getByAltText('Interstellar')).toBeInTheDocument();
   });
 });
