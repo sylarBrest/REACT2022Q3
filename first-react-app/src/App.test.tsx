@@ -9,7 +9,7 @@ describe('SearchBar component', () => {
 
   beforeEach(() => {
     render(<SearchBar placeholder="Search..." />);
-    inputSearch = screen.getByPlaceholderText('Search...');
+    inputSearch = screen.getByTestId('search-bar');
   });
 
   it('should render onto the screen', () => {
@@ -48,13 +48,13 @@ describe('Card component', () => {
         year={2022}
       />
     );
-    expect(screen.getByText('test, true')).toBeInTheDocument();
+    expect(screen.getByTestId('test')).toBeInTheDocument();
   });
 });
 
 describe('Cards component', () => {
   it('should render onto the screen', () => {
     render(<Cards />);
-    expect(screen.getByAltText('Interstellar')).toBeInTheDocument();
+    expect(screen.getByTestId('cards-container')).toBeInTheDocument();
   });
 });
