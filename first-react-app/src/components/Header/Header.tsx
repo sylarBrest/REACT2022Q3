@@ -4,7 +4,7 @@ import './Header.css';
 function Header() {
   return (
     <>
-      <header className="header">
+      <header className="header" data-testid="header">
         <Menu />
       </header>
     </>

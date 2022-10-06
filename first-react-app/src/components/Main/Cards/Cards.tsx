@@ -2,7 +2,7 @@ import Card from './Card';
 
 const Cards = () => {
   return (
-    <div className="cards">
+    <div className="cards" data-testid="cards-container">
       <Card
         id={0}
         title="The Shawshank Redemption"

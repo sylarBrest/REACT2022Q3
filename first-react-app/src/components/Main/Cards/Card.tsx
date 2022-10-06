@@ -5,7 +5,7 @@ import person from 'assets/svg/person.svg';
 
 const Card = (props: TCardProps) => {
   return (
-    <div className="card">
+    <div className="card" data-testid={props.title.replace(/\s/g, '-').toLowerCase()}>
       <h3 className="card-title">{props.title}</h3>
       <img className="card-image" src={props.imagePath} alt={props.title} />
       <p className="card-description">{props.description}</p>

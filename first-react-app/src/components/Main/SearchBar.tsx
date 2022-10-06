@@ -30,6 +30,7 @@ class SearchBar extends React.Component<TSearchBarProps, TSearchBarState> {
         placeholder={this.props.placeholder}
         defaultValue={this.state.value}
         onChange={this.handleChange}
+        data-testid="search-bar"
       />
     );
   }
