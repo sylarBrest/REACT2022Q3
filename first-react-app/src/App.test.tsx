@@ -1,7 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import App from 'App';
 import Card from 'components/Main/Cards/Card';
 import Cards from 'components/Main/Cards/Cards';
 import SearchBar from 'components/Main/SearchBar';
+import { MemoryRouter } from 'react-router-dom';
 
 describe('SearchBar component', () => {
   let inputSearch: HTMLInputElement;
@@ -56,5 +59,36 @@ describe('Cards component', () => {
   it('should render onto the screen', () => {
     render(<Cards />);
     expect(screen.getByTestId('cards-container')).toBeInTheDocument();
+  });
+});
+
+describe('React Router', () => {
+  beforeEach(() => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+  });
+
+  it('should route to the "About Us" page', () => {
+    const aboutUsLink = screen.getByTestId('about-us-link');
+    userEvent.click(aboutUsLink);
+    expect(screen.getByTestId('about-us-page')).toBeInTheDocument();
+  });
+
+  it('should route to the "Home" page', () => {
+    const homeLink = screen.getByTestId('home-link');
+    userEvent.click(homeLink);
+    expect(screen.getByTestId('home-page')).toBeInTheDocument();
+  });
+
+  it('should route to the "Not Found" page if path not exist', () => {
+    render(
+      <MemoryRouter initialEntries={['/test']}>
+        <App />
+      </MemoryRouter>
+    );
+    expect(screen.getByTestId('not-found-page')).toBeInTheDocument();
   });
 });

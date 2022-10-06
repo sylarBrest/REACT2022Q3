@@ -1,5 +1,5 @@
 import AboutUs from 'pages/about-us';
-import MainPage from 'pages/main';
+import HomePage from 'pages/home';
 import NotFound from 'pages/not-found';
 import { Routes, Route } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ const Main = () => {
   return (
     <main className="main" data-testid="main">
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
