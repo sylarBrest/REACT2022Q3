@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/sylarbrest-REACT2022Q3">
       <Header />
       <Main />
     </BrowserRouter>
