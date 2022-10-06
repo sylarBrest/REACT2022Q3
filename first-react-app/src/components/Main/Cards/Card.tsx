@@ -1,4 +1,4 @@
-import { TCardProps } from 'types';
+import { TCardProps } from 'data/types';
 
 import star from 'assets/svg/star.svg';
 import person from 'assets/svg/person.svg';

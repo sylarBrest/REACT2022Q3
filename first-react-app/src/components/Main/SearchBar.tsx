@@ -1,5 +1,5 @@
 import React from 'react';
-import { TSearchBarProps, TSearchBarState } from 'types';
+import { TSearchBarProps, TSearchBarState } from 'data/types';
 
 class SearchBar extends React.Component<TSearchBarProps, TSearchBarState> {
   constructor(props: TSearchBarProps) {

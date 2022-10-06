@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { TItemProps } from 'types';
+import { TItemProps } from 'data/types';
 
 function Item(props: TItemProps) {
   return (
