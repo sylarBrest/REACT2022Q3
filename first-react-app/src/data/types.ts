@@ -11,6 +11,14 @@ export type TSearchBarState = {
   value: string;
 };
 
+export type TRatingProps = {
+  rating: number;
+};
+
+export type TVoicesProps = {
+  voices: number;
+};
+
 export type TCardProps = {
   id: number;
   title: string;

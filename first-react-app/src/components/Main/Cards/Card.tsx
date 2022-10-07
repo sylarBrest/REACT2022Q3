@@ -1,7 +1,6 @@
 import { TCardProps } from 'data/types';
-
-import star from 'assets/svg/star.svg';
-import person from 'assets/svg/person.svg';
+import Rating from './Rating';
+import Voices from './Voices';
 
 const Card = (props: TCardProps) => {
   return (
@@ -17,10 +16,8 @@ const Card = (props: TCardProps) => {
         <span>Genres:</span> {props.genres.join(', ')}
       </p>
       <div className="card-numbers">
-        <img className="image-rating" src={star} alt="rating" />
-        <p className="card-rating">{props.rating || 0}</p>
-        <img className="image-voices" src={person} alt="voices" />
-        <p className="card-voices">{props.voices || 0}</p>
+        <Rating rating={props.rating || 0} />
+        <Voices voices={props.voices || 0} />
       </div>
       <div className="card-author-info">
         <p className="card-author">{props.director}</p>
