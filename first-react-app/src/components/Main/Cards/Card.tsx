@@ -3,14 +3,11 @@ import Rating from './Rating';
 import Voices from './Voices';
 
 const Card = (props: TCardProps) => {
+  const imagePath = `sylarbrest-REACT2022Q3/assets/img/${props.imagePath}`;
   return (
     <div className="card" data-testid={props.title.replace(/\s/g, '-').toLowerCase()}>
       <h3 className="card-title">{props.title}</h3>
-      <img
-        className="card-image"
-        src={`sylarbrest-REACT2022Q3/assets/img/${props.imagePath}`}
-        alt={props.title}
-      />
+      <img className="card-image" src={imagePath} alt={props.title} />
       <p className="card-description">{props.description}</p>
       <p className="card-genres">
         <span>Genres:</span> {props.genres.join(', ')}

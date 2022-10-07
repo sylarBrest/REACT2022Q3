@@ -1,7 +1,7 @@
 .section {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 10px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -24,11 +24,17 @@
   padding-left:30px;
 }
 
+@media screen and (max-width: 634px) {
+  .input {
+    align-self: center;
+  }
+}
+
 .cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  row-gap: 15px;
+  justify-content: space-around;
+  gap: 15px;
 }
 
 .card {
