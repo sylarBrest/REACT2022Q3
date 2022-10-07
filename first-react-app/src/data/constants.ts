@@ -6,6 +6,10 @@ export const ROUTE_PATHS: TItemProps[] = [
     name: 'Home',
   },
   {
+    path: '/forms',
+    name: 'Forms',
+  },
+  {
     path: '/about-us',
     name: 'About Us',
   },
