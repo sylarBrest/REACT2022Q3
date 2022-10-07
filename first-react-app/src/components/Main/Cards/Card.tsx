@@ -7,16 +7,20 @@ const Card = (props: TCardProps) => {
   return (
     <div className="card" data-testid={props.title.replace(/\s/g, '-').toLowerCase()}>
       <h3 className="card-title">{props.title}</h3>
-      <img className="card-image" src={props.imagePath} alt={props.title} />
+      <img
+        className="card-image"
+        src={`sylarbrest-REACT2022Q3/assets/img/${props.imagePath}`}
+        alt={props.title}
+      />
       <p className="card-description">{props.description}</p>
       <p className="card-genres">
         <span>Genres:</span> {props.genres.join(', ')}
       </p>
       <div className="card-numbers">
         <img className="image-rating" src={star} alt="rating" />
-        <p className="card-rating">{props.rating}</p>
+        <p className="card-rating">{props.rating || 0}</p>
         <img className="image-voices" src={person} alt="voices" />
-        <p className="card-voices">{props.voices}</p>
+        <p className="card-voices">{props.voices || 0}</p>
       </div>
       <div className="card-author-info">
         <p className="card-author">{props.director}</p>
