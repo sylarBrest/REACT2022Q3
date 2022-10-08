@@ -1,5 +1,14 @@
 import { TCardProps, TItemProps } from './types';
 
+export const COUNTRIES: string[] = [
+  'Belarus',
+  'Russia',
+  'Poland',
+  'Kazakhstan',
+  'Georgia',
+  'Lithuania',
+];
+
 export const ROUTE_PATHS: TItemProps[] = [
   {
     path: '/',
