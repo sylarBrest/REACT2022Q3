@@ -1,57 +1,68 @@
 import { COUNTRIES } from 'data/constants';
 import React from 'react';
+import './Form.css';
+import photo from 'assets/svg/photo.svg';
 
 class Form extends React.Component {
   render() {
     return (
-      <form>
-        <label>
-          Name:
-          <input type="text" name="name" placeholder="Name" />
-        </label>
-        <label>
-          Surname:
-          <input type="text" name="surname" placeholder="Surname" />
-        </label>
-        <label>
-          Date of birth:
-          <input
-            type="date"
-            name="birthdate"
-            min="1930-01-01"
-            max={new Date().toISOString().slice(0, 10)}
-          />
-        </label>
-        <div>
-          <span>Your sex:</span>
-          <label>
-            Male
-            <input type="radio" name="sex" value="male" />
+      <form className="form">
+        <div className="photo-upload">
+          <label htmlFor="photo-upload">
+            <img src={photo} alt="Photo Upload" />
+            Upload your photo
           </label>
-          <label>
-            Female
-            <input type="radio" name="sex" value="female" />
-          </label>
+          <input id="photo-upload" type="file" name="image" capture="user" accept=".jpg, .png" />
         </div>
-        <label>
-          Country:
-          <select name="country">
-            {COUNTRIES.map((country: string) => (
-              <option value={country.toLowerCase()} key={country.toLowerCase()}>
-                {country}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          I consent to my personal data
-          <input type="checkbox" name="personal" value="agree" />
-        </label>
-        <label>
-          Upload your photo
-          <input type="file" name="image" capture="user" accept=".jpg,.png" />
-        </label>
-        <input type="submit" value="Submit" />
+        <div className="personal-data">
+          <div className="personal-data-input input-name">
+            <label htmlFor="name">Name:</label>
+            <input id="name" type="text" name="name" placeholder="Name" />
+          </div>
+          <div className="personal-data-input input-surname">
+            <label htmlFor="surname">Surname:</label>
+            <input id="surname" type="text" name="surname" placeholder="Surname" />
+          </div>
+          <div className="personal-data-input input-birthdate">
+            <label htmlFor="birthdate">Date of birth:</label>
+            <input
+              id="birthdate"
+              type="date"
+              name="birthdate"
+              min="1930-01-01"
+              max={new Date().toJSON().slice(0, 10)}
+            />
+          </div>
+          <div className="personal-data-input input-gender">
+            <span>Gender: </span>
+            <div className="gender-choice">
+              <div className="gender-choice-item item-male">
+                <input id="male" type="radio" name="radio" value="male" defaultChecked />
+                <label htmlFor="male">Male</label>
+              </div>
+              <div className="gender-choice-item item-female">
+                <input id="female" type="radio" name="radio" value="female" />
+                <label htmlFor="female">Female</label>
+              </div>
+            </div>
+          </div>
+          <div className="personal-data-input input-country">
+            <label htmlFor="country">Country:</label>
+            <select id="country" name="country">
+              <option hidden>Choose Country</option>
+              {COUNTRIES.map((country: string) => (
+                <option value={country.toLowerCase()} key={country.toLowerCase()}>
+                  {country}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div className="consent">
+          <input id="personal" type="checkbox" name="personal" value="agree" />
+          <label htmlFor="personal">I consent to my personal data</label>
+        </div>
+        <input className="submit" type="submit" value="Submit" />
       </form>
     );
   }

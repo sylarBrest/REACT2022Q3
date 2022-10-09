@@ -26,7 +26,7 @@ class SearchBar extends React.Component<TSearchBarProps, TSearchBarState> {
     return (
       <input
         type="search"
-        className="input"
+        className="search-bar"
         placeholder={this.props.placeholder}
         defaultValue={this.state.value}
         onChange={this.handleChange}

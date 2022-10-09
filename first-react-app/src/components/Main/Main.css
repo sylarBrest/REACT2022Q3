@@ -12,7 +12,7 @@
   text-transform: uppercase;
 }
 
-.input {
+.search-bar {
   align-self: flex-end;
   width: 300px;
   padding: 5px 15px;
@@ -25,7 +25,7 @@
 }
 
 @media screen and (max-width: 634px) {
-  .input {
+  .search-bar {
     align-self: center;
   }
 }
