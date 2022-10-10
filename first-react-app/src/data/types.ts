@@ -11,6 +11,14 @@ export type TSearchBarState = {
   value: string;
 };
 
+export type TFormProps = {
+  action?: string;
+};
+
+export type TFormState = {
+  isValidated: boolean;
+};
+
 export type TRatingProps = {
   rating: number;
 };

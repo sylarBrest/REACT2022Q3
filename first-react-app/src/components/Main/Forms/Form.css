@@ -54,6 +54,7 @@
 	display: inline-block;
 	overflow: hidden;
   margin-left: auto;
+  border: none;
 }
 
 .gender-choice-item {
