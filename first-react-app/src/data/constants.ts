@@ -1,5 +1,11 @@
 import { TCardProps, TItemProps } from './types';
 
+export const SELECT_DEFAULT_OPTION = 'Choose country';
+
+export const NAME_REGEX = new RegExp(/^[A-ZА-Я][a-zA-Zа-яА-Я -]{2,}$/);
+
+export const MIN_AGE = 13;
+
 export const COUNTRIES: string[] = [
   'Belarus',
   'Russia',

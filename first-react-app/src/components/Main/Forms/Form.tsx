@@ -1,8 +1,9 @@
-import { COUNTRIES } from 'data/constants';
+import { COUNTRIES, MIN_AGE, SELECT_DEFAULT_OPTION } from 'data/constants';
 import React, { FormEvent } from 'react';
 import './Form.css';
 import photo from 'assets/svg/photo.svg';
 import { TFormProps, TFormState } from 'data/types';
+import { isValidBirthDate, isValidCountry, isValidName } from 'utils';
 
 class Form extends React.Component<TFormProps, TFormState> {
   photo: React.RefObject<HTMLInputElement>;
@@ -53,11 +54,6 @@ class Form extends React.Component<TFormProps, TFormState> {
     return Object.values(this.state.isValidated).every((flag: boolean) => !!flag);
   }
 
-  /*   validate(param: string) {
-
-  }
-
- */
   handleChange() {
     console.log(this.state.isValidated);
     console.log(this.isValidatedForm());
@@ -68,6 +64,7 @@ class Form extends React.Component<TFormProps, TFormState> {
     const photoInput = this.photo.current as HTMLInputElement;
     const nameInput = this.name.current as HTMLInputElement;
     const surnameInput = this.surname.current as HTMLInputElement;
+    const birthdateInput = this.birthdate.current as HTMLInputElement;
     const maleGenderInput = this.maleGender.current as HTMLInputElement;
     const femaleGenderInput = this.femaleGender.current as HTMLInputElement;
     const countrySelect = this.country.current as HTMLSelectElement;
@@ -76,17 +73,16 @@ class Form extends React.Component<TFormProps, TFormState> {
     this.setState(() => ({
       isValidated: {
         photo: photoInput.value.includes('png'),
-        name: new RegExp(/^[A-ZА-Я][a-zA-Zа-яА-Я -]{2,}$/).test(nameInput.value),
-        surname: new RegExp(/^[A-ZА-Я][a-zA-Zа-яА-Я -]{2,}$/).test(surnameInput.value),
-        birthdate: true,
+        name: isValidName(nameInput.value),
+        surname: isValidName(surnameInput.value),
+        birthdate: isValidBirthDate(birthdateInput.value),
         gender: maleGenderInput.checked || femaleGenderInput.checked,
-        country: countrySelect.value !== 'Choose country',
+        country: isValidCountry(countrySelect.value),
         consent: consentInput.checked,
       },
     }));
 
     console.log('photo', this.photo.current?.value);
-    console.log('birthdate', this.birthdate.current?.value);
   }
 
   render() {
@@ -161,7 +157,7 @@ class Form extends React.Component<TFormProps, TFormState> {
           <div className="personal-data-input input-country">
             <label htmlFor="country">Country:</label>
             <select id="country" name="country" ref={this.country}>
-              <option hidden>Choose country</option>
+              <option hidden>{SELECT_DEFAULT_OPTION}</option>
               {COUNTRIES.map((country: string) => (
                 <option value={country} key={country.toLowerCase()}>
                   {country}
@@ -173,8 +169,13 @@ class Form extends React.Component<TFormProps, TFormState> {
         </div>
         <div className="consent">
           <input id="personal" type="checkbox" name="personal" value="agree" ref={this.consent} />
-          <label htmlFor="personal">I consent to my personal data</label>
+          <label htmlFor="personal">
+            I confirm that I am over {MIN_AGE} years old and consent to my personal data
+          </label>
         </div>
+        <p style={{ opacity: this.state.isValidated.country ? '0' : '1' }}>
+          Please give your consent by checking the label
+        </p>
         <input className="submit" type="submit" value="Submit" />
       </form>
     );

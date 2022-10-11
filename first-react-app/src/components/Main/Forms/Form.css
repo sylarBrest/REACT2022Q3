@@ -3,7 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  column-gap: 20px;
   max-width: 510px;
   padding: 5px;
   font: normal normal 16px/20px Roboto, sans-serif;
@@ -96,6 +96,7 @@
 .consent {
   display: flex;
   gap: 5px;
+  width: 300px;
 }
 
 .submit {
