@@ -31,10 +31,14 @@
   display: none;
 }
 
+.photo-upload > p {
+  padding-top: 5px;
+}
+
 .personal-data {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 2.6px;
   width: 280px;
 }
 

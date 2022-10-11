@@ -25,26 +25,73 @@ class Form extends React.Component<TFormProps, TFormState> {
     this.country = React.createRef();
     this.consent = React.createRef();
     this.state = {
-      isValidated: false,
+      isValidated: {
+        photo: false,
+        name: false,
+        surname: false,
+        birthdate: false,
+        gender: false,
+        country: false,
+        consent: false,
+      },
+      formData: [
+        {
+          name: '',
+          surname: '',
+          birthdate: '',
+          gender: '',
+          country: '',
+          consent: false,
+        },
+      ],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  isValidatedForm() {
+    return Object.values(this.state.isValidated).every((flag: boolean) => !!flag);
+  }
+
+  /*   validate(param: string) {
+
+  }
+
+ */
+  handleChange() {
+    console.log(this.state.isValidated);
+    console.log(this.isValidatedForm());
   }
 
   handleSubmit(event: FormEvent) {
     event.preventDefault();
+    const photoInput = this.photo.current as HTMLInputElement;
+    const nameInput = this.name.current as HTMLInputElement;
+    const surnameInput = this.surname.current as HTMLInputElement;
+    const maleGenderInput = this.maleGender.current as HTMLInputElement;
+    const femaleGenderInput = this.femaleGender.current as HTMLInputElement;
+    const countrySelect = this.country.current as HTMLSelectElement;
+    const consentInput = this.consent.current as HTMLInputElement;
+
+    this.setState(() => ({
+      isValidated: {
+        photo: photoInput.value.includes('png'),
+        name: new RegExp(/^[A-ZА-Я][a-zA-Zа-яА-Я -]{2,}$/).test(nameInput.value),
+        surname: new RegExp(/^[A-ZА-Я][a-zA-Zа-яА-Я -]{2,}$/).test(surnameInput.value),
+        birthdate: true,
+        gender: maleGenderInput.checked || femaleGenderInput.checked,
+        country: countrySelect.value !== 'Choose country',
+        consent: consentInput.checked,
+      },
+    }));
+
     console.log('photo', this.photo.current?.value);
-    console.log('name', this.name.current?.value);
-    console.log('surname', this.surname.current?.value);
     console.log('birthdate', this.birthdate.current?.value);
-    console.log('male gender', this.maleGender.current?.checked);
-    console.log('female gender', this.femaleGender.current?.checked);
-    console.log('country', this.country.current?.value);
-    console.log('consent', this.consent.current?.checked);
   }
 
   render() {
     return (
-      <form className="form" onSubmit={this.handleSubmit}>
+      <form className="form" onSubmit={this.handleSubmit} onChange={this.handleChange}>
         <div className="photo-upload">
           <label htmlFor="photo-upload">
             <img src={photo} alt="Photo Upload" />
@@ -58,12 +105,14 @@ class Form extends React.Component<TFormProps, TFormState> {
             accept=".jpg, .png"
             ref={this.photo}
           />
+          <p style={{ opacity: this.state.isValidated.photo ? '0' : '1' }}>Photo not present</p>
         </div>
         <div className="personal-data">
           <div className="personal-data-input input-name">
             <label htmlFor="name">Name:</label>
             <input id="name" type="text" name="name" placeholder="Name" ref={this.name} />
           </div>
+          <p style={{ opacity: this.state.isValidated.name ? '0' : '1' }}>Name not valid</p>
           <div className="personal-data-input input-surname">
             <label htmlFor="surname">Surname:</label>
             <input
@@ -74,6 +123,7 @@ class Form extends React.Component<TFormProps, TFormState> {
               ref={this.surname}
             />
           </div>
+          <p style={{ opacity: this.state.isValidated.surname ? '0' : '1' }}>Surname not valid</p>
           <div className="personal-data-input input-birthdate">
             <label htmlFor="birthdate">Date of birth:</label>
             <input
@@ -85,6 +135,9 @@ class Form extends React.Component<TFormProps, TFormState> {
               ref={this.birthdate}
             />
           </div>
+          <p style={{ opacity: this.state.isValidated.birthdate ? '0' : '1' }}>
+            Birthdate not valid
+          </p>
           <div className="personal-data-input input-gender">
             <span>Gender: </span>
             <fieldset className="gender-choice">
@@ -104,17 +157,19 @@ class Form extends React.Component<TFormProps, TFormState> {
               </div>
             </fieldset>
           </div>
+          <p style={{ opacity: this.state.isValidated.gender ? '0' : '1' }}>Choose your gender</p>
           <div className="personal-data-input input-country">
             <label htmlFor="country">Country:</label>
             <select id="country" name="country" ref={this.country}>
-              <option hidden>Choose Country</option>
+              <option hidden>Choose country</option>
               {COUNTRIES.map((country: string) => (
-                <option value={country.toLowerCase()} key={country.toLowerCase()}>
+                <option value={country} key={country.toLowerCase()}>
                   {country}
                 </option>
               ))}
             </select>
           </div>
+          <p style={{ opacity: this.state.isValidated.country ? '0' : '1' }}>Choose country</p>
         </div>
         <div className="consent">
           <input id="personal" type="checkbox" name="personal" value="agree" ref={this.consent} />

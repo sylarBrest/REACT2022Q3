@@ -15,8 +15,30 @@ export type TFormProps = {
   action?: string;
 };
 
+export type TFormData = {
+  name: string;
+  surname: string;
+  birthdate: string;
+  gender: string;
+  country: string;
+  consent: boolean;
+};
+
+export type TFormDataArray = TFormData[];
+
+export type TValidated = {
+  photo: boolean;
+  name: boolean;
+  surname: boolean;
+  birthdate: boolean;
+  gender: boolean;
+  country: boolean;
+  consent: boolean;
+};
+
 export type TFormState = {
-  isValidated: boolean;
+  isValidated: TValidated;
+  formData: TFormDataArray;
 };
 
 export type TRatingProps = {
