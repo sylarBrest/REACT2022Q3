@@ -4,6 +4,7 @@ import './Form.css';
 import photo from 'assets/svg/photo.svg';
 import { TFormData, TFormProps, TFormState, TValidated } from 'data/types';
 import { isValidBirthDate, isValidCountry, isValidName } from 'utils';
+import FormCard from './FormCard';
 
 class Form extends React.Component<TFormProps, TFormState> {
   photo: React.RefObject<HTMLInputElement>;
@@ -14,6 +15,7 @@ class Form extends React.Component<TFormProps, TFormState> {
   femaleGender: React.RefObject<HTMLInputElement>;
   country: React.RefObject<HTMLSelectElement>;
   consent: React.RefObject<HTMLInputElement>;
+  modal: React.RefObject<HTMLDivElement>;
 
   constructor(props: TFormProps) {
     super(props);
@@ -25,6 +27,7 @@ class Form extends React.Component<TFormProps, TFormState> {
     this.femaleGender = React.createRef();
     this.country = React.createRef();
     this.consent = React.createRef();
+    this.modal = React.createRef();
     this.state = {
       isValidated: {
         photo: false,
@@ -62,6 +65,10 @@ class Form extends React.Component<TFormProps, TFormState> {
       isChange: false,
       isSubmitted: false,
     }));
+    setTimeout(() => {
+      const modalDiv = this.modal.current as HTMLDivElement;
+      modalDiv.style.display = 'none';
+    }, 5000);
   }
 
   handleChange() {
@@ -244,7 +251,23 @@ class Form extends React.Component<TFormProps, TFormState> {
           </p>
           <input className="submit" type="submit" value="Submit" disabled={!this.state.isChange} />
         </form>
-        <div className="modal">You succesfully submitted data!</div>
+        <div
+          className="modal"
+          style={{
+            display:
+              this.state.isSubmitted && this.isValidatedForm(this.state.isValidated)
+                ? 'block'
+                : 'none',
+          }}
+          ref={this.modal}
+        >
+          You succesfully submitted data!
+        </div>
+        {this.state.formData
+          .filter((data) => !!data.consent)
+          .map((data) => (
+            <FormCard {...data} key={data.name + data.surname} />
+          ))}
       </>
     );
   }

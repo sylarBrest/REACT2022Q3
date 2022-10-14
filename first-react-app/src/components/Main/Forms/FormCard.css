@@ -1,0 +1,17 @@
+.personal-card {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  width: 460px;
+}
+
+.card-photo {
+  width: 200px;
+  height: 200px;
+}
+
+.personal-card-data {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
