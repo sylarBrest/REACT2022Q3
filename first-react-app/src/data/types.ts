@@ -16,7 +16,7 @@ export type TFormProps = {
 };
 
 export type TFormData = {
-  photo: string;
+  photo?: File;
   name: string;
   surname: string;
   birthdate: string;

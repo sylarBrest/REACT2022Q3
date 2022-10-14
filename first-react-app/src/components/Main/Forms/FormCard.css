@@ -1,17 +1,27 @@
+.personal-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
 .personal-card {
   display: flex;
   gap: 20px;
   padding: 20px;
-  width: 460px;
+  width: 410px;
 }
 
 .card-photo {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
 }
 
 .personal-card-data {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+:where(.card-name, .card-surname, .card-birthdate, .card-gender, .card-country) > span {
+  font-weight: 700;
 }

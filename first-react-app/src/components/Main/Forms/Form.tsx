@@ -40,7 +40,6 @@ class Form extends React.Component<TFormProps, TFormState> {
       },
       formData: [
         {
-          photo: '',
           name: '',
           surname: '',
           birthdate: '',
@@ -99,7 +98,7 @@ class Form extends React.Component<TFormProps, TFormState> {
     };
 
     const formData: TFormData = {
-      photo: photoInput.files?.item(0)?.name || '',
+      photo: photoInput.files?.item(0) as File,
       name: nameInput.value,
       surname: surnameInput.value,
       birthdate: birthdateInput.value,
@@ -263,11 +262,13 @@ class Form extends React.Component<TFormProps, TFormState> {
         >
           You succesfully submitted data!
         </div>
-        {this.state.formData
-          .filter((data) => !!data.consent)
-          .map((data) => (
-            <FormCard {...data} key={data.name + data.surname} />
-          ))}
+        <div className="personal-cards">
+          {this.state.formData
+            .filter((data) => !!data.consent)
+            .map((data) => (
+              <FormCard {...data} key={data.name + data.surname} />
+            ))}
+        </div>
       </>
     );
   }

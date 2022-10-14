@@ -3,13 +3,32 @@ import './FormCard.css';
 
 const FormCard = (props: TFormData) => (
   <div className="personal-card">
-    <img className="card-photo" src={props.photo} alt={props.name + props.surname} />
+    <img
+      className="card-photo"
+      src={URL.createObjectURL(props.photo)}
+      alt={props.name + props.surname}
+    />
     <div className="personal-card-data">
-      <p className="card-name">Name: {props.name}</p>
-      <p className="card-surname">Surame: {props.surname}</p>
-      <p className="card-birthdate">Date of birth: {props.birthdate}</p>
-      <p className="card-gender">Gender: {props.gender}</p>
-      <p className="card-country">Country: {props.country}</p>
+      <p className="card-name">
+        <span>Name: </span>
+        {props.name}
+      </p>
+      <p className="card-surname">
+        <span>Surame: </span>
+        {props.surname}
+      </p>
+      <p className="card-birthdate">
+        <span>Date of birth: </span>
+        {props.birthdate}
+      </p>
+      <p className="card-gender">
+        <span>Gender: </span>
+        {props.gender}
+      </p>
+      <p className="card-country">
+        <span>Country: </span>
+        {props.country}
+      </p>
     </div>
   </div>
 );
