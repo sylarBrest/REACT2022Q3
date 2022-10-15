@@ -16,7 +16,7 @@ export type TFormProps = {
 };
 
 export type TFormData = {
-  photo?: File;
+  photo: Blob;
   name: string;
   surname: string;
   birthdate: string;
@@ -40,8 +40,9 @@ export type TValidated = {
 export type TFormState = {
   isValidated: TValidated;
   formData: TFormDataArray;
-  isChange: boolean;
+  isChanged: boolean;
   isSubmitted: boolean;
+  isMessageVisible: boolean;
 };
 
 export type TRatingProps = {

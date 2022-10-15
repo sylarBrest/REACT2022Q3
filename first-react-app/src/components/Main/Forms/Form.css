@@ -13,6 +13,10 @@
   font: inherit;
 }
 
+.form p {
+  color: #af0000;
+}
+
 .photo-upload {
   text-align: center;
   width: 200px;
@@ -108,16 +112,26 @@
   cursor: pointer;
 }
 
+.submit:disabled {
+  cursor: not-allowed;
+}
+
 input,
 select {
   outline: none;
 }
 
 .modal {
-  padding: 30px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #c7c7c7;
+  font-size: 50px;
+  padding: 30px;
+  text-align: center;
+  border-radius: 30px;
 }

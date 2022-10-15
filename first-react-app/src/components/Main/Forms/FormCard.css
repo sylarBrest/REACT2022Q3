@@ -9,11 +9,14 @@
   gap: 20px;
   padding: 20px;
   width: 410px;
+  background-color: #dcdcf5;
+  border-radius: 5px;
 }
 
 .card-photo {
   width: 150px;
   height: 150px;
+  border-radius: 50%;
 }
 
 .personal-card-data {

@@ -3,7 +3,7 @@ import React, { FormEvent } from 'react';
 import './Form.css';
 import photo from 'assets/svg/photo.svg';
 import { TFormData, TFormProps, TFormState, TValidated } from 'data/types';
-import { isValidBirthDate, isValidCountry, isValidName } from 'utils';
+import { isValidBirthDate, isValidCountry, isValidForm, isValidName } from 'utils';
 import FormCard from './FormCard';
 
 class Form extends React.Component<TFormProps, TFormState> {
@@ -40,6 +40,7 @@ class Form extends React.Component<TFormProps, TFormState> {
       },
       formData: [
         {
+          photo: new Blob(),
           name: '',
           surname: '',
           birthdate: '',
@@ -48,35 +49,44 @@ class Form extends React.Component<TFormProps, TFormState> {
           consent: false,
         },
       ],
-      isChange: false,
+      isChanged: false,
       isSubmitted: false,
+      isMessageVisible: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  isValidatedForm(isValidated: TValidated): boolean {
-    return Object.values(isValidated).every((flag: boolean) => !!flag);
+    this.reset = this.reset.bind(this);
   }
 
   reset() {
-    this.setState(() => ({
-      isChange: false,
-      isSubmitted: false,
-    }));
-    setTimeout(() => {
-      const modalDiv = this.modal.current as HTMLDivElement;
-      modalDiv.style.display = 'none';
-    }, 5000);
+    this.setState(
+      {
+        isChanged: false,
+        isSubmitted: false,
+        isValidated: {
+          photo: false,
+          name: false,
+          surname: false,
+          birthdate: false,
+          gender: false,
+          country: false,
+          consent: false,
+        },
+      },
+      () => {
+        setTimeout(() => {
+          this.setState({ isMessageVisible: false });
+        }, 3000);
+      }
+    );
   }
 
   handleChange() {
-    this.setState({ isChange: true });
+    this.setState({ isChanged: true });
   }
 
   handleSubmit(event: FormEvent) {
     event.preventDefault();
-    console.log(this.state.formData);
 
     const photoInput = this.photo.current as HTMLInputElement;
     const nameInput = this.name.current as HTMLInputElement;
@@ -88,7 +98,7 @@ class Form extends React.Component<TFormProps, TFormState> {
     const consentInput = this.consent.current as HTMLInputElement;
 
     const isValidated: TValidated = {
-      photo: photoInput.files?.item(0)?.type.includes('png') || false,
+      photo: photoInput.files?.item(0)?.type.includes('image/') || false,
       name: isValidName(nameInput.value),
       surname: isValidName(surnameInput.value),
       birthdate: isValidBirthDate(birthdateInput.value),
@@ -107,21 +117,32 @@ class Form extends React.Component<TFormProps, TFormState> {
       consent: true,
     };
 
-    if (this.isValidatedForm(isValidated)) {
-      this.setState(() => ({ formData: [...this.state.formData, formData] }));
+    if (isValidForm(isValidated)) {
+      this.setState({
+        formData: [...this.state.formData, formData],
+        isMessageVisible: true,
+      });
+
       (event.target as HTMLFormElement).reset();
+      this.reset();
     }
 
-    this.setState(() => ({
+    this.setState({
       isValidated,
       isSubmitted: true,
-    }));
+      isChanged: false,
+    });
   }
 
   render() {
     return (
       <>
-        <form className="form" onSubmit={this.handleSubmit} onChange={this.handleChange}>
+        <form
+          className="form"
+          onSubmit={this.handleSubmit}
+          onChange={this.handleChange}
+          data-testid="form"
+        >
           <div className="photo-upload">
             <label htmlFor="photo-upload">
               <img src={photo} alt="Photo Upload" />
@@ -131,8 +152,7 @@ class Form extends React.Component<TFormProps, TFormState> {
               id="photo-upload"
               type="file"
               name="image"
-              capture="user"
-              accept=".jpg, .png"
+              capture="environment"
               ref={this.photo}
             />
             <p
@@ -248,19 +268,16 @@ class Form extends React.Component<TFormProps, TFormState> {
           >
             Please give your consent by checking the label
           </p>
-          <input className="submit" type="submit" value="Submit" disabled={!this.state.isChange} />
+          <input className="submit" type="submit" value="Submit" disabled={!this.state.isChanged} />
         </form>
         <div
           className="modal"
           style={{
-            display:
-              this.state.isSubmitted && this.isValidatedForm(this.state.isValidated)
-                ? 'block'
-                : 'none',
+            display: this.state.isMessageVisible ? 'flex' : 'none',
           }}
           ref={this.modal}
         >
-          You succesfully submitted data!
+          <span>You succesfully submitted data!</span>
         </div>
         <div className="personal-cards">
           {this.state.formData
