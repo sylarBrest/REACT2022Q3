@@ -57,5 +57,11 @@
   },
   "devDependencies": {
     "gh-pages": "^4.0.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/index.tsx"
+    ]
   }
 }

@@ -2,7 +2,7 @@ import { TFormData } from 'data/types';
 import './FormCard.css';
 
 const FormCard = (props: TFormData) => (
-  <div className="personal-card">
+  <div className="personal-card" data-testid="form-card-data">
     <img
       className="card-photo"
       src={URL.createObjectURL(props.photo)}

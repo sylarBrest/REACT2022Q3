@@ -1,3 +1,5 @@
+import { FormEvent } from 'react';
+
 export type TItemProps = {
   path: string;
   name: string;
@@ -12,7 +14,8 @@ export type TSearchBarState = {
 };
 
 export type TFormProps = {
-  action?: string;
+  onSubmit?: (event: FormEvent) => void;
+  onChange?: () => void;
 };
 
 export type TFormData = {
