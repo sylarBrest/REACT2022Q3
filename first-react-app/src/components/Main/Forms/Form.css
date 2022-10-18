@@ -9,11 +9,7 @@
   font: normal normal 16px/20px Roboto, sans-serif;
 }
 
-.form :where(input, select) {
-  font: inherit;
-}
-
-.form p {
+.validation-message {
   color: #af0000;
 }
 
@@ -22,20 +18,20 @@
   width: 200px;
 }
 
-.photo-upload > label {
+.photo-upload > .field-label {
   cursor: pointer;
   height: 230px;
 }
 
-.photo-upload > label > img {
+.image-label {
   padding-bottom: 3px;
 }
 
-.photo-upload > input {
+.photo-field {
   display: none;
 }
 
-.photo-upload > p {
+.photo-upload > .validation-message  {
   padding-top: 5px;
 }
 
@@ -52,49 +48,48 @@
   height: 26px;
 }
 
-.personal-data-input > :where(input, select) {
+.personal-data-input > .field {
   margin-left: auto;
   width: 170px;
 }
 
 .gender-choice {
   width: 170px;
-	display: inline-block;
-	overflow: hidden;
+  display: inline-block;
+  overflow: hidden;
   margin-left: auto;
   border: none;
 }
 
 .gender-choice-item {
-	display: inline-block;
+  display: inline-block;
 }
 
-.gender-choice-item input[type=radio] {
-	display: none;
+.gender-field {
+  display: none;
 }
 
-.gender-choice-item label {
-	display: inline-block;
-	padding: 0px 19.7px;   
-	line-height: 20px;    
-	border: 1px solid #999;
-	border-right: none;
-	cursor: pointer;
-	user-select: none;   
-}
- 
-.gender-choice .item-male label {
-	border-radius: 5px 0 0 5px;
+.gender-label {
+  display: inline-block;
+  padding: 0px 19.7px;
+  line-height: 20px;
+  border: 1px solid #999;
+  border-right: none;
+  cursor: pointer;
+  user-select: none;
 }
 
-.gender-choice .item-female label {
-	border-radius: 0 5px 5px 0;
-	border-right: 1px solid #999;
+.item-male .gender-label {
+  border-radius: 5px 0 0 5px;
 }
- 
-.gender-choice .item-male input[type=radio]:checked + label,
-.gender-choice .item-female input[type=radio]:checked + label {
-	background: #c7c7c7;
+
+.item-female .gender-label {
+  border-radius: 0 5px 5px 0;
+  border-right: 1px solid #999;
+}
+
+.gender-field:checked + .gender-label{
+  background: #c7c7c7;
 }
 
 .consent {
@@ -116,8 +111,8 @@
   cursor: not-allowed;
 }
 
-input,
-select {
+.field {
+  font: inherit;
   outline: none;
 }
 

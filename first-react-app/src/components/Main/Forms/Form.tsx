@@ -149,11 +149,12 @@ class Form extends React.Component<TFormProps, TFormState> {
           data-testid="form"
         >
           <div className="photo-upload">
-            <label htmlFor="photo-upload">
-              <img src={photo} alt="Photo Upload" />
+            <label className="field-label" htmlFor="photo-upload">
+              <img className="image-label" src={photo} alt="Photo Upload" />
               Upload your photo
             </label>
             <input
+              className="field photo-field"
               id="photo-upload"
               type="file"
               name="image"
@@ -162,6 +163,7 @@ class Form extends React.Component<TFormProps, TFormState> {
               data-testid="form-input-photo"
             />
             <p
+              className="validation-message"
               style={{
                 opacity: this.state.isSubmitted && !this.state.isValidated.photo ? '1' : '0',
               }}
@@ -171,8 +173,11 @@ class Form extends React.Component<TFormProps, TFormState> {
           </div>
           <div className="personal-data">
             <div className="personal-data-input input-name">
-              <label htmlFor="name">Name:</label>
+              <label className="field-label" htmlFor="name">
+                Name:
+              </label>
               <input
+                className="field"
                 id="name"
                 type="text"
                 name="name"
@@ -182,6 +187,7 @@ class Form extends React.Component<TFormProps, TFormState> {
               />
             </div>
             <p
+              className="validation-message"
               style={{
                 opacity: this.state.isSubmitted && !this.state.isValidated.name ? '1' : '0',
               }}
@@ -189,8 +195,11 @@ class Form extends React.Component<TFormProps, TFormState> {
               Name not valid
             </p>
             <div className="personal-data-input input-surname">
-              <label htmlFor="surname">Surname:</label>
+              <label className="field-label" htmlFor="surname">
+                Surname:
+              </label>
               <input
+                className="field"
                 id="surname"
                 type="text"
                 name="surname"
@@ -200,6 +209,7 @@ class Form extends React.Component<TFormProps, TFormState> {
               />
             </div>
             <p
+              className="validation-message"
               style={{
                 opacity: this.state.isSubmitted && !this.state.isValidated.surname ? '1' : '0',
               }}
@@ -207,8 +217,11 @@ class Form extends React.Component<TFormProps, TFormState> {
               Surname not valid
             </p>
             <div className="personal-data-input input-birthdate">
-              <label htmlFor="birthdate">Date of birth:</label>
+              <label className="field-label" htmlFor="birthdate">
+                Date of birth:
+              </label>
               <input
+                className="field"
                 id="birthdate"
                 type="date"
                 name="birthdate"
@@ -217,6 +230,7 @@ class Form extends React.Component<TFormProps, TFormState> {
               />
             </div>
             <p
+              className="validation-message"
               style={{
                 opacity: this.state.isSubmitted && !this.state.isValidated.birthdate ? '1' : '0',
               }}
@@ -224,10 +238,11 @@ class Form extends React.Component<TFormProps, TFormState> {
               Birthdate not valid
             </p>
             <div className="personal-data-input input-gender">
-              <span>Gender: </span>
+              <span className="field-label">Gender: </span>
               <fieldset className="gender-choice">
                 <div className="gender-choice-item item-male">
                   <input
+                    className="field gender-field"
                     id="male"
                     type="radio"
                     name="radio"
@@ -235,10 +250,13 @@ class Form extends React.Component<TFormProps, TFormState> {
                     ref={this.maleGender}
                     data-testid="form-input-gender-male"
                   />
-                  <label htmlFor="male">Male</label>
+                  <label className="gender-label" htmlFor="male">
+                    Male
+                  </label>
                 </div>
                 <div className="gender-choice-item item-female">
                   <input
+                    className="field gender-field"
                     id="female"
                     type="radio"
                     name="radio"
@@ -246,11 +264,14 @@ class Form extends React.Component<TFormProps, TFormState> {
                     ref={this.femaleGender}
                     data-testid="form-input-gender-female"
                   />
-                  <label htmlFor="female">Female</label>
+                  <label className="gender-label" htmlFor="female">
+                    Female
+                  </label>
                 </div>
               </fieldset>
             </div>
             <p
+              className="validation-message"
               style={{
                 opacity: this.state.isSubmitted && !this.state.isValidated.gender ? '1' : '0',
               }}
@@ -258,8 +279,11 @@ class Form extends React.Component<TFormProps, TFormState> {
               Choose your gender
             </p>
             <div className="personal-data-input input-country">
-              <label htmlFor="country">Country:</label>
+              <label className="field-label" htmlFor="country">
+                Country:
+              </label>
               <select
+                className="field"
                 id="country"
                 name="country"
                 ref={this.country}
@@ -274,6 +298,7 @@ class Form extends React.Component<TFormProps, TFormState> {
               </select>
             </div>
             <p
+              className="validation-message"
               style={{
                 opacity: this.state.isSubmitted && !this.state.isValidated.country ? '1' : '0',
               }}
@@ -283,6 +308,7 @@ class Form extends React.Component<TFormProps, TFormState> {
           </div>
           <div className="consent">
             <input
+              className="field"
               id="personal"
               type="checkbox"
               name="personal"
@@ -290,11 +316,12 @@ class Form extends React.Component<TFormProps, TFormState> {
               ref={this.consent}
               data-testid="form-input-consent"
             />
-            <label htmlFor="personal">
+            <label className="field-label" htmlFor="personal">
               I confirm that I am over {MIN_AGE} years old and consent to my personal data
             </label>
           </div>
           <p
+            className="validation-message"
             style={{
               opacity: this.state.isSubmitted && !this.state.isValidated.consent ? '1' : '0',
             }}

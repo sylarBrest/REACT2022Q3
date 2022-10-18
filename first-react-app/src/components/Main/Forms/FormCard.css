@@ -25,6 +25,6 @@
   gap: 10px;
 }
 
-:where(.card-name, .card-surname, .card-birthdate, .card-gender, .card-country) > span {
+.item-label {
   font-weight: 700;
 }
