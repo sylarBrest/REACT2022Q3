@@ -1,36 +1,22 @@
 import { TFormData } from 'data/types';
+import FormCardItem from './FormCardItem';
 import './FormCard.css';
 
-const FormCard = (props: TFormData) => (
-  <div className="personal-card" data-testid="form-card-data">
-    <img
-      className="card-photo"
-      src={URL.createObjectURL(props.photo)}
-      alt={props.name + props.surname}
-    />
-    <div className="personal-card-data">
-      <p className="card-name">
-        <span className="item-label">Name: </span>
-        {props.name}
-      </p>
-      <p className="card-surname">
-        <span className="item-label">Surame: </span>
-        {props.surname}
-      </p>
-      <p className="card-birthdate">
-        <span className="item-label">Date of birth: </span>
-        {props.birthdate}
-      </p>
-      <p className="card-gender">
-        <span className="item-label">Gender: </span>
-        {props.gender}
-      </p>
-      <p className="card-country">
-        <span className="item-label">Country: </span>
-        {props.country}
-      </p>
+const FormCard = (props: TFormData) => {
+  const { photo, name, surname, birthdate, gender, country } = props;
+
+  return (
+    <div className="personal-card" data-testid="form-card-data">
+      <img className="card-photo" src={URL.createObjectURL(photo)} alt={`${name} ${surname}`} />
+      <div className="personal-card-data">
+        <FormCardItem label="Name: " value={name} />
+        <FormCardItem label="Surname: " value={surname} />
+        <FormCardItem label="Date of birth: " value={birthdate} />
+        <FormCardItem label="Gender: " value={gender} />
+        <FormCardItem label="Country: " value={country} />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default FormCard;

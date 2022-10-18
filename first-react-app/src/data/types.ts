@@ -67,3 +67,8 @@ export type TCardProps = {
   voices?: number;
   year: number;
 };
+
+export type FormCardItemProps = {
+  label: string;
+  value: string;
+};
