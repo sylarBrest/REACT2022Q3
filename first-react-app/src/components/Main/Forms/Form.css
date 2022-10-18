@@ -24,7 +24,7 @@
 }
 
 .image-label {
-  padding-bottom: 3px;
+  margin-bottom: -3px;
 }
 
 .photo-field {
@@ -38,7 +38,7 @@
 .personal-data {
   display: flex;
   flex-direction: column;
-  gap: 2.6px;
+  gap: 2px;
   width: 280px;
 }
 
@@ -71,7 +71,7 @@
 
 .gender-label {
   display: inline-block;
-  padding: 0px 19.7px;
+  padding: 0 19px;
   line-height: 20px;
   border: 1px solid #999;
   border-right: none;
