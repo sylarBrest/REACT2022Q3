@@ -6,6 +6,8 @@ import { FormDataPropsType, FormPropsType, FormStateType, ValidatedType } from '
 import { isValidBirthDate, isValidCountry, isValidForm, isValidName } from 'utils';
 import FormCard from './FormCard';
 import ValidationMessage from './ValidationMessage';
+import TextInput from './Inputs/TextInput';
+import RadioInput from './Inputs/RadioInput';
 
 class Form extends React.Component<FormPropsType, FormStateType> {
   photo: React.RefObject<HTMLInputElement>;
@@ -169,38 +171,12 @@ class Form extends React.Component<FormPropsType, FormStateType> {
             />
           </div>
           <div className="personal-data">
-            <div className="personal-data-input input-name">
-              <label className="field-label" htmlFor="name">
-                Name:
-              </label>
-              <input
-                className="field"
-                id="name"
-                type="text"
-                name="name"
-                placeholder="Name"
-                ref={this.name}
-                data-testid="form-input-name"
-              />
-            </div>
+            <TextInput ref={this.name} name="name" />
             <ValidationMessage
               isInvalid={this.state.isSubmitted && !this.state.isValidated.name}
               message="Name not valid"
             />
-            <div className="personal-data-input input-surname">
-              <label className="field-label" htmlFor="surname">
-                Surname:
-              </label>
-              <input
-                className="field"
-                id="surname"
-                type="text"
-                name="surname"
-                placeholder="Surname"
-                ref={this.surname}
-                data-testid="form-input-surname"
-              />
-            </div>
+            <TextInput ref={this.surname} name="surname" />
             <ValidationMessage
               isInvalid={this.state.isSubmitted && !this.state.isValidated.surname}
               message="Surname not valid"
@@ -225,34 +201,8 @@ class Form extends React.Component<FormPropsType, FormStateType> {
             <div className="personal-data-input input-gender">
               <span className="field-label">Gender: </span>
               <fieldset className="gender-choice">
-                <div className="gender-choice-item item-male">
-                  <input
-                    className="field gender-field"
-                    id="male"
-                    type="radio"
-                    name="radio"
-                    value="male"
-                    ref={this.maleGender}
-                    data-testid="form-input-gender-male"
-                  />
-                  <label className="gender-label" htmlFor="male">
-                    Male
-                  </label>
-                </div>
-                <div className="gender-choice-item item-female">
-                  <input
-                    className="field gender-field"
-                    id="female"
-                    type="radio"
-                    name="radio"
-                    value="female"
-                    ref={this.femaleGender}
-                    data-testid="form-input-gender-female"
-                  />
-                  <label className="gender-label" htmlFor="female">
-                    Female
-                  </label>
-                </div>
+                <RadioInput ref={this.maleGender} name="male" />
+                <RadioInput ref={this.femaleGender} name="female" />
               </fieldset>
             </div>
             <ValidationMessage

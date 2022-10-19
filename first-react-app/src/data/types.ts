@@ -1,4 +1,4 @@
-import { FormEvent } from 'react';
+import React from 'react';
 
 export type RoutePropsType = {
   path: string;
@@ -14,7 +14,7 @@ export type SearchBarStateType = {
 };
 
 export type FormPropsType = {
-  onSubmit?: (event: FormEvent) => void;
+  onSubmit?: (event: React.FormEvent) => void;
   onChange?: () => void;
 };
 
@@ -76,4 +76,8 @@ export type FormCardItemPropsType = {
 export type ValidationMessagePropsType = {
   isInvalid: boolean;
   message: string;
+};
+
+export type InputPropsType = {
+  name: string;
 };
