@@ -4,9 +4,20 @@ import { ValidatedType } from 'data/types';
 export const isValidBirthDate = (date: string) => {
   const today = new Date();
   const birthday = new Date(date);
-  const birthdayD = (birthday.getFullYear() * 12 + birthday.getMonth()) * 31 + birthday.getDate();
-  const todayD = (today.getFullYear() * 12 + today.getMonth()) * 31 + today.getDate();
-  return (todayD - birthdayD + 1) / 31 / 12 > MIN_AGE;
+
+  if (today.getFullYear() - birthday.getFullYear() > MIN_AGE) {
+    return true;
+  } else if (today.getFullYear() - birthday.getFullYear() === MIN_AGE) {
+    if (today.getMonth() > birthday.getMonth()) {
+      return true;
+    } else if (today.getMonth() === birthday.getMonth()) {
+      if (today.getDate() >= birthday.getDate()) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 };
 
 export const isValidCountry = (country: string) => country !== SELECT_DEFAULT_OPTION;
