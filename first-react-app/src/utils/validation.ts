@@ -1,5 +1,5 @@
 import { MIN_AGE, NAME_REGEX, SELECT_DEFAULT_OPTION } from 'data/constants';
-import { TValidated } from 'data/types';
+import { ValidatedType } from 'data/types';
 
 export const isValidBirthDate = (date: string) => {
   const today = new Date();
@@ -11,7 +11,7 @@ export const isValidBirthDate = (date: string) => {
 
 export const isValidCountry = (country: string) => country !== SELECT_DEFAULT_OPTION;
 
-export const isValidForm = (isValidated: TValidated): boolean => {
+export const isValidForm = (isValidated: ValidatedType): boolean => {
   return Object.values(isValidated).every((flag: boolean) => !!flag);
 };
 

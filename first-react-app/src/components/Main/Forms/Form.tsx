@@ -2,11 +2,11 @@ import { COUNTRIES, MIN_AGE, SELECT_DEFAULT_OPTION } from 'data/constants';
 import React, { FormEvent } from 'react';
 import './Form.css';
 import photo from 'assets/svg/photo.svg';
-import { TFormData, TFormProps, TFormState, TValidated } from 'data/types';
+import { FormDataPropsType, FormPropsType, FormStateType, ValidatedType } from 'data/types';
 import { isValidBirthDate, isValidCountry, isValidForm, isValidName } from 'utils';
 import FormCard from './FormCard';
 
-class Form extends React.Component<TFormProps, TFormState> {
+class Form extends React.Component<FormPropsType, FormStateType> {
   photo: React.RefObject<HTMLInputElement>;
   name: React.RefObject<HTMLInputElement>;
   surname: React.RefObject<HTMLInputElement>;
@@ -17,7 +17,7 @@ class Form extends React.Component<TFormProps, TFormState> {
   consent: React.RefObject<HTMLInputElement>;
   modal: React.RefObject<HTMLDivElement>;
 
-  constructor(props: TFormProps) {
+  constructor(props: FormPropsType) {
     super(props);
     this.photo = React.createRef();
     this.name = React.createRef();
@@ -102,7 +102,7 @@ class Form extends React.Component<TFormProps, TFormState> {
       photoInputFile = photoInput.files[0];
     }
 
-    const isValidated: TValidated = {
+    const isValidated: ValidatedType = {
       photo: photoInputFile ? photoInputFile.type.includes('image/') : false,
       name: isValidName(nameInput.value),
       surname: isValidName(surnameInput.value),
@@ -112,7 +112,7 @@ class Form extends React.Component<TFormProps, TFormState> {
       consent: consentInput.checked,
     };
 
-    const formData: TFormData = {
+    const formData: FormDataPropsType = {
       photo: photoInputFile ? photoInputFile : new Blob(),
       name: nameInput.value,
       surname: surnameInput.value,

@@ -1,8 +1,8 @@
-import { TCardProps } from 'data/types';
+import { CardPropsType } from 'data/types';
 import Rating from './Rating';
 import Voices from './Voices';
 
-const Card = (props: TCardProps) => {
+const Card = (props: CardPropsType) => {
   const imagePath = `sylarbrest-REACT2022Q3/assets/img/${props.imagePath}`;
   return (
     <div className="card" data-testid={props.title.replace(/\s/g, '-').toLowerCase()}>

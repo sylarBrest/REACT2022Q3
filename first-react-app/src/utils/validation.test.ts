@@ -1,4 +1,4 @@
-import { TValidated } from 'data/types';
+import { ValidatedType } from 'data/types';
 import { isValidBirthDate, isValidCountry, isValidForm, isValidName } from './validation';
 
 describe('Function', () => {
@@ -11,7 +11,7 @@ describe('Function', () => {
   });
 
   it('isValidForm should return true if correct date is present', () => {
-    const mockValidationObject: TValidated = {
+    const mockValidationObject: ValidatedType = {
       photo: true,
       name: true,
       surname: true,

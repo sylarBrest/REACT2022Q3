@@ -1,24 +1,24 @@
 import { FormEvent } from 'react';
 
-export type TItemProps = {
+export type RoutePropsType = {
   path: string;
   name: string;
 };
 
-export type TSearchBarProps = {
+export type SearchBarPropsType = {
   placeholder: string;
 };
 
-export type TSearchBarState = {
+export type SearchBarStateType = {
   value: string;
 };
 
-export type TFormProps = {
+export type FormPropsType = {
   onSubmit?: (event: FormEvent) => void;
   onChange?: () => void;
 };
 
-export type TFormData = {
+export type FormDataPropsType = {
   photo: Blob;
   name: string;
   surname: string;
@@ -28,9 +28,9 @@ export type TFormData = {
   consent: boolean;
 };
 
-export type TFormDataArray = TFormData[];
+export type FormDataArrayType = FormDataPropsType[];
 
-export type TValidated = {
+export type ValidatedType = {
   photo: boolean;
   name: boolean;
   surname: boolean;
@@ -40,23 +40,23 @@ export type TValidated = {
   consent: boolean;
 };
 
-export type TFormState = {
-  isValidated: TValidated;
-  formData: TFormDataArray;
+export type FormStateType = {
+  isValidated: ValidatedType;
+  formData: FormDataArrayType;
   isChanged: boolean;
   isSubmitted: boolean;
   isMessageVisible: boolean;
 };
 
-export type TRatingProps = {
+export type RatingPropsType = {
   rating: number;
 };
 
-export type TVoicesProps = {
+export type VoicesPropsType = {
   voices: number;
 };
 
-export type TCardProps = {
+export type CardPropsType = {
   id: number;
   title: string;
   imagePath?: string;
@@ -68,7 +68,7 @@ export type TCardProps = {
   year: number;
 };
 
-export type FormCardItemProps = {
+export type FormCardItemPropsType = {
   label: string;
   value: string;
 };

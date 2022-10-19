@@ -1,7 +1,7 @@
 import person from 'assets/svg/person.svg';
-import { TVoicesProps } from 'data/types';
+import { VoicesPropsType } from 'data/types';
 
-const Voices = (props: TVoicesProps) => {
+const Voices = (props: VoicesPropsType) => {
   return (
     <>
       <img className="image-voices" src={person} alt="voices" />

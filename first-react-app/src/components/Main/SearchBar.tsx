@@ -1,8 +1,8 @@
 import React from 'react';
-import { TSearchBarProps, TSearchBarState } from 'data/types';
+import { SearchBarPropsType, SearchBarStateType } from 'data/types';
 
-class SearchBar extends React.Component<TSearchBarProps, TSearchBarState> {
-  constructor(props: TSearchBarProps) {
+class SearchBar extends React.Component<SearchBarPropsType, SearchBarStateType> {
+  constructor(props: SearchBarPropsType) {
     super(props);
     this.state = {
       value: localStorage.getItem('searchBarValue') || '',

@@ -1,6 +1,6 @@
-import { FormCardItemProps } from 'data/types';
+import { FormCardItemPropsType } from 'data/types';
 
-const CardItem = (props: FormCardItemProps) => {
+const CardItem = (props: FormCardItemPropsType) => {
   const { label, value } = props;
 
   return (

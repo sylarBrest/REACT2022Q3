@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { TItemProps } from 'data/types';
+import { RoutePropsType } from 'data/types';
 
-function Item(props: TItemProps) {
+function Item(props: RoutePropsType) {
   return (
     <Link
       className="link"

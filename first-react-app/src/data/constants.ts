@@ -1,4 +1,4 @@
-import { TCardProps, TItemProps } from './types';
+import { CardPropsType, RoutePropsType } from './types';
 
 export const SELECT_DEFAULT_OPTION = 'Choose country';
 
@@ -15,7 +15,7 @@ export const COUNTRIES: string[] = [
   'Lithuania',
 ];
 
-export const ROUTE_PATHS: TItemProps[] = [
+export const ROUTE_PATHS: RoutePropsType[] = [
   {
     path: '/',
     name: 'Home',
@@ -30,7 +30,7 @@ export const ROUTE_PATHS: TItemProps[] = [
   },
 ];
 
-export const MOVIES_DATA: TCardProps[] = [
+export const MOVIES_DATA: CardPropsType[] = [
   {
     id: 0,
     title: 'The Shawshank Redemption',

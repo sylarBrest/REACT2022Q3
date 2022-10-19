@@ -1,8 +1,8 @@
-import { TFormData } from 'data/types';
+import { FormDataPropsType } from 'data/types';
 import FormCardItem from './FormCardItem';
 import './FormCard.css';
 
-const FormCard = (props: TFormData) => {
+const FormCard = (props: FormDataPropsType) => {
   const { photo, name, surname, birthdate, gender, country } = props;
 
   return (

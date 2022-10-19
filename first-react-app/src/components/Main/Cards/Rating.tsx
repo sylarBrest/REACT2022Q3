@@ -1,7 +1,7 @@
 import star from 'assets/svg/star.svg';
-import { TRatingProps } from 'data/types';
+import { RatingPropsType } from 'data/types';
 
-const Rating = (props: TRatingProps) => {
+const Rating = (props: RatingPropsType) => {
   return (
     <>
       <img className="image-rating" src={star} alt="rating" />

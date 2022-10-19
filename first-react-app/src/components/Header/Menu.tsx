@@ -1,9 +1,9 @@
 import { ROUTE_PATHS } from 'data/constants';
-import { TItemProps } from 'data/types';
+import { RoutePropsType } from 'data/types';
 import Item from './Item';
 
 function Menu() {
-  const menuItems = ROUTE_PATHS.map((route: TItemProps) => (
+  const menuItems = ROUTE_PATHS.map((route: RoutePropsType) => (
     <Item {...route} key={route.name.replace(/\s/g, '-').toLowerCase()} />
   ));
   return (
