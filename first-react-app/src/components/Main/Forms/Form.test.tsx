@@ -30,23 +30,23 @@ describe('component Form', () => {
     fireEvent.click(submit);
   };
 
-  it('should render', () => {
+  it('should render onto screen', () => {
     expect(screen.getByTestId('form')).toBeInTheDocument();
   });
 
-  it('submit button should be disabled when render', () => {
+  it('should render disabled submit button by default', () => {
     const submit = screen.getByTestId('form-input-submit');
     expect(submit).toBeDisabled();
   });
 
-  it('submit button should be enabled when changing some input', () => {
+  it('should render enabled submit button if some field was changed', () => {
     const submit = screen.getByTestId('form-input-submit');
     const name = screen.getByTestId('form-input-name') as HTMLInputElement;
     fireEvent.change(name, { target: { value: 'Alex' } });
     expect(submit).toBeEnabled();
   });
 
-  it('submit button should be disabled after submit with all non-valid fields', () => {
+  it('should disabled submit button if submit not success', () => {
     const submit = screen.getByTestId('form-input-submit');
     const name = screen.getByTestId('form-input-name') as HTMLInputElement;
     fireEvent.change(name, { target: { value: 'Alex' } });
@@ -55,14 +55,14 @@ describe('component Form', () => {
     expect(submit).toBeDisabled();
   });
 
-  it('submit button should be disabled after submit with all valid fields', () => {
+  it('should disabled submit button if submit success', () => {
     fillAllFields();
 
     const submit = screen.getByTestId('form-input-submit');
     expect(submit).toBeDisabled();
   });
 
-  it('one card should be displayed after succesful submit', () => {
+  it('one card should be displayed after successful submit', () => {
     fillAllFields();
 
     const card = screen.getByTestId('form-card-data');

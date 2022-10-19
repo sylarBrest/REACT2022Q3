@@ -34,7 +34,7 @@ export const MOVIES_DATA: CardPropsType[] = [
   {
     id: 0,
     title: 'The Shawshank Redemption',
-    imagePath: 'shawshank.jpg',
+    imageName: 'shawshank.jpg',
     description:
       'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
     director: 'Frank Darabont',
@@ -46,7 +46,7 @@ export const MOVIES_DATA: CardPropsType[] = [
   {
     id: 1,
     title: 'The Godfather',
-    imagePath: 'godfather.jpg',
+    imageName: 'godfather.jpg',
     description:
       'The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son.',
     director: 'Francis Ford Coppola',
@@ -58,7 +58,7 @@ export const MOVIES_DATA: CardPropsType[] = [
   {
     id: 2,
     title: 'The Dark Knight',
-    imagePath: 'dark-knight.jpg',
+    imageName: 'dark-knight.jpg',
     description:
       'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
     director: 'Christopher Nolan',
@@ -70,7 +70,7 @@ export const MOVIES_DATA: CardPropsType[] = [
   {
     id: 3,
     title: 'Forrest Gump',
-    imagePath: 'forrest-gump.jpg',
+    imageName: 'forrest-gump.jpg',
     description:
       'The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart.',
     director: 'Robert Zemeckis',
@@ -82,7 +82,7 @@ export const MOVIES_DATA: CardPropsType[] = [
   {
     id: 4,
     title: 'Fight Club',
-    imagePath: 'fight-club.jpg',
+    imageName: 'fight-club.jpg',
     description:
       'An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.',
     director: 'David Fincher',
@@ -94,7 +94,7 @@ export const MOVIES_DATA: CardPropsType[] = [
   {
     id: 5,
     title: 'Interstellar',
-    imagePath: 'interstellar.jpg',
+    imageName: 'interstellar.jpg',
     description:
       "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
     director: 'Christopher Nolan',
@@ -106,7 +106,7 @@ export const MOVIES_DATA: CardPropsType[] = [
   {
     id: 6,
     title: 'Back to the Future',
-    imagePath: 'back-to-the-future.jpg',
+    imageName: 'back-to-the-future.jpg',
     description:
       'Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.',
     director: 'Robert Zemeckis',
@@ -118,7 +118,7 @@ export const MOVIES_DATA: CardPropsType[] = [
   {
     id: 7,
     title: 'Avengers: Infinity War',
-    imagePath: 'avengers-infinity-war.jpg',
+    imageName: 'avengers-infinity-war.jpg',
     description:
       'The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.',
     director: 'Anthony Russo, Joe Russo',

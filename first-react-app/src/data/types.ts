@@ -59,7 +59,7 @@ export type VoicesPropsType = {
 export type CardPropsType = {
   id: number;
   title: string;
-  imagePath?: string;
+  imageName?: string;
   description: string;
   director: string;
   genres: string[];

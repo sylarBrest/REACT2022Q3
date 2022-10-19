@@ -1,12 +1,12 @@
 import SearchBar from 'components/Main/SearchBar';
-import Cards from 'components/Main/Cards/Cards';
+import CardsContainer from 'components/Main/Cards/CardsContainer';
 
 const Home = () => {
   return (
     <section className="section home-section" data-testid="home-page">
       <h1 className="title">Home page</h1>
       <SearchBar placeholder="Search..." />
-      <Cards />
+      <CardsContainer />
     </section>
   );
 };
