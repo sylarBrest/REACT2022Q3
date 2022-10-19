@@ -72,3 +72,8 @@ export type FormCardItemPropsType = {
   label: string;
   value: string;
 };
+
+export type ValidationMessagePropsType = {
+  isInvalid: boolean;
+  message: string;
+};

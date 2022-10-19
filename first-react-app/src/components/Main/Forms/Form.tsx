@@ -5,6 +5,7 @@ import photo from 'assets/svg/photo.svg';
 import { FormDataPropsType, FormPropsType, FormStateType, ValidatedType } from 'data/types';
 import { isValidBirthDate, isValidCountry, isValidForm, isValidName } from 'utils';
 import FormCard from './FormCard';
+import ValidationMessage from './ValidationMessage';
 
 class Form extends React.Component<FormPropsType, FormStateType> {
   photo: React.RefObject<HTMLInputElement>;
@@ -162,14 +163,10 @@ class Form extends React.Component<FormPropsType, FormStateType> {
               ref={this.photo}
               data-testid="form-input-photo"
             />
-            <p
-              className="validation-message"
-              style={{
-                opacity: this.state.isSubmitted && !this.state.isValidated.photo ? '1' : '0',
-              }}
-            >
-              Photo not present
-            </p>
+            <ValidationMessage
+              isInvalid={this.state.isSubmitted && !this.state.isValidated.photo}
+              message="Photo not present"
+            />
           </div>
           <div className="personal-data">
             <div className="personal-data-input input-name">
@@ -186,14 +183,10 @@ class Form extends React.Component<FormPropsType, FormStateType> {
                 data-testid="form-input-name"
               />
             </div>
-            <p
-              className="validation-message"
-              style={{
-                opacity: this.state.isSubmitted && !this.state.isValidated.name ? '1' : '0',
-              }}
-            >
-              Name not valid
-            </p>
+            <ValidationMessage
+              isInvalid={this.state.isSubmitted && !this.state.isValidated.name}
+              message="Name not valid"
+            />
             <div className="personal-data-input input-surname">
               <label className="field-label" htmlFor="surname">
                 Surname:
@@ -208,14 +201,10 @@ class Form extends React.Component<FormPropsType, FormStateType> {
                 data-testid="form-input-surname"
               />
             </div>
-            <p
-              className="validation-message"
-              style={{
-                opacity: this.state.isSubmitted && !this.state.isValidated.surname ? '1' : '0',
-              }}
-            >
-              Surname not valid
-            </p>
+            <ValidationMessage
+              isInvalid={this.state.isSubmitted && !this.state.isValidated.surname}
+              message="Surname not valid"
+            />
             <div className="personal-data-input input-birthdate">
               <label className="field-label" htmlFor="birthdate">
                 Date of birth:
@@ -229,14 +218,10 @@ class Form extends React.Component<FormPropsType, FormStateType> {
                 data-testid="form-input-birthdate"
               />
             </div>
-            <p
-              className="validation-message"
-              style={{
-                opacity: this.state.isSubmitted && !this.state.isValidated.birthdate ? '1' : '0',
-              }}
-            >
-              Birthdate not valid
-            </p>
+            <ValidationMessage
+              isInvalid={this.state.isSubmitted && !this.state.isValidated.birthdate}
+              message="Birthdate not valid"
+            />
             <div className="personal-data-input input-gender">
               <span className="field-label">Gender: </span>
               <fieldset className="gender-choice">
@@ -270,14 +255,10 @@ class Form extends React.Component<FormPropsType, FormStateType> {
                 </div>
               </fieldset>
             </div>
-            <p
-              className="validation-message"
-              style={{
-                opacity: this.state.isSubmitted && !this.state.isValidated.gender ? '1' : '0',
-              }}
-            >
-              Choose your gender
-            </p>
+            <ValidationMessage
+              isInvalid={this.state.isSubmitted && !this.state.isValidated.gender}
+              message="Choose your gender"
+            />
             <div className="personal-data-input input-country">
               <label className="field-label" htmlFor="country">
                 Country:
@@ -297,14 +278,10 @@ class Form extends React.Component<FormPropsType, FormStateType> {
                 ))}
               </select>
             </div>
-            <p
-              className="validation-message"
-              style={{
-                opacity: this.state.isSubmitted && !this.state.isValidated.country ? '1' : '0',
-              }}
-            >
-              Choose country
-            </p>
+            <ValidationMessage
+              isInvalid={this.state.isSubmitted && !this.state.isValidated.country}
+              message="Choose your country"
+            />
           </div>
           <div className="consent">
             <input
@@ -320,14 +297,10 @@ class Form extends React.Component<FormPropsType, FormStateType> {
               I confirm that I am over {MIN_AGE} years old and consent to my personal data
             </label>
           </div>
-          <p
-            className="validation-message"
-            style={{
-              opacity: this.state.isSubmitted && !this.state.isValidated.consent ? '1' : '0',
-            }}
-          >
-            Please give your consent by checking the label
-          </p>
+          <ValidationMessage
+            isInvalid={this.state.isSubmitted && !this.state.isValidated.consent}
+            message="Please give your consent by checking the label"
+          />
           <input
             className="submit"
             type="submit"
