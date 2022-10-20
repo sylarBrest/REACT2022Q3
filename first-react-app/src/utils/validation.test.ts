@@ -15,7 +15,7 @@ describe('Function', () => {
       photo: true,
       name: true,
       surname: true,
-      birthdate: true,
+      birthDate: true,
       gender: true,
       country: true,
       consent: true,

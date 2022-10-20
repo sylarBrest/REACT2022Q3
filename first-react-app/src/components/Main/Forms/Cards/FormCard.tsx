@@ -3,7 +3,7 @@ import FormCardItem from './FormCardItem';
 import './FormCard.css';
 
 const FormCard = (props: FormDataPropsType) => {
-  const { photo, name, surname, birthdate, gender, country } = props;
+  const { photo, name, surname, birthDate, gender, country } = props;
 
   return (
     <div className="personal-card" data-testid="form-card-data">
@@ -11,7 +11,7 @@ const FormCard = (props: FormDataPropsType) => {
       <div className="personal-card-data">
         <FormCardItem label="Name: " value={name} />
         <FormCardItem label="Surname: " value={surname} />
-        <FormCardItem label="Date of birth: " value={birthdate} />
+        <FormCardItem label="Date of birth: " value={birthDate} />
         <FormCardItem label="Gender: " value={gender} />
         <FormCardItem label="Country: " value={country} />
       </div>

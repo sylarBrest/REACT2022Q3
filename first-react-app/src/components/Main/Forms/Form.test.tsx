@@ -1,9 +1,9 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import Form from './Form';
+import FormWrapper from './FormWrapper';
 
 describe('component Form', () => {
   beforeEach(() => {
-    render(<Form />);
+    render(<FormWrapper />);
   });
 
   const fillAllFields = () => {

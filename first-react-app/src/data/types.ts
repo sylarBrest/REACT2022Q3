@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type RoutePropsType = {
   path: string;
   name: string;
@@ -14,15 +12,14 @@ export type SearchBarStateType = {
 };
 
 export type FormPropsType = {
-  onSubmit?: (event: React.FormEvent) => void;
-  onChange?: () => void;
+  updateData: (formData: FormDataPropsType) => void;
 };
 
 export type FormDataPropsType = {
   photo: Blob;
   name: string;
   surname: string;
-  birthdate: string;
+  birthDate: string;
   gender: string;
   country: string;
   consent: boolean;
@@ -34,17 +31,15 @@ export type ValidatedType = {
   photo: boolean;
   name: boolean;
   surname: boolean;
-  birthdate: boolean;
+  birthDate: boolean;
   gender: boolean;
   country: boolean;
   consent: boolean;
 };
 
 export type FormStateType = {
-  isValidated: ValidatedType;
-  formData: FormDataArrayType;
   isChanged: boolean;
-  isSubmitted: boolean;
+  isSubmitPressed: boolean;
   isMessageVisible: boolean;
 };
 
@@ -88,5 +83,9 @@ export type ModalPropsType = {
 };
 
 export type FormCardsContainerPropsType = {
+  formData: FormDataArrayType;
+};
+
+export type FormWrapperStateType = {
   formData: FormDataArrayType;
 };
