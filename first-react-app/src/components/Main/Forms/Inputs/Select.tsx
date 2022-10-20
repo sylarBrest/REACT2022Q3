@@ -1,0 +1,26 @@
+import React from 'react';
+import { InputPropsType } from 'data/types';
+import { COUNTRIES, SELECT_DEFAULT_OPTION } from 'data/constants';
+
+const Select = React.forwardRef<HTMLSelectElement, InputPropsType>((props, ref) => {
+  const { name } = props;
+  const nameF = name[0].toUpperCase() + name.slice(1);
+
+  return (
+    <div className={`personal-data-input input-${name}`}>
+      <label className="field-label" htmlFor={name}>
+        {nameF}:
+      </label>
+      <select className="field" id={name} name={name} ref={ref} data-testid={`form-select-${name}`}>
+        <option hidden>{SELECT_DEFAULT_OPTION}</option>
+        {COUNTRIES.map((country: string) => (
+          <option value={country} key={country.toLowerCase()}>
+            {country}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+});
+
+export default Select;

@@ -81,3 +81,12 @@ export type ValidationMessagePropsType = {
 export type InputPropsType = {
   name: string;
 };
+
+export type ModalPropsType = {
+  name: string;
+  isVisible: boolean;
+};
+
+export type FormCardsContainerPropsType = {
+  formData: FormDataArrayType;
+};

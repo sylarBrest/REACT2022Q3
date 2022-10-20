@@ -1,19 +1,17 @@
-import { COUNTRIES, MIN_AGE, SELECT_DEFAULT_OPTION } from 'data/constants';
-import React, { FormEvent } from 'react';
-import './Form.css';
-import photo from 'assets/svg/photo.svg';
+import React from 'react';
 import { FormDataPropsType, FormPropsType, FormStateType, ValidatedType } from 'data/types';
 import { isValidBirthDate, isValidCountry, isValidForm, isValidName } from 'utils';
-import FormCard from './FormCard';
 import ValidationMessage from './ValidationMessage';
-import TextInput from './Inputs/TextInput';
-import RadioInput from './Inputs/RadioInput';
+import { CheckboxInput, DateInput, PhotoInput, RadioInput, Select, TextInput } from './Inputs';
+import './Form.css';
+import Modal from './Modal';
+import FormCardsContainer from './Cards/FormCardsContainer';
 
 class Form extends React.Component<FormPropsType, FormStateType> {
   photo: React.RefObject<HTMLInputElement>;
   name: React.RefObject<HTMLInputElement>;
   surname: React.RefObject<HTMLInputElement>;
-  birthdate: React.RefObject<HTMLInputElement>;
+  birthDate: React.RefObject<HTMLInputElement>;
   maleGender: React.RefObject<HTMLInputElement>;
   femaleGender: React.RefObject<HTMLInputElement>;
   country: React.RefObject<HTMLSelectElement>;
@@ -25,7 +23,7 @@ class Form extends React.Component<FormPropsType, FormStateType> {
     this.photo = React.createRef();
     this.name = React.createRef();
     this.surname = React.createRef();
-    this.birthdate = React.createRef();
+    this.birthDate = React.createRef();
     this.maleGender = React.createRef();
     this.femaleGender = React.createRef();
     this.country = React.createRef();
@@ -88,13 +86,13 @@ class Form extends React.Component<FormPropsType, FormStateType> {
     this.setState({ isChanged: true });
   }
 
-  handleSubmit(event: FormEvent) {
+  handleSubmit(event: React.FormEvent) {
     event.preventDefault();
 
     const photoInput = this.photo.current as HTMLInputElement;
     const nameInput = this.name.current as HTMLInputElement;
     const surnameInput = this.surname.current as HTMLInputElement;
-    const birthdateInput = this.birthdate.current as HTMLInputElement;
+    const birthdateInput = this.birthDate.current as HTMLInputElement;
     const maleGenderInput = this.maleGender.current as HTMLInputElement;
     const femaleGenderInput = this.femaleGender.current as HTMLInputElement;
     const countrySelect = this.country.current as HTMLSelectElement;
@@ -152,19 +150,7 @@ class Form extends React.Component<FormPropsType, FormStateType> {
           data-testid="form"
         >
           <div className="photo-upload">
-            <label className="field-label" htmlFor="photo-upload">
-              <img className="image-label" src={photo} alt="Photo Upload" />
-              Upload your photo
-            </label>
-            <input
-              className="field photo-field"
-              id="photo-upload"
-              type="file"
-              name="image"
-              capture="environment"
-              ref={this.photo}
-              data-testid="form-input-photo"
-            />
+            <PhotoInput name="photo" ref={this.photo} />
             <ValidationMessage
               isInvalid={this.state.isSubmitted && !this.state.isValidated.photo}
               message="Photo not present"
@@ -181,19 +167,7 @@ class Form extends React.Component<FormPropsType, FormStateType> {
               isInvalid={this.state.isSubmitted && !this.state.isValidated.surname}
               message="Surname not valid"
             />
-            <div className="personal-data-input input-birthdate">
-              <label className="field-label" htmlFor="birthdate">
-                Date of birth:
-              </label>
-              <input
-                className="field"
-                id="birthdate"
-                type="date"
-                name="birthdate"
-                ref={this.birthdate}
-                data-testid="form-input-birthdate"
-              />
-            </div>
+            <DateInput name="birthdate" ref={this.birthDate} />
             <ValidationMessage
               isInvalid={this.state.isSubmitted && !this.state.isValidated.birthdate}
               message="Birthdate not valid"
@@ -209,44 +183,13 @@ class Form extends React.Component<FormPropsType, FormStateType> {
               isInvalid={this.state.isSubmitted && !this.state.isValidated.gender}
               message="Choose your gender"
             />
-            <div className="personal-data-input input-country">
-              <label className="field-label" htmlFor="country">
-                Country:
-              </label>
-              <select
-                className="field"
-                id="country"
-                name="country"
-                ref={this.country}
-                data-testid="form-select-country"
-              >
-                <option hidden>{SELECT_DEFAULT_OPTION}</option>
-                {COUNTRIES.map((country: string) => (
-                  <option value={country} key={country.toLowerCase()}>
-                    {country}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <Select name="country" ref={this.country} />
             <ValidationMessage
               isInvalid={this.state.isSubmitted && !this.state.isValidated.country}
               message="Choose your country"
             />
           </div>
-          <div className="consent">
-            <input
-              className="field"
-              id="personal"
-              type="checkbox"
-              name="personal"
-              value="agree"
-              ref={this.consent}
-              data-testid="form-input-consent"
-            />
-            <label className="field-label" htmlFor="personal">
-              I confirm that I am over {MIN_AGE} years old and consent to my personal data
-            </label>
-          </div>
+          <CheckboxInput name="consent" ref={this.consent} />
           <ValidationMessage
             isInvalid={this.state.isSubmitted && !this.state.isValidated.consent}
             message="Please give your consent by checking the label"
@@ -258,24 +201,9 @@ class Form extends React.Component<FormPropsType, FormStateType> {
             disabled={!this.state.isChanged}
             data-testid="form-input-submit"
           />
+          <Modal name="modal" isVisible={this.state.isMessageVisible} ref={this.modal} />
         </form>
-        <div
-          className="modal"
-          style={{
-            display: this.state.isMessageVisible ? 'flex' : 'none',
-          }}
-          ref={this.modal}
-          data-testid="modal"
-        >
-          <span>You succesfully submitted data!</span>
-        </div>
-        <div className="personal-cards">
-          {this.state.formData
-            .filter((data) => !!data.consent)
-            .map((data) => (
-              <FormCard {...data} key={data.name + data.surname} />
-            ))}
-        </div>
+        <FormCardsContainer formData={this.state.formData} />
       </>
     );
   }
