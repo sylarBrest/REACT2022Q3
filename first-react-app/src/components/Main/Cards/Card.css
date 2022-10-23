@@ -1,0 +1,15 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 300px;
+  border-radius: 5px;
+  background-color: #95dcdf;
+}

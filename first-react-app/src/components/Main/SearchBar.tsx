@@ -1,6 +1,5 @@
 import React from 'react';
 import { SearchBarPropsType, SearchBarStateType } from 'data/types';
-import search from 'services/search';
 
 class SearchBar extends React.Component<SearchBarPropsType, SearchBarStateType> {
   constructor(props: SearchBarPropsType) {
@@ -28,10 +27,8 @@ class SearchBar extends React.Component<SearchBarPropsType, SearchBarStateType> 
   async handleKeyUp(event: React.KeyboardEvent) {
     const searchInput = event.target as HTMLInputElement;
     if (event.key === 'Enter') {
-      const searchQuery = searchInput.value;
-      const data = await search({ query: encodeURIComponent(searchQuery) });
-      console.log(data);
-      this.setState({ value: '' }, () => this.props.getSearchData(data.hits));
+      const searchQuery = searchInput.value.toLowerCase();
+      this.setState({ value: '' }, () => this.props.getSearchQuery(searchQuery));
       localStorage.setItem('searchBarValue', '');
       searchInput.value = '';
     }

@@ -1,22 +1,25 @@
 import React from 'react';
 import Card from './Cards/Card';
-import { MOVIES_DATA } from 'data/constants';
-import { CardPropsType, CardsContainerPropsType } from 'data/types';
+import { CardsContainerPropsType, CardsContainerStateType } from 'data/types';
+import search from 'services/search';
 
 class CardsContainer extends React.Component<CardsContainerPropsType> {
-  constructor(props: CardsContainerPropsType) {
-    super(props);
-    this.state = {
-      data: [],
-    };
+  state: CardsContainerStateType = {
+    data: [],
+    isLoading: false,
+  };
+
+  async componentDidMount(): Promise<void> {
+    const data = await search({ query: this.props.searchQuery });
+    this.setState({ data: [...data.hits], isLoading: true });
   }
 
-  render(): React.ReactNode {
-    console.log(this.props.searchData);
+  render() {
     return (
       <div className="cards" data-testid="cards-container">
-        {MOVIES_DATA.map((movieData: CardPropsType) => (
-          <Card {...movieData} key={movieData.title.replace(/\s/g, '-').toLowerCase()} />
+        {!this.state.isLoading && <div>Loading...</div>}
+        {this.state.data.map((cardData) => (
+          <Card {...cardData} key={cardData.id} />
         ))}
       </div>
     );

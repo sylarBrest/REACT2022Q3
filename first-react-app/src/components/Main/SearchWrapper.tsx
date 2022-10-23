@@ -1,23 +1,22 @@
 import React from 'react';
-import { SearchHitsArrayType, SearchWrapperStateType } from 'data/types';
+import { SearchWrapperStateType } from 'data/types';
 import SearchBar from './SearchBar';
 import CardsContainer from './CardsContainer';
 
 class SearchWrapper extends React.Component<Record<string, never>, SearchWrapperStateType> {
   state: SearchWrapperStateType = {
-    data: [],
+    searchQuery: '',
   };
-  searchQuery = '';
 
-  handleChange(searchData: SearchHitsArrayType) {
-    this.setState({ data: [...this.state.data, ...searchData] });
+  handleChange(searchQuery: string) {
+    this.setState({ searchQuery });
   }
 
   render() {
     return (
       <>
-        <SearchBar getSearchData={this.handleChange.bind(this)} />
-        {this.state.data.length && <CardsContainer searchData={this.state.data} />}
+        <SearchBar getSearchQuery={this.handleChange.bind(this)} />
+        {this.state.searchQuery && <CardsContainer searchQuery={this.state.searchQuery} />}
       </>
     );
   }

@@ -4,7 +4,7 @@ export type RoutePropsType = {
 };
 
 export type SearchBarPropsType = {
-  getSearchData: (searchData: SearchHitsArrayType) => void;
+  getSearchQuery: (searchQuery: string) => void;
 };
 
 export type SearchBarStateType = {
@@ -91,11 +91,16 @@ export type FormWrapperStateType = {
 };
 
 export type SearchWrapperStateType = {
-  data: SearchHitsArrayType;
+  searchQuery: string;
 };
 
 export type CardsContainerPropsType = {
-  searchData: SearchHitsArrayType;
+  searchQuery: string;
+};
+
+export type CardsContainerStateType = {
+  data: SearchHitsArrayType;
+  isLoading: boolean;
 };
 
 export type SearchParametersType = {
