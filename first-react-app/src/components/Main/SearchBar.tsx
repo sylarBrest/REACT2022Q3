@@ -1,5 +1,6 @@
 import React from 'react';
 import { SearchBarPropsType, SearchBarStateType } from 'data/types';
+import search from 'services/search';
 
 class SearchBar extends React.Component<SearchBarPropsType, SearchBarStateType> {
   constructor(props: SearchBarPropsType) {
@@ -8,6 +9,7 @@ class SearchBar extends React.Component<SearchBarPropsType, SearchBarStateType> 
       value: localStorage.getItem('searchBarValue') || '',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
   }
 
   componentDidMount() {
@@ -23,15 +25,29 @@ class SearchBar extends React.Component<SearchBarPropsType, SearchBarStateType> 
     this.setState({ value: searchInput.value });
   }
 
+  async handleKeyUp(event: React.KeyboardEvent) {
+    const searchInput = event.target as HTMLInputElement;
+    if (event.key === 'Enter') {
+      const searchQuery = searchInput.value;
+      const data = await search({ query: encodeURIComponent(searchQuery) });
+      console.log(data);
+      this.setState({ value: '' }, () => this.props.getSearchData(data.hits));
+      localStorage.setItem('searchBarValue', '');
+      searchInput.value = '';
+    }
+  }
+
   render() {
     return (
       <input
         type="search"
         className="search-bar"
-        placeholder={this.props.placeholder}
+        placeholder="Search photo..."
         defaultValue={this.state.value}
         onChange={this.handleChange}
+        onKeyUp={this.handleKeyUp}
         data-testid="search-bar"
+        autoFocus
       />
     );
   }

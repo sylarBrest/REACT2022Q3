@@ -1,12 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import SearchBar from 'components/Main/SearchBar';
+import SearchWrapper from './SearchWrapper';
 
 describe('SearchBar component', () => {
   let inputSearch: HTMLInputElement;
   const testValue = 'test';
 
   beforeEach(() => {
-    render(<SearchBar placeholder="Search..." />);
+    render(<SearchWrapper />);
     inputSearch = screen.getByTestId('search-bar');
   });
 

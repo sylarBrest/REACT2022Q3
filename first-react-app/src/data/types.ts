@@ -4,7 +4,7 @@ export type RoutePropsType = {
 };
 
 export type SearchBarPropsType = {
-  placeholder: string;
+  getSearchData: (searchData: SearchHitsArrayType) => void;
 };
 
 export type SearchBarStateType = {
@@ -88,4 +88,51 @@ export type FormCardsContainerPropsType = {
 
 export type FormWrapperStateType = {
   formData: FormDataArrayType;
+};
+
+export type SearchWrapperStateType = {
+  data: SearchHitsArrayType;
+};
+
+export type CardsContainerPropsType = {
+  searchData: SearchHitsArrayType;
+};
+
+export type SearchParametersType = {
+  query: string;
+  perPage?: number;
+  order?: string;
+};
+
+export type SearchHitType = {
+  collections: number;
+  comments: number;
+  downloads: number;
+  id: number;
+  imageHeight: number;
+  imageSize: number;
+  imageWidth: number;
+  largeImageURL: string;
+  likes: number;
+  pageURL: string;
+  previewHeight: number;
+  previewURL: string;
+  previewWidth: number;
+  tags: string;
+  type: string;
+  user: string;
+  userImageURL: string;
+  user_id: number;
+  views: number;
+  webformatHeight: number;
+  webformatURL: string;
+  webformatWidth: number;
+};
+
+export type SearchHitsArrayType = SearchHitType[];
+
+export type SearchData = {
+  hits: SearchHitsArrayType;
+  total: number;
+  totalHits: number;
 };

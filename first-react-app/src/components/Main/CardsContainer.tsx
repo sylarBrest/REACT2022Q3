@@ -1,10 +1,18 @@
 import React from 'react';
-import Card from './Card';
+import Card from './Cards/Card';
 import { MOVIES_DATA } from 'data/constants';
-import { CardPropsType } from 'data/types';
+import { CardPropsType, CardsContainerPropsType } from 'data/types';
 
-class CardsContainer extends React.Component {
+class CardsContainer extends React.Component<CardsContainerPropsType> {
+  constructor(props: CardsContainerPropsType) {
+    super(props);
+    this.state = {
+      data: [],
+    };
+  }
+
   render(): React.ReactNode {
+    console.log(this.props.searchData);
     return (
       <div className="cards" data-testid="cards-container">
         {MOVIES_DATA.map((movieData: CardPropsType) => (
