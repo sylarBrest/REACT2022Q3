@@ -1,4 +1,4 @@
-const NotFound = () => {
+const NotFoundPage = () => {
   return (
     <section className="section not-found-section" data-testid="not-found-page">
       <h1 className="title">404. Not found</h1>
@@ -7,4 +7,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default NotFoundPage;

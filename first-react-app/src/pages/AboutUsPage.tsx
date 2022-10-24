@@ -1,4 +1,4 @@
-const AboutUs = () => {
+const AboutUsPage = () => {
   return (
     <section className="section about-us-section" data-testid="about-us-page">
       <h1 className="title">About us</h1>
@@ -7,4 +7,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default AboutUsPage;

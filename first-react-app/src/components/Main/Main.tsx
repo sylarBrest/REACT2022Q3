@@ -1,4 +1,4 @@
-import { AboutUs, Forms, Home, NotFound } from 'pages';
+import { AboutUsPage, FormsPage, HomePage, NotFoundPage } from 'pages';
 import { Routes, Route } from 'react-router-dom';
 
 import './Main.css';
@@ -7,10 +7,10 @@ const Main = () => {
   return (
     <main className="main" data-testid="main">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/forms" element={<Forms />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/*" element={<NotFound />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/forms" element={<FormsPage />} />
+        <Route path="/about-us" element={<AboutUsPage />} />
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </main>
   );

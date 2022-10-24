@@ -1,7 +1,7 @@
-export { default as AboutUs } from './about-us';
+export { default as AboutUsPage } from './AboutUsPage';
 
-export { default as Forms } from './forms';
+export { default as FormsPage } from './FormsPage';
 
-export { default as Home } from './home';
+export { default as HomePage } from './HomePage';
 
-export { default as NotFound } from './not-found';
+export { default as NotFoundPage } from './NotFoundPage';

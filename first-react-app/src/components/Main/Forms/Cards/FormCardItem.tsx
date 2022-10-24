@@ -1,6 +1,6 @@
 import { FormCardItemPropsType } from 'data/types';
 
-const CardItem = (props: FormCardItemPropsType) => {
+const FormCardItem = (props: FormCardItemPropsType) => {
   const { label, value } = props;
 
   return (
@@ -11,4 +11,4 @@ const CardItem = (props: FormCardItemPropsType) => {
   );
 };
 
-export default CardItem;
+export default FormCardItem;
