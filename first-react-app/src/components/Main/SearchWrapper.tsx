@@ -16,7 +16,7 @@ class SearchWrapper extends React.Component<Record<string, never>, SearchWrapper
     return (
       <>
         <SearchBar getSearchQuery={this.handleChange.bind(this)} />
-        {this.state.searchQuery && <CardsContainer searchQuery={this.state.searchQuery} />}
+        <CardsContainer searchQuery={this.state.searchQuery} key={this.state.searchQuery} />
       </>
     );
   }
