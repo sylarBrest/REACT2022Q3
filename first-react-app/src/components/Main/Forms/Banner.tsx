@@ -1,7 +1,7 @@
 import React from 'react';
-import { ModalPropsType } from 'data/types';
+import { BannerPropsType } from 'data/types';
 
-const TextInput = React.forwardRef<HTMLDivElement, ModalPropsType>((props, ref) => {
+const Banner = React.forwardRef<HTMLDivElement, BannerPropsType>((props, ref) => {
   const { name, isVisible } = props;
 
   return (
@@ -16,4 +16,4 @@ const TextInput = React.forwardRef<HTMLDivElement, ModalPropsType>((props, ref) 
   );
 });
 
-export default TextInput;
+export default Banner;

@@ -2,7 +2,7 @@ import React from 'react';
 import { InputPropsType } from 'data/types';
 import { MIN_AGE } from 'data/constants';
 
-const RadioInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, ref) => {
+const CheckboxInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, ref) => {
   const { name } = props;
 
   return (
@@ -23,4 +23,4 @@ const RadioInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, re
   );
 });
 
-export default RadioInput;
+export default CheckboxInput;

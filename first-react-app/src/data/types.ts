@@ -40,27 +40,7 @@ export type ValidatedType = {
 export type FormStateType = {
   isChanged: boolean;
   isSubmitPressed: boolean;
-  isMessageVisible: boolean;
-};
-
-export type RatingPropsType = {
-  rating: number;
-};
-
-export type VoicesPropsType = {
-  voices: number;
-};
-
-export type CardPropsType = {
-  id: number;
-  title: string;
-  imageName?: string;
-  description: string;
-  director: string;
-  genres: string[];
-  rating?: number;
-  voices?: number;
-  year: number;
+  isBannerVisible: boolean;
 };
 
 export type FormCardItemPropsType = {
@@ -77,7 +57,7 @@ export type InputPropsType = {
   name: string;
 };
 
-export type ModalPropsType = {
+export type BannerPropsType = {
   name: string;
   isVisible: boolean;
 };

@@ -69,7 +69,7 @@ describe('component Form', () => {
     expect(card).toBeInTheDocument();
   });
 
-  it('modal window should hide with 5 seconds after succesful submit', () => {
+  it('banner window should hide with 5 seconds after succesful submit', () => {
     jest.useFakeTimers();
     fillAllFields();
 
@@ -77,7 +77,7 @@ describe('component Form', () => {
       jest.runOnlyPendingTimers();
     });
 
-    const modal = screen.getByTestId('modal');
-    expect(modal).not.toBeVisible();
+    const banner = screen.getByTestId('banner');
+    expect(banner).not.toBeVisible();
   });
 });

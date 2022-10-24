@@ -4,7 +4,7 @@ import { isValidBirthDate, isValidCountry, isValidForm, isValidName } from 'util
 import ValidationMessage from './ValidationMessage';
 import { CheckboxInput, DateInput, PhotoInput, RadioInput, Select, TextInput } from './Inputs';
 import './Form.css';
-import Modal from './Modal';
+import Banner from './Banner';
 
 class Form extends React.Component<FormPropsType, FormStateType> {
   photo: React.RefObject<HTMLInputElement>;
@@ -15,7 +15,7 @@ class Form extends React.Component<FormPropsType, FormStateType> {
   femaleGender: React.RefObject<HTMLInputElement>;
   country: React.RefObject<HTMLSelectElement>;
   consent: React.RefObject<HTMLInputElement>;
-  modal: React.RefObject<HTMLDivElement>;
+  banner: React.RefObject<HTMLDivElement>;
   isValidated: ValidatedType;
 
   constructor(props: FormPropsType) {
@@ -28,12 +28,12 @@ class Form extends React.Component<FormPropsType, FormStateType> {
     this.femaleGender = React.createRef();
     this.country = React.createRef();
     this.consent = React.createRef();
-    this.modal = React.createRef();
+    this.banner = React.createRef();
 
     this.state = {
       isChanged: false,
       isSubmitPressed: false,
-      isMessageVisible: false,
+      isBannerVisible: false,
     };
 
     this.isValidated = {
@@ -69,7 +69,7 @@ class Form extends React.Component<FormPropsType, FormStateType> {
       },
       () => {
         setTimeout(() => {
-          this.setState({ isMessageVisible: false });
+          this.setState({ isBannerVisible: false });
         }, 3000);
       }
     );
@@ -119,7 +119,7 @@ class Form extends React.Component<FormPropsType, FormStateType> {
     if (isValidForm(isValidated)) {
       this.setState(
         {
-          isMessageVisible: true,
+          isBannerVisible: true,
         },
         () => this.props.updateData(formData)
       );
@@ -196,7 +196,7 @@ class Form extends React.Component<FormPropsType, FormStateType> {
           disabled={!this.state.isChanged}
           data-testid="form-input-submit"
         />
-        <Modal name="modal" isVisible={this.state.isMessageVisible} ref={this.modal} />
+        <Banner name="banner" isVisible={this.state.isBannerVisible} ref={this.banner} />
       </form>
     );
   }
