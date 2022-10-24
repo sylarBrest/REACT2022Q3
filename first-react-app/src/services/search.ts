@@ -3,8 +3,8 @@ import { SearchData, SearchParametersType } from 'data/types';
 
 const search = async (parameters: SearchParametersType) => {
   const query = `&q=${encodeURIComponent(parameters.query)}`;
-  const perPage = `&per_page=${parameters.perPage}` || '';
-  const order = `&order=${parameters.order}` || '';
+  const perPage = parameters.perPage ? `&per_page=${parameters.perPage}` : '';
+  const order = parameters.order ? `&order=${parameters.order}` : '';
 
   const response = await fetch(`${BASE_URL}?key=${API_KEY}${query}${perPage}${order}`);
   const data: SearchData = await response.json();

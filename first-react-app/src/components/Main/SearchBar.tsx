@@ -8,7 +8,7 @@ class SearchBar extends React.Component<SearchBarPropsType, SearchBarStateType> 
       value: localStorage.getItem('searchBarValue') || '',
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +24,7 @@ class SearchBar extends React.Component<SearchBarPropsType, SearchBarStateType> 
     this.setState({ value: searchInput.value });
   }
 
-  async handleKeyUp(event: React.KeyboardEvent) {
+  async handleKeyPress(event: React.KeyboardEvent) {
     const searchInput = event.target as HTMLInputElement;
     if (event.key === 'Enter') {
       const searchQuery = searchInput.value.toLowerCase();
@@ -42,7 +42,7 @@ class SearchBar extends React.Component<SearchBarPropsType, SearchBarStateType> 
         placeholder="Search photo..."
         defaultValue={this.state.value}
         onChange={this.handleChange}
-        onKeyUp={this.handleKeyUp}
+        onKeyPress={this.handleKeyPress}
         data-testid="search-bar"
         autoFocus
       />

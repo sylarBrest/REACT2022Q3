@@ -1,37 +1,27 @@
-import { render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Card from 'components/Main/Cards/Card';
+import SearchWrapper from '../SearchWrapper';
 
 describe('Card component', () => {
-  const mockMovieData = [
-    {
-      id: 0,
-      title: 'test',
-      imageName: '',
-      description: 'test with rating and voices',
-      director: 'M. Test',
-      genres: ['test', 'true'],
-      rating: 8,
-      voices: 12000,
-      year: 2022,
-    },
-    {
-      id: 1,
-      title: 'testing',
-      imageName: '',
-      description: 'test without rating and voices',
-      director: 'M. Testing',
-      genres: ['test', 'false'],
-      year: 2022,
-    },
-  ];
-
-  it('should render onto the screen if rating and voices present', () => {
-    render(<Card {...mockMovieData[0]} />);
-    expect(screen.getByTestId(`card-${mockMovieData[0].id}`)).toBeInTheDocument();
+  it('should render onto the screen if rating and voices present', async () => {
+    act(() => {
+      render(<SearchWrapper />);
+    });
+    const searchInput = screen.getByTestId('search-bar') as HTMLInputElement;
+    expect(searchInput).toBeInTheDocument();
+    userEvent.type(searchInput, 'ferrari');
+    expect(searchInput).toHaveValue('ferrari');
+    act(() => {
+      fireEvent.keyPress(searchInput, { key: 'Enter', charCode: 13 });
+    });
+    expect(searchInput).toHaveValue('');
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    expect(await screen.findByTestId(`card-123456`)).toBeInTheDocument();
   });
 
-  it('should render onto the screen if rating and voices not present', () => {
+  /*   it('should render onto the screen if rating and voices not present', () => {
     render(<Card {...mockMovieData[1]} />);
     expect(screen.getByTestId(`card-${mockMovieData[1].id}`)).toBeInTheDocument();
-  });
+  }); */
 });
