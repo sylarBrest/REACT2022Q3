@@ -81,6 +81,7 @@ export type CardsContainerPropsType = {
 export type CardsContainerStateType = {
   data: SearchHitsArrayType;
   isLoading: boolean;
+  isModalVisible: boolean;
 };
 
 export type SearchParametersType = {
@@ -120,4 +121,13 @@ export type SearchData = {
   hits: SearchHitsArrayType;
   total: number;
   totalHits: number;
+};
+
+export type CardPropsType = SearchHitType & {
+  getPhotoId: (id: number) => void;
+};
+
+export type ModalPropsType = SearchHitType & {
+  isVisible: boolean;
+  setIsVisible: () => void;
 };

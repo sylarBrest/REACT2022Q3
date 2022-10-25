@@ -34,7 +34,7 @@ const mockData: SearchData = {
   totalHits: 20,
 };
 
-describe('Card component', () => {
+describe('SearchWrapper component', () => {
   let originalFetch: (
     input: RequestInfo | URL,
     init?: RequestInit | undefined
@@ -62,6 +62,6 @@ describe('Card component', () => {
     fireEvent.keyPress(searchInput, { key: 'Enter', charCode: 13 });
     expect(searchInput).toHaveValue('');
     expect(screen.getByText('Loading...')).toBeInTheDocument();
-    expect(await screen.findByTestId(`card-123456`)).toBeInTheDocument();
+    expect(await screen.findByTestId(`card-${mockData.hits[0].id}`)).toBeInTheDocument();
   });
 });
