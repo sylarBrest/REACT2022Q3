@@ -131,3 +131,9 @@ export type ModalPropsType = SearchHitType & {
   isVisible: boolean;
   setIsVisible: () => void;
 };
+
+export type ModalItemPropsType = {
+  label: string;
+  icon: string;
+  value: number;
+};

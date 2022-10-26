@@ -1,6 +1,6 @@
 import React from 'react';
 import { SearchWrapperStateType } from 'data/types';
-import SearchBar from './SearchBar';
+import SearchBar from './SearchBar/SearchBar';
 import CardsContainer from './CardsContainer';
 
 class SearchWrapper extends React.Component<Record<string, never>, SearchWrapperStateType> {

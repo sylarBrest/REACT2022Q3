@@ -1,5 +1,6 @@
 import React from 'react';
 import { BannerPropsType } from 'data/types';
+import './Banner.css';
 
 const Banner = React.forwardRef<HTMLDivElement, BannerPropsType>((props, ref) => {
   const { name, isVisible } = props;

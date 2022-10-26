@@ -20,7 +20,6 @@ class CardsContainer extends React.Component<CardsContainerPropsType> {
   }
 
   async passIdToModal(id: number) {
-    console.log('my ID', id);
     const data = await imageInfo(id);
     this.modalData = { ...data.hits[0] };
     this.setState({ isModalVisible: true });

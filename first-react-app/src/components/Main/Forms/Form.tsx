@@ -4,7 +4,7 @@ import { isValidBirthDate, isValidCountry, isValidForm, isValidName } from 'util
 import ValidationMessage from './ValidationMessage';
 import { CheckboxInput, DateInput, PhotoInput, RadioInput, Select, TextInput } from './Inputs';
 import './Form.css';
-import Banner from './Banner';
+import Banner from './Banner/Banner';
 
 class Form extends React.Component<FormPropsType, FormStateType> {
   photo: React.RefObject<HTMLInputElement>;

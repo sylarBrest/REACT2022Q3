@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import SearchWrapper from './SearchWrapper';
+import SearchWrapper from '../SearchWrapper';
 
 describe('SearchBar component', () => {
   let inputSearch: HTMLInputElement;
