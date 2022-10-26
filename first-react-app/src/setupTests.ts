@@ -1,29 +1,12 @@
 import '@testing-library/jest-dom';
 
-const localStorageMock = (function () {
-  let store: { [key: string]: string } = {};
+import { localStorageMock } from 'mocks/mockData';
+import { server } from 'mocks/server';
 
-  return {
-    getItem(key: string) {
-      return store[key];
-    },
+beforeAll(() => server.listen());
 
-    setItem(key: string, value: string) {
-      store[key] = value;
-    },
+afterAll(() => server.close());
 
-    clear() {
-      store = {};
-    },
-
-    removeItem(key: string) {
-      delete store[key];
-    },
-
-    getAll() {
-      return store;
-    },
-  };
-})();
+afterEach(() => server.resetHandlers());
 
 Object.defineProperty(window, 'localStorage', { value: localStorageMock });
