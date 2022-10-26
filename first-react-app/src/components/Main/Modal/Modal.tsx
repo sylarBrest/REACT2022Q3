@@ -11,8 +11,7 @@ import React from 'react';
 const Modal = (props: ModalPropsType) => {
   const {
     id,
-    isVisible,
-    setIsVisible,
+    onCloseModal,
     largeImageURL,
     userImageURL,
     user,
@@ -24,11 +23,7 @@ const Modal = (props: ModalPropsType) => {
   } = props;
 
   return (
-    <div
-      className="modal-overlay"
-      style={{ display: isVisible ? 'flex' : 'none' }}
-      onClick={() => setIsVisible()}
-    >
+    <div className="modal-overlay" onClick={() => onCloseModal()} data-testid="modal-overlay">
       <div
         className="modal"
         data-testid={`modal-${id}`}
@@ -57,8 +52,9 @@ const Modal = (props: ModalPropsType) => {
         </div>
         <button
           className="modal-close"
-          onClick={() => setIsVisible()}
+          onClick={() => onCloseModal()}
           style={{ backgroundImage: `url(${closeIcon})` }}
+          data-testid="modal-close"
         />
       </div>
     </div>

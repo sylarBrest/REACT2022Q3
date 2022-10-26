@@ -129,8 +129,7 @@ export type CardPropsType = SearchHitType & {
 };
 
 export type ModalPropsType = SearchHitType & {
-  isVisible: boolean;
-  setIsVisible: () => void;
+  onCloseModal: () => void;
 };
 
 export type ModalItemPropsType = {

@@ -1,32 +1,50 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import SearchWrapper from '../SearchWrapper';
 
 describe('SearchBar component', () => {
-  let inputSearch: HTMLInputElement;
-  const testValue = 'test';
+  let searchBar: HTMLInputElement;
+  const testSearch = 'test';
 
   beforeEach(() => {
-    render(<SearchWrapper />);
-    inputSearch = screen.getByTestId('search-bar');
+    act(() => {
+      render(<SearchWrapper />);
+    });
+    searchBar = screen.getByTestId('search-bar');
   });
 
   it('should render onto the screen', () => {
-    expect(inputSearch).toBeInTheDocument();
+    expect(searchBar).toBeInTheDocument();
   });
 
   it('should change value when typing', () => {
-    expect(inputSearch.value).toBe('');
-    fireEvent.change(inputSearch, { target: { value: testValue } });
-    expect(inputSearch.value).toBe(testValue);
+    expect(searchBar).toHaveValue('');
+    act(() => {
+      userEvent.type(searchBar, testSearch);
+    });
+    expect(searchBar).toHaveValue(testSearch);
+  });
+
+  it('should have empty value after pressing Enter', () => {
+    expect(searchBar).toHaveValue(testSearch);
+    act(() => {
+      userEvent.type(searchBar, `${testSearch}{enter}`);
+    });
+    expect(searchBar).toHaveValue('');
   });
 
   it('should save value to LocalStorage when unmounting', () => {
-    window.localStorage.setItem('searchBarValue', inputSearch.value);
-    expect(window.localStorage.getItem('searchBarValue')).toBe(testValue);
+    act(() => {
+      userEvent.type(searchBar, testSearch);
+    });
+    window.localStorage.setItem('searchBarValue', searchBar.value);
+    expect(window.localStorage.getItem('searchBarValue')).toBe(testSearch);
   });
 
   it('should take value from LocalStorage when rendering', () => {
-    inputSearch.value = window.localStorage.getItem('searchBarValue') || '';
-    expect(inputSearch.value).toBe(testValue);
+    act(() => {
+      searchBar.value = window.localStorage.getItem('searchBarValue') || '';
+    });
+    expect(searchBar).toHaveValue(testSearch);
   });
 });

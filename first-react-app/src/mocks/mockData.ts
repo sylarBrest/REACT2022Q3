@@ -26,6 +26,15 @@ export const localStorageMock = (function () {
   };
 })();
 
+export const goodSearch = 'ferrari';
+export const badSearch = 'tralala';
+
+export const mockEmptyData = {
+  hits: [],
+  total: 0,
+  totalHits: 0,
+};
+
 export const mockData: SearchData = {
   hits: [
     {

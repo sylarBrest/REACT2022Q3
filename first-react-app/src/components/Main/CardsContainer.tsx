@@ -36,19 +36,21 @@ class CardsContainer extends React.Component<CardsContainerPropsType> {
   render() {
     return (
       <div className="cards" data-testid="cards-container">
-        {!this.state.isLoading && <div className="cards-stub">Loading...</div>}
+        {!this.state.isLoading && (
+          <div className="cards-stub" data-testid="loading-stub">
+            Loading...
+          </div>
+        )}
         {this.state.data.map((cardData: SearchHitType) => (
           <Card {...cardData} key={cardData.id} getPhotoId={this.passIdToModal.bind(this)} />
         ))}
         {this.state.isEmptyData && (
-          <div className="cards-stub">No results, try another search...</div>
+          <div className="cards-stub" data-testid="no-results-stub">
+            No results found, try another search...
+          </div>
         )}
-        {this.modalData && (
-          <Modal
-            isVisible={this.state.isModalVisible}
-            setIsVisible={this.hideModal.bind(this)}
-            {...this.modalData}
-          />
+        {this.modalData && this.state.isModalVisible && (
+          <Modal onCloseModal={this.hideModal.bind(this)} {...this.modalData} />
         )}
       </div>
     );
