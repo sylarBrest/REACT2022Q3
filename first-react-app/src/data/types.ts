@@ -81,6 +81,7 @@ export type CardsContainerPropsType = {
 export type CardsContainerStateType = {
   data: SearchHitsArrayType;
   isLoading: boolean;
+  isEmptyData: boolean;
   isModalVisible: boolean;
 };
 

@@ -11,12 +11,16 @@ class CardsContainer extends React.Component<CardsContainerPropsType> {
   state: CardsContainerStateType = {
     data: [],
     isLoading: false,
+    isEmptyData: false,
     isModalVisible: false,
   };
 
   async componentDidMount(): Promise<void> {
     const data = await search({ query: this.props.searchQuery });
     this.setState({ data: [...data.hits], isLoading: true });
+    !data.hits.length
+      ? this.setState({ isEmptyData: true })
+      : this.setState({ isEmptyData: false });
   }
 
   async passIdToModal(id: number) {
@@ -32,10 +36,13 @@ class CardsContainer extends React.Component<CardsContainerPropsType> {
   render() {
     return (
       <div className="cards" data-testid="cards-container">
-        {!this.state.isLoading && <div>Loading...</div>}
-        {this.state.data.map((cardData) => (
+        {!this.state.isLoading && <div className="cards-stub">Loading...</div>}
+        {this.state.data.map((cardData: SearchHitType) => (
           <Card {...cardData} key={cardData.id} getPhotoId={this.passIdToModal.bind(this)} />
         ))}
+        {this.state.isEmptyData && (
+          <div className="cards-stub">No results, try another search...</div>
+        )}
         {this.modalData && (
           <Modal
             isVisible={this.state.isModalVisible}
