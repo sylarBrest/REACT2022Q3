@@ -62,14 +62,14 @@ describe('component Form', () => {
     expect(submit).toBeDisabled();
   });
 
-  it('one card should be displayed after successful submit', () => {
+  it('should display one card after successful submit', () => {
     fillAllFields();
 
     const card = screen.getByTestId('form-card-data');
     expect(card).toBeInTheDocument();
   });
 
-  it('banner window should hide with 5 seconds after succesful submit', () => {
+  it('should hide banner with 5 seconds after succesful submit', () => {
     jest.useFakeTimers();
     fillAllFields();
 

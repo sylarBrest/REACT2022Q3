@@ -5,7 +5,7 @@ import { basicGetMethod } from 'services/basicGetMethod';
 import Modal from './Modal/Modal';
 
 class CardsContainer extends React.Component<CardsContainerPropsType> {
-  modalData: SearchHitType | undefined;
+  modalData?: SearchHitType;
 
   state: CardsContainerStateType = {
     data: [],
