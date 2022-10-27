@@ -32,19 +32,19 @@ describe('SearchWrapper component', () => {
     expect(card).toBeInTheDocument();
   });
 
-  it('click on card should render modal window', async () => {
+  it('should render modal window by click on card', async () => {
     await openModal();
     expect(await screen.findByTestId(`modal-${mockData.hits[0].id}`)).toBeInTheDocument();
   });
 
-  it('modal window should close clicking on button', async () => {
+  it('should close modal window by click on button X', async () => {
     await openModal();
     const modalCloseButton = await screen.findByTestId('modal-close');
     userEvent.click(modalCloseButton);
     expect(screen.queryByTestId(`modal-${mockData.hits[0].id}`)).toBeNull();
   });
 
-  it('modal window should close clicking on overlay', async () => {
+  it('should close modal window by click on overlay', async () => {
     await openModal();
     const modalOverlay = await screen.findByTestId('modal-overlay');
     userEvent.click(modalOverlay);
