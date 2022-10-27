@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormDataPropsType, FormWrapperStateType } from 'data/types';
 import './Form.css';
-import FormCardsContainer from './Cards/FormCardsContainer';
+import CardsContainer from './Cards/CardsContainer';
 import Form from './Form';
 
 class FormWrapper extends React.Component<Record<string, never>, FormWrapperStateType> {
@@ -27,7 +27,7 @@ class FormWrapper extends React.Component<Record<string, never>, FormWrapperStat
     return (
       <>
         <Form updateData={this.handleChange.bind(this)} />
-        <FormCardsContainer formData={this.state.formData} />
+        <CardsContainer formData={this.state.formData} />
       </>
     );
   }

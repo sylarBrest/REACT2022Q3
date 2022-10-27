@@ -1,7 +1,7 @@
 import { FormCardsContainerPropsType } from 'data/types';
-import FormCard from './FormCard';
+import FormCard from './Card';
 
-const FormCardsContainer = (props: FormCardsContainerPropsType) => {
+const CardsContainer = (props: FormCardsContainerPropsType) => {
   return (
     <div className="personal-cards">
       {props.formData
@@ -13,4 +13,4 @@ const FormCardsContainer = (props: FormCardsContainerPropsType) => {
   );
 };
 
-export default FormCardsContainer;
+export default CardsContainer;

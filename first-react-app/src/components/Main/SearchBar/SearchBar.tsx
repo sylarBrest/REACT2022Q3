@@ -12,7 +12,8 @@ class SearchBar extends React.Component<SearchBarPropsType, SearchBarStateType> 
   }
 
   componentDidMount() {
-    this.setState({ value: localStorage.getItem('searchBarValue') || '' });
+    const searchQuery = localStorage.getItem('searchBarValue') || '';
+    this.setState({ value: searchQuery }, () => this.props.getSearchQuery(searchQuery));
   }
 
   componentWillUnmount() {
@@ -28,9 +29,8 @@ class SearchBar extends React.Component<SearchBarPropsType, SearchBarStateType> 
     const searchInput = event.target as HTMLInputElement;
     if (event.key === 'Enter') {
       const searchQuery = searchInput.value.toLowerCase();
-      this.setState({ value: '' }, () => this.props.getSearchQuery(searchQuery));
-      localStorage.setItem('searchBarValue', '');
-      searchInput.value = '';
+      this.setState({ value: searchInput.value }, () => this.props.getSearchQuery(searchQuery));
+      localStorage.setItem('searchBarValue', searchInput.value);
     }
   }
 

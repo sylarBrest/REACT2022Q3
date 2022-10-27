@@ -9,6 +9,10 @@
   font-size: 30px;
 }
 
+.results {
+  align-self: flex-start;
+}
+
 .card {
   display: flex;
   flex-direction: column;

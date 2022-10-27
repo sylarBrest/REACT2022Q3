@@ -72,15 +72,6 @@ export type SearchWrapperStateType = {
   searchQuery: string;
 };
 
-export type CardsContainerPropsType = SearchWrapperStateType;
-
-export type CardsContainerStateType = {
-  data: SearchHitsArrayType;
-  isLoading: boolean;
-  isEmptyData: boolean;
-  isModalVisible: boolean;
-};
-
 export type SearchParametersType = {
   query: string;
   perPage?: number;
@@ -122,6 +113,15 @@ export type SearchData = {
   hits: SearchHitsArrayType;
   total: number;
   totalHits: number;
+};
+
+export type CardsContainerPropsType = SearchWrapperStateType;
+
+export type CardsContainerStateType = {
+  data: SearchData;
+  isLoading: boolean;
+  isEmptyData: boolean;
+  isModalVisible: boolean;
 };
 
 export type CardPropsType = SearchHitType & {

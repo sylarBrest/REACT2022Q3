@@ -25,18 +25,14 @@ describe('SearchBar component', () => {
     expect(searchBar).toHaveValue(testSearch);
   });
 
-  it('should have empty value after pressing Enter', () => {
-    expect(searchBar).toHaveValue(testSearch);
+  it('should save value after pressing Enter', () => {
     act(() => {
-      userEvent.type(searchBar, `${testSearch}{enter}`);
+      userEvent.type(searchBar, '{enter}');
     });
-    expect(searchBar).toHaveValue('');
+    expect(searchBar).toHaveValue(testSearch);
   });
 
   it('should save value to LocalStorage when unmounting', () => {
-    act(() => {
-      userEvent.type(searchBar, testSearch);
-    });
     window.localStorage.setItem('searchBarValue', searchBar.value);
     expect(window.localStorage.getItem('searchBarValue')).toBe(testSearch);
   });
