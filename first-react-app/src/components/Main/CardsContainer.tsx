@@ -1,8 +1,7 @@
 import React from 'react';
 import Card from './Card/Card';
 import { CardsContainerPropsType, CardsContainerStateType, SearchHitType } from 'data/types';
-import search from 'services/search';
-import imageInfo from 'services/imageInfo';
+import { basicGetMethod } from 'services/basicGetMethod';
 import Modal from './Modal/Modal';
 
 class CardsContainer extends React.Component<CardsContainerPropsType> {
@@ -16,15 +15,15 @@ class CardsContainer extends React.Component<CardsContainerPropsType> {
   };
 
   async componentDidMount(): Promise<void> {
-    const data = await search({ query: this.props.searchQuery });
+    const data = await basicGetMethod({ query: this.props.searchQuery });
     this.setState({ data: [...data.hits], isLoading: true });
     !data.hits.length
       ? this.setState({ isEmptyData: true })
       : this.setState({ isEmptyData: false });
   }
 
-  async passIdToModal(id: number) {
-    const data = await imageInfo(id);
+  async passIdToModal(id: number): Promise<void> {
+    const data = await basicGetMethod({ id });
     this.modalData = { ...data.hits[0] };
     this.setState({ isModalVisible: true });
   }

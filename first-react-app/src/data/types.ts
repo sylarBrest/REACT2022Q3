@@ -66,17 +66,13 @@ export type FormCardsContainerPropsType = {
   formData: FormDataArrayType;
 };
 
-export type FormWrapperStateType = {
-  formData: FormDataArrayType;
-};
+export type FormWrapperStateType = FormCardsContainerPropsType;
 
 export type SearchWrapperStateType = {
   searchQuery: string;
 };
 
-export type CardsContainerPropsType = {
-  searchQuery: string;
-};
+export type CardsContainerPropsType = SearchWrapperStateType;
 
 export type CardsContainerStateType = {
   data: SearchHitsArrayType;
@@ -89,6 +85,10 @@ export type SearchParametersType = {
   query: string;
   perPage?: number;
   order?: string;
+};
+
+export type UrlParametersType = Partial<SearchParametersType> & {
+  id?: number;
 };
 
 export type SearchHitType = {
