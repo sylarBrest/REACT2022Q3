@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormDataPropsType, FormWrapperStateType } from 'data/types';
 import './Form.css';
-import CardsContainer from './Cards/CardsContainer';
+import { CardsContainer } from './Cards/CardsContainer';
 import Form from './Form';
 
 class FormWrapper extends React.Component<Record<string, never>, FormWrapperStateType> {

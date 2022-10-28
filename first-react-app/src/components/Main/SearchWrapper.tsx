@@ -2,10 +2,11 @@ import { useState } from 'react';
 import SearchBar from './SearchBar/SearchBar';
 import CardsContainer from './CardsContainer';
 import { basicGetMethod } from 'services/basicGetMethod';
+import { SearchData } from 'data/types';
 
 export const SearchWrapper = () => {
   const [searchQuery, setSeacrhQuery] = useState('');
-  const [data, setData] = useState({
+  const [data, setData] = useState<SearchData>({
     hits: [],
     total: 0,
     totalHits: 0,

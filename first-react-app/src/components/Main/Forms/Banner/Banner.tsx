@@ -2,7 +2,7 @@ import React from 'react';
 import { BannerPropsType } from 'data/types';
 import './Banner.css';
 
-const Banner = React.forwardRef<HTMLDivElement, BannerPropsType>((props, ref) => {
+export const Banner = React.forwardRef<HTMLDivElement, BannerPropsType>((props, ref) => {
   const { name, isVisible } = props;
 
   return (
@@ -16,5 +16,3 @@ const Banner = React.forwardRef<HTMLDivElement, BannerPropsType>((props, ref) =>
     </div>
   );
 });
-
-export default Banner;

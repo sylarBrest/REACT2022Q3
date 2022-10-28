@@ -1,10 +1,10 @@
 import React from 'react';
-import { FormDataPropsType, FormPropsType, FormStateType, ValidatedType } from 'data/types';
 import { isValidBirthDate, isValidCountry, isValidForm, isValidName } from 'utils';
-import ValidationMessage from './ValidationMessage';
+import { FormDataPropsType, FormPropsType, FormStateType, ValidatedType } from 'data/types';
 import { CheckboxInput, DateInput, PhotoInput, RadioInput, Select, TextInput } from './Inputs';
+import { Banner } from './Banner/Banner';
+import { ValidationMessage } from './ValidationMessage';
 import './Form.css';
-import Banner from './Banner/Banner';
 
 class Form extends React.Component<FormPropsType, FormStateType> {
   photo: React.RefObject<HTMLInputElement>;

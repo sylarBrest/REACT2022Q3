@@ -1,6 +1,6 @@
 import { ValidationMessagePropsType } from 'data/types';
 
-const ValidationMessage = (props: ValidationMessagePropsType) => {
+export const ValidationMessage = (props: ValidationMessagePropsType) => {
   const { isInvalid, message } = props;
 
   return (
@@ -9,5 +9,3 @@ const ValidationMessage = (props: ValidationMessagePropsType) => {
     </p>
   );
 };
-
-export default ValidationMessage;

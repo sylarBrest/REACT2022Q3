@@ -1,8 +1,8 @@
 import { FormDataPropsType } from 'data/types';
-import CardItem from './CardItem';
+import { CardItem } from './CardItem';
 import './Card.css';
 
-const Card = (props: FormDataPropsType) => {
+export const Card = (props: FormDataPropsType) => {
   const { photo, name, surname, birthDate, gender, country } = props;
 
   return (
@@ -18,5 +18,3 @@ const Card = (props: FormDataPropsType) => {
     </div>
   );
 };
-
-export default Card;
