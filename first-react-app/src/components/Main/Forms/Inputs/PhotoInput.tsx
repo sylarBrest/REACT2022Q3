@@ -1,15 +1,16 @@
 import React from 'react';
 import { InputPropsType } from 'data/types';
-import photo from 'assets/svg/photo.svg';
 
-const PhotoInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, ref) => {
+import photoIcon from 'assets/svg/photo.svg';
+
+export const PhotoInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, ref) => {
   const { name } = props;
   const nameF = name[0].toUpperCase() + name.slice(1);
 
   return (
     <>
       <label className="field-label" htmlFor={`${name}-upload`}>
-        <img className={`${name}-label`} src={photo} alt={`${nameF} Upload`} />
+        <img className={`${name}-label`} src={photoIcon} alt={`${nameF} Upload`} />
         Upload your photo
       </label>
       <input
@@ -24,5 +25,3 @@ const PhotoInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, re
     </>
   );
 });
-
-export default PhotoInput;

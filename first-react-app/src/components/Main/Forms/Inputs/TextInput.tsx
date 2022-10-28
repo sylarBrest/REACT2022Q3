@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputPropsType } from 'data/types';
 
-const TextInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, ref) => {
+export const TextInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, ref) => {
   const { name } = props;
   const nameF = name[0].toUpperCase() + name.slice(1);
 
@@ -22,5 +22,3 @@ const TextInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, ref
     </div>
   );
 });
-
-export default TextInput;

@@ -2,7 +2,7 @@ import React from 'react';
 import { InputPropsType } from 'data/types';
 import { COUNTRIES, SELECT_DEFAULT_OPTION } from 'data/constants';
 
-const Select = React.forwardRef<HTMLSelectElement, InputPropsType>((props, ref) => {
+export const Select = React.forwardRef<HTMLSelectElement, InputPropsType>((props, ref) => {
   const { name } = props;
   const nameF = name[0].toUpperCase() + name.slice(1);
 
@@ -22,5 +22,3 @@ const Select = React.forwardRef<HTMLSelectElement, InputPropsType>((props, ref) 
     </div>
   );
 });
-
-export default Select;

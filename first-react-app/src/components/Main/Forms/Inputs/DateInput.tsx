@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputPropsType } from 'data/types';
 
-const DateInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, ref) => {
+export const DateInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, ref) => {
   const { name } = props;
 
   return (
@@ -20,5 +20,3 @@ const DateInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, ref
     </div>
   );
 });
-
-export default DateInput;

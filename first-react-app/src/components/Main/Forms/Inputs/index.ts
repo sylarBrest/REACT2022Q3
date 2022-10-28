@@ -1,11 +1,11 @@
-export { default as CheckboxInput } from './CheckboxInput';
+export * from './CheckboxInput';
 
-export { default as DateInput } from './DateInput';
+export * from './DateInput';
 
-export { default as PhotoInput } from './PhotoInput';
+export * from './PhotoInput';
 
-export { default as RadioInput } from './RadioInput';
+export * from './RadioInput';
 
-export { default as Select } from './Select';
+export * from './Select';
 
-export { default as TextInput } from './TextInput';
+export * from './TextInput';
