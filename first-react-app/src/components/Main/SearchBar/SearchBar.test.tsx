@@ -33,14 +33,10 @@ describe('SearchBar component', () => {
   });
 
   it('should save value to LocalStorage when unmounting', () => {
-    window.localStorage.setItem('searchBarValue', searchBar.value);
     expect(window.localStorage.getItem('searchBarValue')).toBe(testSearch);
   });
 
   it('should take value from LocalStorage when rendering', () => {
-    act(() => {
-      searchBar.value = window.localStorage.getItem('searchBarValue') || '';
-    });
     expect(searchBar).toHaveValue(testSearch);
   });
 });
