@@ -37,12 +37,14 @@ class SearchWrapper extends React.Component<Record<string, never>, SearchWrapper
           <div className="cards-stub" data-testid="no-results-stub">
             No results found, try another search...
           </div>
-        ) : this.state.searchQuery ? (
-          <div className="cards-stub results">
-            We found {this.state.data.total} results for the query &quot;
-            <b>{this.state.searchQuery}</b>&quot;:
-          </div>
-        ) : null}
+        ) : (
+          this.state.searchQuery && (
+            <div className="cards-stub results">
+              We found {this.state.data.total} results for the query &quot;
+              <b>{this.state.searchQuery}</b>&quot;:
+            </div>
+          )
+        )}
         <CardsContainer searchQuery={this.state.searchQuery} data={this.state.data} />
       </>
     );
