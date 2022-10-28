@@ -135,7 +135,7 @@ export type ModalPropsType = SearchHitType & {
   onCloseModal: () => void;
 };
 
-export type ModalItemPropsType = {
+export type CountItemPropsType = {
   label: string;
   icon: string;
   value: number;

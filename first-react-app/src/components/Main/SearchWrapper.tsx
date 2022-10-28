@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import { SearchWrapperStateType } from 'data/types';
 import SearchBar from './SearchBar/SearchBar';
 import CardsContainer from './CardsContainer';
 import { basicGetMethod } from 'services/basicGetMethod';

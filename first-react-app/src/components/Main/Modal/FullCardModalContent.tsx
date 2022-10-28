@@ -1,6 +1,6 @@
 import React from 'react';
 import { ModalPropsType } from 'data/types';
-import ModalItem from './ModalItem';
+import { CountItem } from './CountItem';
 
 import closeIcon from 'assets/svg/close.svg';
 import downloadIcon from 'assets/svg/download.svg';
@@ -42,16 +42,16 @@ export const FullCardModalContent = (props: ModalPropsType) => {
             {tags}
           </div>
           <div className="modal-image-counts">
-            <ModalItem label="views" icon={viewIcon} value={views} />
-            <ModalItem label="comments" icon={commentIcon} value={comments} />
-            <ModalItem label="likes" icon={likeIcon} value={likes} />
-            <ModalItem label="downloads" icon={downloadIcon} value={downloads} />
+            <CountItem label="views" icon={viewIcon} value={views} />
+            <CountItem label="comments" icon={commentIcon} value={comments} />
+            <CountItem label="likes" icon={likeIcon} value={likes} />
+            <CountItem label="downloads" icon={downloadIcon} value={downloads} />
           </div>
         </div>
       </div>
       <button
         className="modal-close"
-        onClick={() => onCloseModal()}
+        onClick={onCloseModal}
         style={{ backgroundImage: `url(${closeIcon})` }}
         data-testid="modal-close"
       />
