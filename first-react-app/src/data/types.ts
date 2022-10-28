@@ -70,6 +70,9 @@ export type FormWrapperStateType = FormCardsContainerPropsType;
 
 export type SearchWrapperStateType = {
   searchQuery: string;
+  data: SearchData;
+  isLoading: boolean;
+  isEmptyData: boolean;
 };
 
 export type SearchParametersType = {
@@ -115,12 +118,12 @@ export type SearchData = {
   totalHits: number;
 };
 
-export type CardsContainerPropsType = SearchWrapperStateType;
+export type CardsContainerPropsType = {
+  searchQuery: string;
+  data: SearchData;
+};
 
 export type CardsContainerStateType = {
-  data: SearchData;
-  isLoading: boolean;
-  isEmptyData: boolean;
   isModalVisible: boolean;
 };
 
