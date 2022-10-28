@@ -1,5 +1,5 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import FormWrapper from './FormWrapper';
+import { FormWrapper } from './FormWrapper';
 
 describe('component Form', () => {
   beforeEach(() => {

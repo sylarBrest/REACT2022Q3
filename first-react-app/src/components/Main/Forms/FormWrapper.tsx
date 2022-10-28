@@ -1,36 +1,20 @@
-import React from 'react';
-import { FormDataPropsType, FormWrapperStateType } from 'data/types';
-import './Form.css';
+import { useState } from 'react';
+import { FormDataPropsType } from 'data/types';
 import { CardsContainer } from './Cards/CardsContainer';
 import Form from './Form';
+import './Form.css';
 
-class FormWrapper extends React.Component<Record<string, never>, FormWrapperStateType> {
-  state = {
-    formData: [
-      {
-        photo: new Blob(),
-        name: '',
-        surname: '',
-        birthDate: '',
-        gender: '',
-        country: '',
-        consent: false,
-      },
-    ],
+export const FormWrapper = () => {
+  const [formData, setFormData] = useState<FormDataPropsType[]>([]);
+
+  const handleChange = (newFormData: FormDataPropsType) => {
+    setFormData([...formData, newFormData]);
   };
 
-  handleChange(formData: FormDataPropsType) {
-    this.setState({ formData: [...this.state.formData, formData] });
-  }
-
-  render() {
-    return (
-      <>
-        <Form updateData={this.handleChange.bind(this)} />
-        <CardsContainer formData={this.state.formData} />
-      </>
-    );
-  }
-}
-
-export default FormWrapper;
+  return (
+    <>
+      <Form updateData={handleChange} />
+      <CardsContainer formData={formData} />
+    </>
+  );
+};

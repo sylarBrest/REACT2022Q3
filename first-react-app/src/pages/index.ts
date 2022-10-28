@@ -1,6 +1,6 @@
 export { default as AboutUsPage } from './AboutUsPage';
 
-export { default as FormsPage } from './FormsPage';
+export * from './FormsPage';
 
 export * from './HomePage';
 

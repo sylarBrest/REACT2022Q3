@@ -1,6 +1,6 @@
-import FormWrapper from 'components/Main/Forms/FormWrapper';
+import { FormWrapper } from 'components/Main/Forms/FormWrapper';
 
-const FormsPage = () => {
+export const FormsPage = () => {
   return (
     <section className="section forms-section" data-testid="forms-page">
       <h1 className="title">Forms</h1>
@@ -8,5 +8,3 @@ const FormsPage = () => {
     </section>
   );
 };
-
-export default FormsPage;
