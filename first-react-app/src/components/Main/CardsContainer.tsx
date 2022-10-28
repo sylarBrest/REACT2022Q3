@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card/Card';
 import { CardsContainerPropsType, CardsContainerStateType, SearchHitType } from 'data/types';
 import { basicGetMethod } from 'services/basicGetMethod';
-import Modal from './Modal/Modal';
+import { Modal } from './Modal/Modal';
 
 class CardsContainer extends React.Component<CardsContainerPropsType> {
   modalData?: SearchHitType;

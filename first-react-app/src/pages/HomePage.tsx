@@ -1,6 +1,6 @@
-import SearchWrapper from 'components/Main/SearchWrapper';
+import { SearchWrapper } from 'components/Main/SearchWrapper';
 
-const HomePage = () => {
+export const HomePage = () => {
   return (
     <section className="section home-section" data-testid="home-page">
       <h1 className="title">Home page</h1>
@@ -8,5 +8,3 @@ const HomePage = () => {
     </section>
   );
 };
-
-export default HomePage;

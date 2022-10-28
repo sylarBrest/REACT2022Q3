@@ -1,6 +1,6 @@
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import SearchWrapper from '../SearchWrapper';
+import { SearchWrapper } from '../SearchWrapper';
 
 describe('SearchBar component', () => {
   let searchBar: HTMLInputElement;

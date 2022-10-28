@@ -1,54 +1,47 @@
-import React from 'react';
-import { SearchWrapperStateType } from 'data/types';
+import { useState } from 'react';
+// import { SearchWrapperStateType } from 'data/types';
 import SearchBar from './SearchBar/SearchBar';
 import CardsContainer from './CardsContainer';
 import { basicGetMethod } from 'services/basicGetMethod';
 
-class SearchWrapper extends React.Component<Record<string, never>, SearchWrapperStateType> {
-  state: SearchWrapperStateType = {
-    searchQuery: '',
-    data: {
-      hits: [],
-      total: 0,
-      totalHits: 0,
-    },
-    isLoading: true,
-    isEmptyData: false,
+export const SearchWrapper = () => {
+  const [searchQuery, setSeacrhQuery] = useState('');
+  const [data, setData] = useState({
+    hits: [],
+    total: 0,
+    totalHits: 0,
+  });
+  const [isLoading, setIsLoading] = useState(true);
+  const [isEmptyData, setIsEmptyData] = useState(false);
+
+  const handleChange = async (searchQuery: string) => {
+    const fetchData = await basicGetMethod({ query: searchQuery });
+    setData(fetchData);
+    setIsLoading(false);
+    !fetchData.hits.length ? setIsEmptyData(true) : setIsEmptyData(false);
+    setSeacrhQuery(searchQuery);
   };
 
-  async handleChange(searchQuery: string) {
-    const data = await basicGetMethod({ query: searchQuery });
-    this.setState({ data, isLoading: false });
-    !data.hits.length
-      ? this.setState({ isEmptyData: true })
-      : this.setState({ isEmptyData: false });
-    this.setState({ searchQuery });
-  }
-
-  render() {
-    return (
-      <>
-        <SearchBar getSearchQuery={this.handleChange.bind(this)} />
-        {this.state.isLoading ? (
-          <div className="cards-stub" data-testid="loading-stub">
-            Loading...
+  return (
+    <>
+      <SearchBar getSearchQuery={handleChange} />
+      {isLoading ? (
+        <div className="cards-stub" data-testid="loading-stub">
+          Loading...
+        </div>
+      ) : isEmptyData ? (
+        <div className="cards-stub" data-testid="no-results-stub">
+          No results found, try another search...
+        </div>
+      ) : (
+        searchQuery && (
+          <div className="cards-stub results">
+            We found {data.total} results for the query &quot;
+            <b>{searchQuery}</b>&quot;:
           </div>
-        ) : this.state.isEmptyData ? (
-          <div className="cards-stub" data-testid="no-results-stub">
-            No results found, try another search...
-          </div>
-        ) : (
-          this.state.searchQuery && (
-            <div className="cards-stub results">
-              We found {this.state.data.total} results for the query &quot;
-              <b>{this.state.searchQuery}</b>&quot;:
-            </div>
-          )
-        )}
-        <CardsContainer searchQuery={this.state.searchQuery} data={this.state.data} />
-      </>
-    );
-  }
-}
-
-export default SearchWrapper;
+        )
+      )}
+      <CardsContainer searchQuery={searchQuery} data={data} />
+    </>
+  );
+};

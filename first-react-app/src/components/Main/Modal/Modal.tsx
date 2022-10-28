@@ -2,7 +2,7 @@ import { ModalPropsType } from 'data/types';
 import { FullCardModalContent } from './FullCardModalContent';
 import './Modal.css';
 
-const Modal = (props: ModalPropsType) => {
+export const Modal = (props: ModalPropsType) => {
   const { onCloseModal } = props;
 
   return (
@@ -11,5 +11,3 @@ const Modal = (props: ModalPropsType) => {
     </div>
   );
 };
-
-export default Modal;

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { badSearch, goodSearch, mockData } from 'mocks/mockData';
-import SearchWrapper from './SearchWrapper';
+import { SearchWrapper } from './SearchWrapper';
 
 describe('SearchWrapper component', () => {
   let searchBar: HTMLInputElement;
