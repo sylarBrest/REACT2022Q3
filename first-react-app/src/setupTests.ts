@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import { localStorageMock } from 'mocks/mockData';
+import { mockLocalStorage } from 'mocks/mockLocalStorage';
 import { server } from 'mocks/server';
 
 beforeAll(() => server.listen());
@@ -9,4 +9,4 @@ afterAll(() => server.close());
 
 afterEach(() => server.resetHandlers());
 
-Object.defineProperty(window, 'localStorage', { value: localStorageMock });
+Object.defineProperty(window, 'localStorage', { value: mockLocalStorage });

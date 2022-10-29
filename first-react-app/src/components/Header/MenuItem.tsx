@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { RoutePropsType } from 'data/types';
 
-function Item(props: RoutePropsType) {
+export const MenuLink = (props: RoutePropsType) => {
   return (
     <Link
       className="link"
@@ -11,6 +11,4 @@ function Item(props: RoutePropsType) {
       {props.name}
     </Link>
   );
-}
-
-export default Item;
+};

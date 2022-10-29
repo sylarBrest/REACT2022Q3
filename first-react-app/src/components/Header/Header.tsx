@@ -1,14 +1,10 @@
-import Menu from './Menu';
+import { Menu } from './Menu';
 import './Header.css';
 
-function Header() {
+export const Header = () => {
   return (
-    <>
-      <header className="header" data-testid="header">
-        <Menu />
-      </header>
-    </>
+    <header className="header" data-testid="header">
+      <Menu />
+    </header>
   );
-}
-
-export default Header;
+};

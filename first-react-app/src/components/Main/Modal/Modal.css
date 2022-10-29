@@ -60,13 +60,13 @@
   flex-wrap: wrap;
 }
 
-.modal-item {
+.count-item {
   display: flex;
   gap: 5px;
   align-items: center;
 }
 
-.modal-icon {
+.count-icon {
   height: 20px;
   width: 20px;
 }

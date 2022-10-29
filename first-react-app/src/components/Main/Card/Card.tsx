@@ -1,7 +1,7 @@
 import { CardPropsType } from 'data/types';
 import './Card.css';
 
-const Card = (props: CardPropsType) => {
+export const Card = (props: CardPropsType) => {
   const { id, webformatURL, getPhotoId } = props;
 
   return (
@@ -10,5 +10,3 @@ const Card = (props: CardPropsType) => {
     </div>
   );
 };
-
-export default Card;

@@ -1,16 +1,13 @@
 import { ROUTE_PATHS } from 'data/constants';
 import { RoutePropsType } from 'data/types';
-import Item from './Item';
+import { MenuLink } from './MenuItem';
 
-function Menu() {
-  const menuItems = ROUTE_PATHS.map((route: RoutePropsType) => (
-    <Item {...route} key={route.name.replace(/\s/g, '-').toLowerCase()} />
-  ));
+export const Menu = () => {
   return (
     <nav className="menu" data-testid="nav-menu">
-      {menuItems}
+      {ROUTE_PATHS.map((route: RoutePropsType) => (
+        <MenuLink {...route} key={route.name.replace(/\s/g, '-').toLowerCase()} />
+      ))}
     </nav>
   );
-}
-
-export default Menu;
+};

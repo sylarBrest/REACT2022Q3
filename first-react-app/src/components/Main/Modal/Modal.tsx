@@ -4,7 +4,7 @@ import './Modal.css';
 
 export const Modal = (props: ModalPropsType) => {
   return (
-    <div className="modal-overlay" onClick={() => props.onCloseModal()} data-testid="modal-overlay">
+    <div className="modal-overlay" onClick={props.onCloseModal} data-testid="modal-overlay">
       <FullCardModalContent {...props} />
     </div>
   );

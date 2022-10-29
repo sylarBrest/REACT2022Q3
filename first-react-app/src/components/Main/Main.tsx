@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import './Main.css';
 
-const Main = () => {
+export const Main = () => {
   return (
     <main className="main" data-testid="main">
       <Routes>
@@ -15,5 +15,3 @@ const Main = () => {
     </main>
   );
 };
-
-export default Main;

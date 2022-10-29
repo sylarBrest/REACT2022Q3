@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card/Card';
+import { Card } from './Card/Card';
 import { CardsContainerPropsType, CardsContainerStateType, SearchHitType } from 'data/types';
 import { basicGetMethod } from 'services/basicGetMethod';
 import { Modal } from './Modal/Modal';
