@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { SearchWrapper } from '../SearchWrapper';
 
@@ -7,9 +7,7 @@ describe('SearchBar component', () => {
   const testSearch = 'test';
 
   beforeEach(() => {
-    act(() => {
-      render(<SearchWrapper />);
-    });
+    render(<SearchWrapper />);
     searchBar = screen.getByTestId('search-bar');
   });
 
@@ -19,16 +17,12 @@ describe('SearchBar component', () => {
 
   it('should change value when typing', () => {
     expect(searchBar).toHaveValue('');
-    act(() => {
-      userEvent.type(searchBar, testSearch);
-    });
+    userEvent.type(searchBar, testSearch);
     expect(searchBar).toHaveValue(testSearch);
   });
 
   it('should save value after pressing Enter', () => {
-    act(() => {
-      userEvent.type(searchBar, '{enter}');
-    });
+    userEvent.type(searchBar, '{enter}');
     expect(searchBar).toHaveValue(testSearch);
   });
 

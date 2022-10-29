@@ -120,7 +120,6 @@ export type SearchData = {
 
 export type CardsContainerPropsType = {
   searchQuery: string;
-  data: SearchData;
 };
 
 export type CardsContainerStateType = {
