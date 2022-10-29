@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import SearchBar from './SearchBar/SearchBar';
-import CardsContainer from './CardsContainer';
+import { CardsContainer } from './CardsContainer';
 import { basicGetMethod } from 'services/basicGetMethod';
 import { SearchData } from 'data/types';
 
