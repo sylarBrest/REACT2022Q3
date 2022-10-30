@@ -1,8 +1,12 @@
 import React from 'react';
-import { InputPropsType } from 'data/types';
+import { FormDataPropsType } from 'data/types';
+import { UseFormRegister } from 'react-hook-form';
 
-export const TextInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, ref) => {
-  const { name } = props;
+export const TextInput = React.forwardRef<
+  HTMLInputElement,
+  ReturnType<UseFormRegister<FormDataPropsType>>
+>((props, ref) => {
+  const { name, onChange } = props;
   const nameF = name[0].toUpperCase() + name.slice(1);
 
   return (
@@ -17,6 +21,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, InputPropsType>((pro
         name={name}
         placeholder={nameF}
         ref={ref}
+        onChange={onChange}
         data-testid={`form-input-${name}`}
       />
     </div>

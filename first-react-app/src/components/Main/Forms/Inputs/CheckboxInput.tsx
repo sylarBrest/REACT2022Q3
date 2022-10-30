@@ -1,9 +1,13 @@
 import React from 'react';
-import { InputPropsType } from 'data/types';
+import { FormDataPropsType } from 'data/types';
 import { MIN_AGE } from 'data/constants';
+import { UseFormRegister } from 'react-hook-form';
 
-export const CheckboxInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, ref) => {
-  const { name } = props;
+export const CheckboxInput = React.forwardRef<
+  HTMLInputElement,
+  ReturnType<UseFormRegister<FormDataPropsType>>
+>((props, ref) => {
+  const { name, onChange } = props;
 
   return (
     <div className={name}>
@@ -14,6 +18,7 @@ export const CheckboxInput = React.forwardRef<HTMLInputElement, InputPropsType>(
         name={name}
         value="agree"
         ref={ref}
+        onChange={onChange}
         data-testid={`form-input-${name}`}
       />
       <label className="field-label" htmlFor={name}>

@@ -1,13 +1,25 @@
-import React from 'react';
-import { isValidBirthDate, isValidCountry, isValidForm, isValidName } from 'utils';
-import { FormDataPropsType, FormPropsType, FormStateType, ValidatedType } from 'data/types';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { isValidBirthDate, isValidCountry, isValidName, isFirstLetterCapital } from 'utils';
+import { FormDataPropsType /*, FormPropsType*/ } from 'data/types';
 import { CheckboxInput, DateInput, PhotoInput, RadioInput, Select, TextInput } from './Inputs';
 import { Banner } from './Banner/Banner';
 import { ValidationMessage } from './ValidationMessage';
 import './Form.css';
+import { useEffect, useState } from 'react';
 
-class Form extends React.Component<FormPropsType, FormStateType> {
-  photo: React.RefObject<HTMLInputElement>;
+export const Form = (/* props: FormPropsType*/) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitSuccessful, errors },
+  } = useForm<FormDataPropsType>();
+
+  const [isBannerVisible, setIsBannerVisible] = useState(false);
+
+  useEffect(() => {
+    setIsBannerVisible(isSubmitSuccessful ? true : false);
+  }, [isSubmitSuccessful]);
+  /* photo: React.RefObject<HTMLInputElement>;
   name: React.RefObject<HTMLInputElement>;
   surname: React.RefObject<HTMLInputElement>;
   birthDate: React.RefObject<HTMLInputElement>;
@@ -77,10 +89,12 @@ class Form extends React.Component<FormPropsType, FormStateType> {
 
   handleChange() {
     this.setState({ isChanged: true });
-  }
+  } */
 
-  handleSubmit(event: React.FormEvent) {
-    event.preventDefault();
+  const onSubmit: SubmitHandler<FormDataPropsType> = (data) => {
+    console.log(data);
+    console.log(errors);
+    /*     event.preventDefault();
 
     const photoInput = this.photo.current as HTMLInputElement;
     const nameInput = this.name.current as HTMLInputElement;
@@ -134,72 +148,79 @@ class Form extends React.Component<FormPropsType, FormStateType> {
       isSubmitPressed: true,
       isChanged: false,
     });
-  }
+  */
+  };
 
-  render() {
-    return (
-      <form
-        className="form"
-        onSubmit={this.handleSubmit}
-        onChange={this.handleChange}
-        data-testid="form"
-      >
-        <div className="photo-upload">
-          <PhotoInput name="photo" ref={this.photo} />
-          <ValidationMessage
-            isInvalid={this.state.isSubmitPressed && !this.isValidated.photo}
-            message="Photo not present"
-          />
-        </div>
-        <div className="personal-data">
-          <TextInput ref={this.name} name="name" />
-          <ValidationMessage
-            isInvalid={this.state.isSubmitPressed && !this.isValidated.name}
-            message="Name not valid"
-          />
-          <TextInput ref={this.surname} name="surname" />
-          <ValidationMessage
-            isInvalid={this.state.isSubmitPressed && !this.isValidated.surname}
-            message="Surname not valid"
-          />
-          <DateInput name="birthdate" ref={this.birthDate} />
-          <ValidationMessage
-            isInvalid={this.state.isSubmitPressed && !this.isValidated.birthDate}
-            message="Birthdate not valid"
-          />
-          <div className="personal-data-input input-gender">
-            <span className="field-label">Gender: </span>
-            <fieldset className="gender-choice">
-              <RadioInput ref={this.maleGender} name="male" />
-              <RadioInput ref={this.femaleGender} name="female" />
-            </fieldset>
-          </div>
-          <ValidationMessage
-            isInvalid={this.state.isSubmitPressed && !this.isValidated.gender}
-            message="Choose your gender"
-          />
-          <Select name="country" ref={this.country} />
-          <ValidationMessage
-            isInvalid={this.state.isSubmitPressed && !this.isValidated.country}
-            message="Choose your country"
-          />
-        </div>
-        <CheckboxInput name="consent" ref={this.consent} />
-        <ValidationMessage
-          isInvalid={this.state.isSubmitPressed && !this.isValidated.consent}
-          message="Please give your consent by checking the label"
+  return (
+    <form className="form" onSubmit={handleSubmit(onSubmit)} data-testid="form">
+      <div className="photo-upload">
+        <PhotoInput
+          {...register('photo', { required: { value: true, message: 'Photo not present' } })}
         />
-        <input
-          className="submit"
-          type="submit"
-          value="Submit"
-          disabled={!this.state.isChanged}
-          data-testid="form-input-submit"
+        <ValidationMessage isInvalid={true} message={errors.photo?.message || ''} />
+      </div>
+      <div className="personal-data">
+        <TextInput
+          {...register('name', {
+            required: { value: true, message: 'Name not present' },
+            minLength: { value: 3, message: 'Too short name, at least 3 char long' },
+            validate: {
+              firstLetterCapital: (name) =>
+                isFirstLetterCapital(name) || 'Name must begin with a capital letter',
+              wrongCharacters: (name) =>
+                isValidName(name) || 'Name can only contain letters, " " and "-"',
+            },
+          })}
         />
-        <Banner name="banner" isVisible={this.state.isBannerVisible} ref={this.banner} />
-      </form>
-    );
-  }
-}
-
-export default Form;
+        <ValidationMessage isInvalid={true} message={errors.name?.message || ''} />
+        <TextInput
+          {...register('surname', {
+            required: { value: true, message: 'Surname not present' },
+            minLength: { value: 3, message: 'Too short surname, at least 3 char long' },
+            validate: {
+              firstLetterCapital: (surname) =>
+                isFirstLetterCapital(surname) || 'Surname must begin with a capital letter',
+              wrongCharacters: (surname) =>
+                isValidName(surname) || 'Surname can only contain letters, " " and "-"',
+            },
+          })}
+        />
+        <ValidationMessage isInvalid={true} message={errors.surname?.message || ''} />
+        <DateInput
+          {...register('birthDate', {
+            validate: (birthdate) => isValidBirthDate(birthdate) || 'Birthdate not valid',
+          })}
+        />
+        <ValidationMessage isInvalid={true} message={errors.birthDate?.message || ''} />
+        <div className="personal-data-input input-gender">
+          <span className="field-label">Gender: </span>
+          <fieldset className="gender-choice">
+            <RadioInput
+              {...register('gender', { required: { value: true, message: 'Choose your gender' } })}
+              gender="male"
+            />
+            <RadioInput
+              {...register('gender', { required: { value: true, message: 'Choose your gender' } })}
+              gender="female"
+            />
+          </fieldset>
+        </div>
+        <ValidationMessage isInvalid={true} message={errors.gender?.message || ''} />
+        <Select
+          {...register('country', {
+            validate: (country) => isValidCountry(country) || 'Birthdate not valid',
+          })}
+        />
+        <ValidationMessage isInvalid={true} message={errors.country?.message || ''} />
+      </div>
+      <CheckboxInput
+        {...register('consent', {
+          required: { value: true, message: 'Please give your consent by checking the label' },
+        })}
+      />
+      <ValidationMessage isInvalid={true} message={errors.consent?.message || ''} />
+      <input className="submit" type="submit" value="Submit" data-testid="form-input-submit" />
+      <Banner name="banner" isVisible={isBannerVisible} />
+    </form>
+  );
+};

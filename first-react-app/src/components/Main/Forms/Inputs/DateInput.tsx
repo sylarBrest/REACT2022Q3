@@ -1,8 +1,12 @@
 import React from 'react';
-import { InputPropsType } from 'data/types';
+import { UseFormRegister } from 'react-hook-form';
+import { FormDataPropsType } from 'data/types';
 
-export const DateInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, ref) => {
-  const { name } = props;
+export const DateInput = React.forwardRef<
+  HTMLInputElement,
+  ReturnType<UseFormRegister<FormDataPropsType>>
+>((props, ref) => {
+  const { name, onChange } = props;
 
   return (
     <div className={`personal-data-input input-${name}`}>
@@ -15,6 +19,7 @@ export const DateInput = React.forwardRef<HTMLInputElement, InputPropsType>((pro
         type="date"
         name={name}
         ref={ref}
+        onChange={onChange}
         data-testid={`form-input-${name}`}
       />
     </div>

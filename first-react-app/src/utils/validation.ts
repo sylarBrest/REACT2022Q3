@@ -27,3 +27,5 @@ export const isValidForm = (isValidated: ValidatedType): boolean => {
 };
 
 export const isValidName = (name: string) => NAME_REGEX.test(name);
+
+export const isFirstLetterCapital = (name: string) => new RegExp(/^[A-ZА-Я]/).test(name);

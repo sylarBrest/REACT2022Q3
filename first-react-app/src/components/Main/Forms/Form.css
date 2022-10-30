@@ -11,6 +11,9 @@
 
 .validation-message {
   color: #af0000;
+  height: 20px;
+  font-size: 14px;
+  line-height: 16px;
 }
 
 .photo-upload {
@@ -32,7 +35,7 @@
 }
 
 .photo-upload > .validation-message  {
-  padding-top: 5px;
+  padding-top: 3px;
 }
 
 .personal-data {

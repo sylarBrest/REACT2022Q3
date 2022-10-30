@@ -1,22 +1,27 @@
 import React from 'react';
-import { InputPropsType } from 'data/types';
+import { FormDataPropsType } from 'data/types';
+import { UseFormRegister } from 'react-hook-form';
 
-export const RadioInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, ref) => {
-  const { name } = props;
-  const nameF = name[0].toUpperCase() + name.slice(1);
+export const RadioInput = React.forwardRef<
+  HTMLInputElement,
+  { gender: string } & ReturnType<UseFormRegister<FormDataPropsType>>
+>((props, ref) => {
+  const { gender, name, onChange } = props;
+  const nameF = gender[0].toUpperCase() + gender.slice(1);
 
   return (
-    <div className={`gender-choice-item item-${name}`}>
+    <div className={`gender-choice-item item-${gender}`}>
       <input
         className="field gender-field"
-        id={name}
+        id={gender}
         type="radio"
-        name="radio"
-        value={name}
+        name={name}
+        value={gender}
         ref={ref}
-        data-testid={`form-input-gender-${name}`}
+        onChange={onChange}
+        data-testid={`form-input-gender-${gender}`}
       />
-      <label className="gender-label" htmlFor={name}>
+      <label className="gender-label" htmlFor={gender}>
         {nameF}
       </label>
     </div>

@@ -1,16 +1,20 @@
 import React from 'react';
-import { InputPropsType } from 'data/types';
+import { UseFormRegister } from 'react-hook-form';
+import { FormDataPropsType } from 'data/types';
 
 import photoIcon from 'assets/svg/photo.svg';
 
-export const PhotoInput = React.forwardRef<HTMLInputElement, InputPropsType>((props, ref) => {
-  const { name } = props;
+export const PhotoInput = React.forwardRef<
+  HTMLInputElement,
+  ReturnType<UseFormRegister<FormDataPropsType>>
+>((props, ref) => {
+  const { name, onChange } = props;
   const nameF = name[0].toUpperCase() + name.slice(1);
 
   return (
     <>
-      <label className="field-label" htmlFor={`${name}-upload`}>
-        <img className={`${name}-label`} src={photoIcon} alt={`${nameF} Upload`} />
+      <label className="field-name" htmlFor={`${name}-upload`}>
+        <img className={`${name}-name`} src={photoIcon} alt={`${nameF} Upload`} />
         Upload your photo
       </label>
       <input
@@ -20,6 +24,8 @@ export const PhotoInput = React.forwardRef<HTMLInputElement, InputPropsType>((pr
         name={name}
         capture="environment"
         ref={ref}
+        onChange={onChange}
+        accept="image/*"
         data-testid={`form-input-${name}`}
       />
     </>

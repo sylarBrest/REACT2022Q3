@@ -33,3 +33,8 @@ export const ROUTE_PATHS: RoutePropsType[] = [
     name: 'About Us',
   },
 ];
+
+export enum GENDERS {
+  male = 'male',
+  female = 'female',
+}

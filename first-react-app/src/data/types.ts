@@ -1,3 +1,5 @@
+import { GENDERS } from './constants';
+
 export type RoutePropsType = {
   path: string;
   name: string;
@@ -20,7 +22,7 @@ export type FormDataPropsType = {
   name: string;
   surname: string;
   birthDate: string;
-  gender: string;
+  gender: GENDERS;
   country: string;
   consent: boolean;
 };
@@ -54,7 +56,7 @@ export type ValidationMessagePropsType = {
 };
 
 export type InputPropsType = {
-  name: string;
+  label: string;
 };
 
 export type BannerPropsType = {
