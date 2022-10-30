@@ -9,146 +9,28 @@ import { useEffect, useState } from 'react';
 
 export const Form = (props: FormPropsType) => {
   const {
+    reset,
     register,
     handleSubmit,
-    formState: { isSubmitSuccessful, errors },
+    formState: { isSubmitSuccessful, errors, isDirty },
   } = useForm<FormDataPropsType>();
 
   const [isBannerVisible, setIsBannerVisible] = useState(false);
 
   useEffect(() => {
-    setIsBannerVisible(isSubmitSuccessful ? true : false);
-  }, [isSubmitSuccessful]);
-  /* photo: React.RefObject<HTMLInputElement>;
-  name: React.RefObject<HTMLInputElement>;
-  surname: React.RefObject<HTMLInputElement>;
-  birthDate: React.RefObject<HTMLInputElement>;
-  maleGender: React.RefObject<HTMLInputElement>;
-  femaleGender: React.RefObject<HTMLInputElement>;
-  country: React.RefObject<HTMLSelectElement>;
-  consent: React.RefObject<HTMLInputElement>;
-  banner: React.RefObject<HTMLDivElement>;
-  isValidated: ValidatedType;
-
-  constructor(props: FormPropsType) {
-    super(props);
-    this.photo = React.createRef();
-    this.name = React.createRef();
-    this.surname = React.createRef();
-    this.birthDate = React.createRef();
-    this.maleGender = React.createRef();
-    this.femaleGender = React.createRef();
-    this.country = React.createRef();
-    this.consent = React.createRef();
-    this.banner = React.createRef();
-
-    this.state = {
-      isChanged: false,
-      isSubmitPressed: false,
-      isBannerVisible: false,
-    };
-
-    this.isValidated = {
-      photo: false,
-      name: false,
-      surname: false,
-      birthDate: false,
-      gender: false,
-      country: false,
-      consent: false,
-    };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.reset = this.reset.bind(this);
-  }
-
-  reset() {
-    this.isValidated = {
-      photo: false,
-      name: false,
-      surname: false,
-      birthDate: false,
-      gender: false,
-      country: false,
-      consent: false,
-    };
-
-    this.setState(
-      {
-        isChanged: false,
-        isSubmitPressed: false,
-      },
-      () => {
-        setTimeout(() => {
-          this.setState({ isBannerVisible: false });
-        }, 3000);
-      }
-    );
-  }
-
-  handleChange() {
-    this.setState({ isChanged: true });
-  } */
+    if (isSubmitSuccessful) {
+      setIsBannerVisible(isSubmitSuccessful);
+      reset();
+    } else {
+      setTimeout(() => setIsBannerVisible(isSubmitSuccessful), 5000);
+    }
+  }, [isSubmitSuccessful, reset]);
 
   const onSubmit: SubmitHandler<FormDataPropsType> = (data) => {
     console.log(data);
-    console.log(errors);
-    /*     event.preventDefault();
-
-    const photoInput = this.photo.current as HTMLInputElement;
-    const nameInput = this.name.current as HTMLInputElement;
-    const surnameInput = this.surname.current as HTMLInputElement;
-    const birthDateInput = this.birthDate.current as HTMLInputElement;
-    const maleGenderInput = this.maleGender.current as HTMLInputElement;
-    const femaleGenderInput = this.femaleGender.current as HTMLInputElement;
-    const countrySelect = this.country.current as HTMLSelectElement;
-    const consentInput = this.consent.current as HTMLInputElement;
-    let photoInputFile!: File;
-
-    if (photoInput.files) {
-      photoInputFile = photoInput.files[0];
-    }
-
-    const isValidated: ValidatedType = {
-      photo: photoInputFile ? photoInputFile.type.includes('image/') : false,
-      name: isValidName(nameInput.value),
-      surname: isValidName(surnameInput.value),
-      birthDate: isValidBirthDate(birthDateInput.value),
-      gender: maleGenderInput.checked || femaleGenderInput.checked,
-      country: isValidCountry(countrySelect.value),
-      consent: consentInput.checked,
-    };
-
-    const formData: FormDataPropsType = {
-      photo: photoInputFile ? photoInputFile : new Blob(),
-      name: nameInput.value,
-      surname: surnameInput.value,
-      birthDate: birthDateInput.value,
-      gender: maleGenderInput.checked ? 'male' : 'female',
-      country: countrySelect.value,
-      consent: true,
-    };
-
-    if (isValidForm(isValidated)) {
-      this.setState(
-        {
-          isBannerVisible: true,
-        },
-        () => this.props.updateData(formData)
-      );
-
-      (event.target as HTMLFormElement).reset();
-      this.reset();
-    }
-
-    this.isValidated = isValidated;
-
-    this.setState({
-      isSubmitPressed: true,
-      isChanged: false,
-    });
-  */
+    const formData: FormDataPropsType = { ...data };
+    formData.photo = (formData.photo as unknown as FileList)[0];
+    props.updateData(formData);
   };
 
   return (
@@ -191,7 +73,13 @@ export const Form = (props: FormPropsType) => {
         })}
       />
       <ValidationMessage isInvalid={true} message={errors.consent?.message || ''} />
-      <input className="submit" type="submit" value="Submit" data-testid="form-input-submit" />
+      <input
+        className="submit"
+        type="submit"
+        value="Submit"
+        data-testid="form-input-submit"
+        disabled={!isDirty}
+      />
       <Banner name="banner" isVisible={isBannerVisible} />
     </form>
   );

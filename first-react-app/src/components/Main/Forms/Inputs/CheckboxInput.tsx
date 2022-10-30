@@ -16,7 +16,6 @@ export const CheckboxInput = React.forwardRef<
         id={name}
         type="checkbox"
         name={name}
-        value="agree"
         ref={ref}
         onChange={onChange}
         data-testid={`form-input-${name}`}

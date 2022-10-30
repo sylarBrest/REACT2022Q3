@@ -19,7 +19,7 @@ export type FormPropsType = {
 };
 
 export type FormDataPropsType = {
-  photo: Blob;
+  photo: File;
   name: string;
   surname: string;
   birthDate: string;
