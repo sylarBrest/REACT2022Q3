@@ -1,13 +1,13 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { isValidBirthDate, isValidCountry, isValidName, isFirstLetterCapital } from 'utils';
-import { FormDataPropsType /*, FormPropsType*/ } from 'data/types';
+import { isValidBirthDate, isValidCountry } from 'utils';
+import { FormDataPropsType, FormPropsType } from 'data/types';
 import { CheckboxInput, DateInput, PhotoInput, RadioInput, Select, TextInput } from './Inputs';
 import { Banner } from './Banner/Banner';
 import { ValidationMessage } from './ValidationMessage';
 import './Form.css';
 import { useEffect, useState } from 'react';
 
-export const Form = (/* props: FormPropsType*/) => {
+export const Form = (props: FormPropsType) => {
   const {
     register,
     handleSubmit,
@@ -160,55 +160,27 @@ export const Form = (/* props: FormPropsType*/) => {
         <ValidationMessage isInvalid={true} message={errors.photo?.message || ''} />
       </div>
       <div className="personal-data">
-        <TextInput
-          {...register('name', {
-            required: { value: true, message: 'Name not present' },
-            minLength: { value: 3, message: 'Too short name, at least 3 char long' },
-            validate: {
-              firstLetterCapital: (name) =>
-                isFirstLetterCapital(name) || 'Name must begin with a capital letter',
-              wrongCharacters: (name) =>
-                isValidName(name) || 'Name can only contain letters, " " and "-"',
-            },
-          })}
-        />
+        <TextInput label="name" register={register} />
         <ValidationMessage isInvalid={true} message={errors.name?.message || ''} />
-        <TextInput
-          {...register('surname', {
-            required: { value: true, message: 'Surname not present' },
-            minLength: { value: 3, message: 'Too short surname, at least 3 char long' },
-            validate: {
-              firstLetterCapital: (surname) =>
-                isFirstLetterCapital(surname) || 'Surname must begin with a capital letter',
-              wrongCharacters: (surname) =>
-                isValidName(surname) || 'Surname can only contain letters, " " and "-"',
-            },
-          })}
-        />
+        <TextInput label="surname" register={register} />
         <ValidationMessage isInvalid={true} message={errors.surname?.message || ''} />
         <DateInput
           {...register('birthDate', {
-            validate: (birthdate) => isValidBirthDate(birthdate) || 'Birthdate not valid',
+            validate: (birthdate) => isValidBirthDate(birthdate) || 'You must be 18 years old',
           })}
         />
         <ValidationMessage isInvalid={true} message={errors.birthDate?.message || ''} />
         <div className="personal-data-input input-gender">
           <span className="field-label">Gender: </span>
           <fieldset className="gender-choice">
-            <RadioInput
-              {...register('gender', { required: { value: true, message: 'Choose your gender' } })}
-              gender="male"
-            />
-            <RadioInput
-              {...register('gender', { required: { value: true, message: 'Choose your gender' } })}
-              gender="female"
-            />
+            <RadioInput label="gender" register={register} gender="male" />
+            <RadioInput label="gender" register={register} gender="female" />
           </fieldset>
         </div>
         <ValidationMessage isInvalid={true} message={errors.gender?.message || ''} />
         <Select
           {...register('country', {
-            validate: (country) => isValidCountry(country) || 'Birthdate not valid',
+            validate: (country) => isValidCountry(country) || 'Choose your country',
           })}
         />
         <ValidationMessage isInvalid={true} message={errors.country?.message || ''} />

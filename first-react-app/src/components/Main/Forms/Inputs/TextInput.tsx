@@ -1,29 +1,32 @@
-import React from 'react';
-import { FormDataPropsType } from 'data/types';
-import { UseFormRegister } from 'react-hook-form';
+import { InputPropsType } from 'data/types';
+import { isFirstLetterCapital, isValidName } from 'utils';
 
-export const TextInput = React.forwardRef<
-  HTMLInputElement,
-  ReturnType<UseFormRegister<FormDataPropsType>>
->((props, ref) => {
-  const { name, onChange } = props;
-  const nameF = name[0].toUpperCase() + name.slice(1);
+export const TextInput = (props: InputPropsType) => {
+  const { label, register } = props;
+  const nameF = label[0].toUpperCase() + label.slice(1);
 
   return (
-    <div className={`personal-data-input input-${name}`}>
-      <label className="field-label" htmlFor={name}>
+    <div className={`personal-data-input input-${label}`}>
+      <label className="field-label" htmlFor={label}>
         {nameF}:
       </label>
       <input
         className="field"
-        id={name}
+        id={label}
         type="text"
-        name={name}
         placeholder={nameF}
-        ref={ref}
-        onChange={onChange}
-        data-testid={`form-input-${name}`}
+        {...register(label, {
+          required: { value: true, message: `${nameF} not present` },
+          minLength: { value: 3, message: `Too short ${label}, at least 3 char long` },
+          validate: {
+            firstLetterCapital: (v) =>
+              isFirstLetterCapital(v as string) || `${nameF} must begin with a capital letter`,
+            wrongCharacters: (v) =>
+              isValidName(v as string) || `${nameF} can only contain letters, " " and "-"`,
+          },
+        })}
+        data-testid={`form-input-${label}`}
       />
     </div>
   );
-});
+};

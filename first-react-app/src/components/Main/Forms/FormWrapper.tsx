@@ -7,13 +7,13 @@ import './Form.css';
 export const FormWrapper = () => {
   const [formData, setFormData] = useState<FormDataPropsType[]>([]);
 
-  /* const handleChange = (newFormData: FormDataPropsType) => {
+  const handleChange = (newFormData: FormDataPropsType) => {
     setFormData([...formData, newFormData]);
-  }; */
+  };
 
   return (
     <>
-      <Form /* updateData={handleChange}*/ />
+      <Form updateData={handleChange} />
       <CardsContainer formData={formData} />
     </>
   );

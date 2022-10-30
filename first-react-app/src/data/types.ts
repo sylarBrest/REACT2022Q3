@@ -1,3 +1,4 @@
+import { Path, UseFormRegister } from 'react-hook-form';
 import { GENDERS } from './constants';
 
 export type RoutePropsType = {
@@ -53,10 +54,6 @@ export type FormCardItemPropsType = {
 export type ValidationMessagePropsType = {
   isInvalid: boolean;
   message: string;
-};
-
-export type InputPropsType = {
-  label: string;
 };
 
 export type BannerPropsType = {
@@ -140,4 +137,9 @@ export type CountItemPropsType = {
   label: string;
   icon: string;
   value: number;
+};
+
+export type InputPropsType = {
+  label: Path<FormDataPropsType>;
+  register: UseFormRegister<FormDataPropsType>;
 };
