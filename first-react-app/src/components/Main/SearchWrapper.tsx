@@ -5,7 +5,7 @@ import { CardsContainer } from './CardsContainer';
 export const SearchWrapper = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const handleChange = async (newQuery: string) => {
+  const handleChange = (newQuery: string) => {
     setSearchQuery(newQuery);
   };
 

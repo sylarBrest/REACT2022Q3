@@ -1,9 +1,21 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { FormWrapper } from './FormWrapper';
 
 describe('component Form', () => {
-  beforeEach(() => {
-    render(<FormWrapper />);
+  let submit: HTMLInputElement,
+    photo: HTMLInputElement,
+    name: HTMLInputElement,
+    surname: HTMLInputElement,
+    birthDate: HTMLInputElement,
+    genderMale: HTMLInputElement,
+    country: HTMLSelectElement,
+    consent: HTMLInputElement;
+
+  beforeEach(async () => {
+    await act(async () => {
+      render(<FormWrapper />);
+    });
   });
 
   const fillAllFields = () => {
@@ -11,23 +23,26 @@ describe('component Form', () => {
 
     const mockPhoto = new File(['hello'], 'hello.png', { type: 'image/png' });
 
-    const submit = screen.getByTestId('form-input-submit');
-    const photo = screen.getByTestId('form-input-photo') as HTMLInputElement;
-    const name = screen.getByTestId('form-input-name') as HTMLInputElement;
-    const surname = screen.getByTestId('form-input-surname') as HTMLInputElement;
-    const birthdate = screen.getByTestId('form-input-birthdate') as HTMLInputElement;
-    const genderMale = screen.getByTestId('form-input-gender-male') as HTMLInputElement;
-    const country = screen.getByTestId('form-select-country') as HTMLSelectElement;
-    const consent = screen.getByTestId('form-input-consent') as HTMLInputElement;
+    submit = screen.getByTestId('form-input-submit');
+    photo = screen.getByTestId('form-input-photo') as HTMLInputElement;
+    name = screen.getByTestId('form-input-name') as HTMLInputElement;
+    surname = screen.getByTestId('form-input-surname') as HTMLInputElement;
+    birthDate = screen.getByTestId('form-input-birthdate') as HTMLInputElement;
+    genderMale = screen.getByTestId('form-input-gender-male') as HTMLInputElement;
+    country = screen.getByTestId('form-select-country') as HTMLSelectElement;
+    consent = screen.getByTestId('form-input-consent') as HTMLInputElement;
 
-    fireEvent.change(photo, { target: { files: [mockPhoto] } });
-    fireEvent.change(name, { target: { value: 'Alex' } });
-    fireEvent.change(surname, { target: { value: 'Ostrovsky' } });
-    fireEvent.change(birthdate, { target: { value: '1987-10-03' } });
-    fireEvent.click(genderMale);
-    fireEvent.select(country, { target: { value: 'Belarus' } });
-    fireEvent.click(consent);
-    fireEvent.click(submit);
+    userEvent.upload(photo, mockPhoto);
+    Object.defineProperty(photo, 'value', {
+      value: mockPhoto,
+    });
+    userEvent.type(name, 'Alex');
+    userEvent.type(surname, 'Ostrovsky');
+    userEvent.type(birthDate, '1987-10-03');
+    userEvent.click(genderMale);
+    userEvent.selectOptions(country, 'Belarus');
+    userEvent.click(consent);
+    userEvent.click(submit);
   };
 
   it('should render onto screen', () => {
@@ -35,43 +50,53 @@ describe('component Form', () => {
   });
 
   it('should render disabled submit button by default', () => {
-    const submit = screen.getByTestId('form-input-submit');
+    submit = screen.getByTestId('form-input-submit');
     expect(submit).toBeDisabled();
   });
 
   it('should render enabled submit button if some field was changed', () => {
-    const submit = screen.getByTestId('form-input-submit');
-    const name = screen.getByTestId('form-input-name') as HTMLInputElement;
-    fireEvent.change(name, { target: { value: 'Alex' } });
+    name = screen.getByTestId('form-input-name');
+    submit = screen.getByTestId('form-input-submit');
+    userEvent.type(name, 'Alex');
+    expect(name).toHaveValue('Alex');
     expect(submit).toBeEnabled();
   });
 
-  it('should disabled submit button if submit not success', () => {
-    const submit = screen.getByTestId('form-input-submit');
-    const name = screen.getByTestId('form-input-name') as HTMLInputElement;
-    fireEvent.change(name, { target: { value: 'Alex' } });
-    fireEvent.change(name, { target: { value: '' } });
-    fireEvent.click(submit);
-    expect(submit).toBeDisabled();
+  it('should disabled submit button if submit not success', async () => {
+    name = screen.getByTestId('form-input-name');
+    submit = screen.getByTestId('form-input-submit');
+    userEvent.type(name, 'Alex');
+    userEvent.clear(name);
+    expect(name).toHaveValue('');
+    userEvent.click(submit);
+    await waitFor(() => {
+      expect(screen.getByText(/Name not present/)).toBeInTheDocument();
+      expect(submit).toBeDisabled();
+      screen.debug();
+    });
   });
 
-  it('should disabled submit button if submit success', () => {
+  it('should disabled submit button if submit success', async () => {
     fillAllFields();
 
-    const submit = screen.getByTestId('form-input-submit');
-    expect(submit).toBeDisabled();
+    await waitFor(() => {
+      submit = screen.getByTestId('form-input-submit');
+      userEvent.click(submit);
+      expect(submit).toBeDisabled();
+    });
   });
 
-  it('should display one card after successful submit', () => {
+  it('should display one card after successful submit', async () => {
     fillAllFields();
-
-    const card = screen.getByTestId('form-card-data');
-    expect(card).toBeInTheDocument();
+    await waitFor(() => {
+      const card = screen.getByTestId('form-card-data');
+      expect(card).toBeInTheDocument();
+    });
   });
 
-  it('should hide banner with 5 seconds after succesful submit', () => {
+  it('should hide banner with 5 seconds after succesful submit', async () => {
+    fillAllFields();
     jest.useFakeTimers();
-    fillAllFields();
 
     act(() => {
       jest.runOnlyPendingTimers();

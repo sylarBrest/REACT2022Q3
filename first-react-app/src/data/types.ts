@@ -19,7 +19,7 @@ export type FormPropsType = {
 };
 
 export type FormDataPropsType = {
-  photo: File;
+  photo: Blob;
   name: string;
   surname: string;
   birthDate: string;
@@ -52,7 +52,6 @@ export type FormCardItemPropsType = {
 };
 
 export type ValidationMessagePropsType = {
-  isInvalid: boolean;
   message: string;
 };
 

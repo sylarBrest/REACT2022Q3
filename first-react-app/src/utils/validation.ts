@@ -1,5 +1,6 @@
 import { MIN_AGE, NAME_REGEX, SELECT_DEFAULT_OPTION } from 'data/constants';
-import { ValidatedType } from 'data/types';
+import { FormDataPropsType } from 'data/types';
+import { FieldErrorsImpl } from 'react-hook-form';
 
 export const isValidBirthDate = (date: string) => {
   const today = new Date();
@@ -22,8 +23,8 @@ export const isValidBirthDate = (date: string) => {
 
 export const isValidCountry = (country: string) => country !== SELECT_DEFAULT_OPTION;
 
-export const isValidForm = (isValidated: ValidatedType): boolean => {
-  return Object.values(isValidated).every((flag: boolean) => !!flag);
+export const isValidForm = (errors: Partial<FieldErrorsImpl<FormDataPropsType>>): boolean => {
+  return Object.keys(errors).length > 0;
 };
 
 export const isValidName = (name: string) => NAME_REGEX.test(name);

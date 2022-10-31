@@ -13,7 +13,7 @@ export const PhotoInput = React.forwardRef<
 
   return (
     <>
-      <label className="field-name" htmlFor={`${name}-upload`}>
+      <label className="field-label" htmlFor={`${name}-upload`}>
         <img className={`${name}-name`} src={photoIcon} alt={`${nameF} Upload`} />
         Upload your photo
       </label>
