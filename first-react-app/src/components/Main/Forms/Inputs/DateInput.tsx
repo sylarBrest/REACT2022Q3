@@ -17,7 +17,7 @@ export const DateInput = (props: InputPropsType) => {
         type="date"
         {...register('birthDate', {
           validate: {
-            emptyValue: (birthDate) => birthDate || 'Choose or type your date of birth',
+            emptyValue: (birthDate) => !!birthDate || 'Choose or type your date of birth',
             under18: (birthDate) => isValidBirthDate(birthDate) || 'You must be 18 years old',
           },
         })}

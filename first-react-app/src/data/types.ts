@@ -10,10 +10,6 @@ export type SearchBarPropsType = {
   getSearchQuery: (searchQuery: string) => void;
 };
 
-export type SearchBarStateType = {
-  value: string;
-};
-
 export type FormPropsType = {
   updateData: (formData: FormDataPropsType) => void;
 };
@@ -29,22 +25,6 @@ export type FormDataPropsType = {
 };
 
 export type FormDataArrayType = FormDataPropsType[];
-
-export type ValidatedType = {
-  photo: boolean;
-  name: boolean;
-  surname: boolean;
-  birthDate: boolean;
-  gender: boolean;
-  country: boolean;
-  consent: boolean;
-};
-
-export type FormStateType = {
-  isChanged: boolean;
-  isSubmitPressed: boolean;
-  isBannerVisible: boolean;
-};
 
 export type FormCardItemPropsType = {
   label: string;
@@ -62,15 +42,6 @@ export type BannerPropsType = {
 
 export type FormCardsContainerPropsType = {
   formData: FormDataArrayType;
-};
-
-export type FormWrapperStateType = FormCardsContainerPropsType;
-
-export type SearchWrapperStateType = {
-  searchQuery: string;
-  data: SearchData;
-  isLoading: boolean;
-  isEmptyData: boolean;
 };
 
 export type SearchParametersType = {
@@ -118,10 +89,6 @@ export type SearchData = {
 
 export type CardsContainerPropsType = {
   searchQuery: string;
-};
-
-export type CardsContainerStateType = {
-  isModalVisible: boolean;
 };
 
 export type CardPropsType = SearchHitType & {

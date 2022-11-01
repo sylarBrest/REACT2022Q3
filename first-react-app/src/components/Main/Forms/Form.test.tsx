@@ -70,9 +70,8 @@ describe('component Form', () => {
     expect(name).toHaveValue('');
     userEvent.click(submit);
     await waitFor(() => {
-      expect(screen.getByText(/Name not present/)).toBeInTheDocument();
+      expect(screen.getByText(/Type your name/)).toBeInTheDocument();
       expect(submit).toBeDisabled();
-      screen.debug();
     });
   });
 
