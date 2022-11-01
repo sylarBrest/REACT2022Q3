@@ -1,13 +1,10 @@
-import React from 'react';
-import { UseFormRegister } from 'react-hook-form';
-import { FormDataPropsType } from 'data/types';
+import { InputPropsType } from 'data/types';
+import { isValidBirthDate } from 'utils';
+import { ValidationMessage } from '../ValidationMessage';
 
-export const DateInput = React.forwardRef<
-  HTMLInputElement,
-  ReturnType<UseFormRegister<FormDataPropsType>>
->((props, ref) => {
-  const { name, onChange } = props;
-  const nameL = name.toLowerCase();
+export const DateInput = (props: InputPropsType) => {
+  const { label, register, error } = props;
+  const nameL = label.toLowerCase();
 
   return (
     <div className={`personal-data-input input-${nameL}`}>
@@ -18,11 +15,15 @@ export const DateInput = React.forwardRef<
         className="field"
         id={nameL}
         type="date"
-        name={name}
-        ref={ref}
-        onChange={onChange}
+        {...register('birthDate', {
+          validate: {
+            emptyValue: (birthDate) => birthDate || 'Choose or type your date of birth',
+            under18: (birthDate) => isValidBirthDate(birthDate) || 'You must be 18 years old',
+          },
+        })}
         data-testid={`form-input-${nameL}`}
       />
+      {error && <ValidationMessage message={error} />}
     </div>
   );
-});
+};

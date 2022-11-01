@@ -1,6 +1,6 @@
-import { InputPropsType } from 'data/types';
+import { RadioInputPropsType } from 'data/types';
 
-export const RadioInput = (props: InputPropsType & { gender: string }) => {
+export const RadioInput = (props: RadioInputPropsType) => {
   const { label, register, gender } = props;
   const nameF = gender[0].toUpperCase() + gender.slice(1);
 

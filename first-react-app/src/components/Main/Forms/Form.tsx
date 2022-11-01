@@ -1,12 +1,11 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { convertToMbytes, isValidBirthDate, isValidCountry, isValidForm } from 'utils';
+import { isValidForm } from 'utils';
 import { FormDataPropsType, FormPropsType } from 'data/types';
-import { CheckboxInput, DateInput, PhotoInput, RadioInput, Select, TextInput } from './Inputs';
+import { CheckboxInput, DateInput, PhotoInput, Select, TextInput } from './Inputs';
 import { Banner } from './Banner/Banner';
-import { ValidationMessage } from './ValidationMessage';
 import './Form.css';
 import { useEffect, useState } from 'react';
-import { MAX_FILE_SIZE } from 'data/constants';
+import { RadioGroup } from './Inputs/RadioGroup';
 
 export const Form = (props: FormPropsType) => {
   const { updateData } = props;
@@ -37,54 +36,15 @@ export const Form = (props: FormPropsType) => {
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)} data-testid="form">
-      <div className="photo-upload">
-        <PhotoInput
-          {...register('photo', {
-            required: { value: true, message: 'Photo not present' },
-            validate: {
-              wrongFileType: (file) =>
-                (file as unknown as FileList)[0].type.includes('image') ||
-                'You must upload an image file',
-              tooBigImage: (file) =>
-                (file as unknown as FileList)[0].size <= MAX_FILE_SIZE ||
-                `Image can be up to ${convertToMbytes(MAX_FILE_SIZE)}Mb`,
-            },
-          })}
-        />
-        <ValidationMessage message={errors.photo?.message || ''} />
-      </div>
+      <PhotoInput label="photo" register={register} error={errors.photo?.message} />
       <div className="personal-data">
-        <TextInput label="name" register={register} />
-        <ValidationMessage message={errors.name?.message || ''} />
-        <TextInput label="surname" register={register} />
-        <ValidationMessage message={errors.surname?.message || ''} />
-        <DateInput
-          {...register('birthDate', {
-            validate: (birthdate) => isValidBirthDate(birthdate) || 'You must be 18 years old',
-          })}
-        />
-        <ValidationMessage message={errors.birthDate?.message || ''} />
-        <div className="personal-data-input input-gender">
-          <span className="field-label">Gender: </span>
-          <fieldset className="gender-choice">
-            <RadioInput label="gender" register={register} gender="male" />
-            <RadioInput label="gender" register={register} gender="female" />
-          </fieldset>
-        </div>
-        <ValidationMessage message={errors.gender?.message || ''} />
-        <Select
-          {...register('country', {
-            validate: (country) => isValidCountry(country) || 'Choose your country',
-          })}
-        />
-        <ValidationMessage message={errors.country?.message || ''} />
+        <TextInput label="name" register={register} error={errors.name?.message} />
+        <TextInput label="surname" register={register} error={errors.surname?.message} />
+        <DateInput label="birthDate" register={register} error={errors.birthDate?.message} />
+        <RadioGroup label="gender" register={register} error={errors.gender?.message} />
+        <Select label="country" register={register} error={errors.country?.message} />
       </div>
-      <CheckboxInput
-        {...register('consent', {
-          required: { value: true, message: 'Please give your consent by checking the label' },
-        })}
-      />
-      <ValidationMessage message={errors.consent?.message || ''} />
+      <CheckboxInput label="consent" register={register} error={errors.consent?.message} />
       <input
         className="submit"
         type="submit"

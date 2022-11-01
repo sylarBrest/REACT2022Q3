@@ -10,6 +10,7 @@
 }
 
 .validation-message {
+  width: 100%;
   color: #af0000;
   height: 20px;
   font-size: 14px;
@@ -27,7 +28,7 @@
 }
 
 .photo-label {
-  margin-bottom: -3px;
+  margin: 4px 0;
 }
 
 .photo-field {
@@ -47,8 +48,9 @@
 
 .personal-data-input {
   display: flex;
-  align-items: center;
-  height: 26px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  min-height: 50px;
 }
 
 .personal-data-input > .field {
@@ -97,9 +99,20 @@
 
 .consent {
   display: flex;
+  flex-wrap: wrap;
   gap: 5px;
   width: 300px;
+  min-height: 65px;
 }
+
+.consent > .field {
+  align-self: flex-start;
+  margin-top: 10px;
+}
+
+.consent > .field-label {
+  max-width: 280px;
+} 
 
 .submit {
   width: 100%;

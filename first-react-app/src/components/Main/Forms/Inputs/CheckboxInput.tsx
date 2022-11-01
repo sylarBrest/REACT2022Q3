@@ -1,28 +1,25 @@
-import React from 'react';
-import { FormDataPropsType } from 'data/types';
+import { InputPropsType } from 'data/types';
 import { MIN_AGE } from 'data/constants';
-import { UseFormRegister } from 'react-hook-form';
+import { ValidationMessage } from '../ValidationMessage';
 
-export const CheckboxInput = React.forwardRef<
-  HTMLInputElement,
-  ReturnType<UseFormRegister<FormDataPropsType>>
->((props, ref) => {
-  const { name, onChange } = props;
+export const CheckboxInput = (props: InputPropsType) => {
+  const { label, register, error } = props;
 
   return (
-    <div className={name}>
+    <div className={label}>
       <input
         className="field"
-        id={name}
+        id={label}
         type="checkbox"
-        name={name}
-        ref={ref}
-        onChange={onChange}
-        data-testid={`form-input-${name}`}
+        {...register('consent', {
+          required: { value: true, message: 'Please give your consent by checking the label' },
+        })}
+        data-testid={`form-input-${label}`}
       />
-      <label className="field-label" htmlFor={name}>
+      <label className="field-label" htmlFor={label}>
         I confirm that I am over {MIN_AGE} years old and consent to personal data
       </label>
+      {error && <ValidationMessage message={error} />}
     </div>
   );
-});
+};

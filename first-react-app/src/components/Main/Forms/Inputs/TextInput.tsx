@@ -1,8 +1,9 @@
 import { InputPropsType } from 'data/types';
 import { isFirstLetterCapital, isValidName } from 'utils';
+import { ValidationMessage } from '../ValidationMessage';
 
 export const TextInput = (props: InputPropsType) => {
-  const { label, register } = props;
+  const { label, register, error } = props;
   const nameF = label[0].toUpperCase() + label.slice(1);
 
   return (
@@ -16,7 +17,7 @@ export const TextInput = (props: InputPropsType) => {
         type="text"
         placeholder={nameF}
         {...register(label, {
-          required: { value: true, message: `${nameF} not present` },
+          required: { value: true, message: `Type your ${label}` },
           minLength: { value: 3, message: `Too short ${label}, at least 3 char long` },
           validate: {
             firstLetterCapital: (v) =>
@@ -27,6 +28,7 @@ export const TextInput = (props: InputPropsType) => {
         })}
         data-testid={`form-input-${label}`}
       />
+      {error && <ValidationMessage message={error} />}
     </div>
   );
 };

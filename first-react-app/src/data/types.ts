@@ -141,4 +141,9 @@ export type CountItemPropsType = {
 export type InputPropsType = {
   label: Path<FormDataPropsType>;
   register: UseFormRegister<FormDataPropsType>;
+  error?: string;
+};
+
+export type RadioInputPropsType = InputPropsType & {
+  gender: string;
 };

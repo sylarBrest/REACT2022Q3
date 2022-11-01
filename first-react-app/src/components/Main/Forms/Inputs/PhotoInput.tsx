@@ -1,33 +1,40 @@
-import React from 'react';
-import { UseFormRegister } from 'react-hook-form';
-import { FormDataPropsType } from 'data/types';
+import { InputPropsType } from 'data/types';
+import { MAX_FILE_SIZE } from 'data/constants';
+import { convertToMbytes } from 'utils';
 
 import photoIcon from 'assets/svg/photo.svg';
+import { ValidationMessage } from '../ValidationMessage';
 
-export const PhotoInput = React.forwardRef<
-  HTMLInputElement,
-  ReturnType<UseFormRegister<FormDataPropsType>>
->((props, ref) => {
-  const { name, onChange } = props;
-  const nameF = name[0].toUpperCase() + name.slice(1);
+export const PhotoInput = (props: InputPropsType) => {
+  const { label, register, error } = props;
+  const nameF = label[0].toUpperCase() + label.slice(1);
 
   return (
-    <>
-      <label className="field-label" htmlFor={`${name}-upload`}>
-        <img className={`${name}-name`} src={photoIcon} alt={`${nameF} Upload`} />
+    <div className={`${label}-upload`}>
+      <label className="field-label" htmlFor={`${label}-upload`}>
+        <img className={`${label}-label`} src={photoIcon} alt={`${nameF} Upload`} />
         Upload your photo
       </label>
       <input
-        className={`field ${name}-field`}
-        id={`${name}-upload`}
+        className={`field ${label}-field`}
+        id={`${label}-upload`}
         type="file"
-        name={name}
         capture="environment"
-        ref={ref}
-        onChange={onChange}
         accept="image/*"
-        data-testid={`form-input-${name}`}
+        {...register('photo', {
+          required: { value: true, message: 'Photo not present' },
+          validate: {
+            wrongFileType: (file) =>
+              (file as unknown as FileList)[0].type.includes('image') ||
+              'You must upload an image file',
+            tooBigImage: (file) =>
+              (file as unknown as FileList)[0].size <= MAX_FILE_SIZE ||
+              `Image can be up to ${convertToMbytes(MAX_FILE_SIZE)}Mb`,
+          },
+        })}
+        data-testid={`form-input-${label}`}
       />
-    </>
+      {error && <ValidationMessage message={error} />}
+    </div>
   );
-});
+};
