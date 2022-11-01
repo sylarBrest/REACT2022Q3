@@ -9,3 +9,5 @@ export const getRequestUrl = (urlParams: UrlParametersType) => {
 
   return `${BASE_URL}?key=${API_KEY}${query}${perPage}${order}${id}`;
 };
+
+export const convertToMbytes = (bites: number) => bites / 1024 / 1024;

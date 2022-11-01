@@ -1,13 +1,16 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { isValidBirthDate, isValidCountry, isValidForm } from 'utils';
+import { convertToMbytes, isValidBirthDate, isValidCountry, isValidForm } from 'utils';
 import { FormDataPropsType, FormPropsType } from 'data/types';
 import { CheckboxInput, DateInput, PhotoInput, RadioInput, Select, TextInput } from './Inputs';
 import { Banner } from './Banner/Banner';
 import { ValidationMessage } from './ValidationMessage';
 import './Form.css';
 import { useEffect, useState } from 'react';
+import { MAX_FILE_SIZE } from 'data/constants';
 
 export const Form = (props: FormPropsType) => {
+  const { updateData } = props;
+
   const {
     reset,
     register,
@@ -29,14 +32,24 @@ export const Form = (props: FormPropsType) => {
   const onSubmit: SubmitHandler<FormDataPropsType> = (data) => {
     const formData: FormDataPropsType = { ...data };
     formData.photo = (formData.photo as unknown as FileList)[0];
-    props.updateData(formData);
+    updateData(formData);
   };
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)} data-testid="form">
       <div className="photo-upload">
         <PhotoInput
-          {...register('photo', { required: { value: true, message: 'Photo not present' } })}
+          {...register('photo', {
+            required: { value: true, message: 'Photo not present' },
+            validate: {
+              wrongFileType: (file) =>
+                (file as unknown as FileList)[0].type.includes('image') ||
+                'You must upload an image file',
+              tooBigImage: (file) =>
+                (file as unknown as FileList)[0].size <= MAX_FILE_SIZE ||
+                `Image can be up to ${convertToMbytes(MAX_FILE_SIZE)}Mb`,
+            },
+          })}
         />
         <ValidationMessage message={errors.photo?.message || ''} />
       </div>
