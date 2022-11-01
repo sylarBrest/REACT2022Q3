@@ -16,7 +16,7 @@ export const SearchBar = (props: SearchBarPropsType) => {
     localStorage.setItem('searchBarValue', searchInput.value);
   };
 
-  const handleKeyPress = async (event: React.KeyboardEvent) => {
+  const handleKeyPress = (event: React.KeyboardEvent) => {
     const searchInput = event.target as HTMLInputElement;
     if (event.key === 'Enter') {
       const searchQuery = searchInput.value.toLowerCase();
