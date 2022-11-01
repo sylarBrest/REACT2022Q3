@@ -2,13 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { SearchBarPropsType } from 'data/types';
 
 export const SearchBar = (props: SearchBarPropsType) => {
+  const { getSearchQuery } = props;
+
   const [value, setValue] = useState(localStorage.getItem('searchBarValue') || '');
 
   useEffect(() => {
     const searchQuery = localStorage.getItem('searchBarValue') || '';
     setValue(searchQuery);
-    props.getSearchQuery(searchQuery);
-  }, [props]);
+    getSearchQuery(searchQuery);
+  }, [getSearchQuery, props]);
+
+  const changeValue = () => {
+    const searchQuery = value.toLowerCase();
+    setValue(value);
+    getSearchQuery(searchQuery);
+    localStorage.setItem('searchBarValue', value);
+  };
 
   const handleChange = (event: React.ChangeEvent) => {
     const searchInput = event.target as HTMLInputElement;
@@ -17,25 +26,28 @@ export const SearchBar = (props: SearchBarPropsType) => {
   };
 
   const handleKeyPress = (event: React.KeyboardEvent) => {
-    const searchInput = event.target as HTMLInputElement;
     if (event.key === 'Enter') {
-      const searchQuery = searchInput.value.toLowerCase();
-      setValue(searchInput.value);
-      props.getSearchQuery(searchQuery);
-      localStorage.setItem('searchBarValue', searchInput.value);
+      changeValue();
     }
   };
 
+  const handleClick = () => {
+    changeValue();
+  };
+
   return (
-    <input
-      type="search"
-      className="search-bar"
-      placeholder="Search photo..."
-      defaultValue={value}
-      onChange={handleChange}
-      onKeyPress={handleKeyPress}
-      data-testid="search-bar"
-      autoFocus
-    />
+    <div className="search-bar">
+      <input
+        type="search"
+        className="search-input"
+        placeholder="Search photo..."
+        defaultValue={value}
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
+        data-testid="search-bar"
+        autoFocus
+      />
+      <button className="search-button" onClick={handleClick} />
+    </div>
   );
 };
