@@ -40,3 +40,12 @@ export enum GENDERS {
   male = 'male',
   female = 'female',
 }
+
+export enum ACTION_TYPE {
+  saveFormData = 'SAVE_FORM_DATA',
+  changeQuery = 'CHANGE_QUERY',
+  changeImageType = 'CHANGE_IMAGE_TYPE',
+  changePerPage = 'CHANGE_PER_PAGE',
+  changePage = 'CHANGE_PAGE',
+  saveSearchResults = 'SAVE_SEARCH_RESULTS',
+}

@@ -1,5 +1,5 @@
 import { Path, UseFormRegister } from 'react-hook-form';
-import { GENDERS } from './constants';
+import { ACTION_TYPE, GENDERS } from './constants';
 
 export type RoutePropsType = {
   path: string;
@@ -114,3 +114,63 @@ export type InputPropsType = {
 export type RadioInputPropsType = InputPropsType & {
   gender: string;
 };
+
+export type PaginationType = {
+  perPage: number;
+  page: number;
+};
+
+export type SearchStateType = {
+  query: string;
+  imageType: string;
+  pagination: PaginationType;
+  results: SearchData;
+};
+
+export type FormStateType = {
+  data: FormDataArrayType;
+};
+
+export type InitialStateType = {
+  search: SearchStateType;
+  form: FormStateType;
+};
+
+type SaveFormDataActionType = {
+  type: ACTION_TYPE.saveFormData;
+  payload: FormDataPropsType;
+};
+
+export type FormActions = SaveFormDataActionType;
+
+type ChangeQueryActionType = {
+  type: ACTION_TYPE.changeQuery;
+  payload: { query: string };
+};
+
+type ChangeImageTypeActionType = {
+  type: ACTION_TYPE.changeImageType;
+  payload: { imageType: string };
+};
+
+type ChangePerPageActionType = {
+  type: ACTION_TYPE.changePerPage;
+  payload: { perPage: number };
+};
+
+type ChangePageActionType = {
+  type: ACTION_TYPE.changePage;
+  payload: { page: number };
+};
+
+type SaveSearchResultsActionType = {
+  type: ACTION_TYPE.saveSearchResults;
+  payload: SearchData;
+};
+
+export type SearchActions =
+  | ChangeQueryActionType
+  | ChangeImageTypeActionType
+  | ChangePerPageActionType
+  | ChangePageActionType
+  | SaveSearchResultsActionType;
