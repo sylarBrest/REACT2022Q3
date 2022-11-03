@@ -6,7 +6,7 @@ export const formReducer = (state: FormStateType, action: ActionsType) => {
   switch (type) {
     case ACTION_TYPE.saveFormData: {
       const newState = { ...state };
-      newState.data.concat(payload);
+      newState.data = [...payload];
       return newState;
     }
     default:

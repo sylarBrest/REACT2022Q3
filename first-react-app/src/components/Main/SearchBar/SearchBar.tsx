@@ -1,27 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { SearchBarPropsType } from 'data/types';
+import React, { useState } from 'react';
 import { useGlobalContext } from 'context/globalContext';
 import { ACTION_TYPE } from 'data/constants';
+import { SearchData } from 'data/types';
+import { basicGetMethod } from 'services/basicGetMethod';
 
-export const SearchBar = (props: SearchBarPropsType) => {
-  const { getSearchQuery } = props;
-
-  const { state, dispatch } = useGlobalContext();
-  console.log(state);
+export const SearchBar = () => {
+  const { dispatch } = useGlobalContext();
 
   const [value, setValue] = useState(localStorage.getItem('searchBarValue') || '');
 
-  useEffect(() => {
+  /* useEffect(() => {
     const searchQuery = localStorage.getItem('searchBarValue') || '';
     setValue(searchQuery);
-    getSearchQuery(searchQuery);
-  }, [getSearchQuery, props]);
+  }, [getSearchQuery, props, state]); */
+  const fetchData = async (newQuery: string) => {
+    const fetchedData: SearchData = await basicGetMethod({ query: newQuery });
+    dispatch({ type: ACTION_TYPE.saveSearchResults, payload: fetchedData });
+    /* setIsLoading(false); */
+    /* !fetchedData.hits.length ? setIsEmptyData(true) : setIsEmptyData(false); */
+  };
 
   const changeValue = () => {
     const searchQuery = value.toLowerCase();
     setValue(value);
-    getSearchQuery(searchQuery);
     dispatch({ type: ACTION_TYPE.changeQuery, payload: { query: searchQuery } });
+    fetchData(searchQuery);
     localStorage.setItem('searchBarValue', value);
   };
 

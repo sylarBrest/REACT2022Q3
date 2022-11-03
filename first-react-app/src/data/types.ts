@@ -139,7 +139,7 @@ export type InitialStateType = {
 
 type SaveFormDataActionType = {
   type: ACTION_TYPE.saveFormData;
-  payload: FormDataPropsType;
+  payload: FormDataArrayType;
 };
 
 export type FormActionsType = SaveFormDataActionType;

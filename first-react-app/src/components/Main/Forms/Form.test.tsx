@@ -87,6 +87,10 @@ describe('component Form', () => {
 
   it('should display one card after successful submit', async () => {
     fillAllFields();
+    jest.useFakeTimers();
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
     await waitFor(() => {
       const card = screen.getByTestId('form-card-data');
       expect(card).toBeInTheDocument();
@@ -97,11 +101,12 @@ describe('component Form', () => {
     fillAllFields();
     jest.useFakeTimers();
 
+    const banner = screen.getByTestId('banner');
+
     act(() => {
       jest.runOnlyPendingTimers();
     });
 
-    const banner = screen.getByTestId('banner');
     expect(banner).not.toBeVisible();
   });
 });

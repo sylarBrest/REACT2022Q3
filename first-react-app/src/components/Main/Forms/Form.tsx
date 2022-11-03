@@ -1,14 +1,16 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { isValidForm } from 'utils';
-import { FormDataPropsType, FormPropsType } from 'data/types';
+import { FormDataPropsType } from 'data/types';
 import { CheckboxInput, DateInput, PhotoInput, Select, TextInput } from './Inputs';
 import { Banner } from './Banner/Banner';
 import './Form.css';
 import { useEffect, useState } from 'react';
 import { RadioGroup } from './Inputs/RadioGroup';
+import { useGlobalContext } from 'context/globalContext';
+import { ACTION_TYPE } from 'data/constants';
 
-export const Form = (props: FormPropsType) => {
-  const { updateData } = props;
+export const Form = () => {
+  const { state, dispatch } = useGlobalContext();
 
   const {
     reset,
@@ -29,9 +31,9 @@ export const Form = (props: FormPropsType) => {
   }, [isSubmitSuccessful, reset]);
 
   const onSubmit: SubmitHandler<FormDataPropsType> = (data) => {
-    const formData: FormDataPropsType = { ...data };
-    formData.photo = (formData.photo as unknown as FileList)[0];
-    updateData(formData);
+    const cardData: FormDataPropsType = { ...data };
+    cardData.photo = (cardData.photo as unknown as FileList)[0];
+    dispatch({ type: ACTION_TYPE.saveFormData, payload: [...state.form.data, cardData] });
   };
 
   return (
