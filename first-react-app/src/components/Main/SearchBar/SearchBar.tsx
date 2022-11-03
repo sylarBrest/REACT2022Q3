@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { SearchBarPropsType } from 'data/types';
+import { useGlobalContext } from 'context/globalContext';
+import { ACTION_TYPE } from 'data/constants';
 
 export const SearchBar = (props: SearchBarPropsType) => {
   const { getSearchQuery } = props;
+
+  const { state, dispatch } = useGlobalContext();
+  console.log(state);
 
   const [value, setValue] = useState(localStorage.getItem('searchBarValue') || '');
 
@@ -16,6 +21,7 @@ export const SearchBar = (props: SearchBarPropsType) => {
     const searchQuery = value.toLowerCase();
     setValue(value);
     getSearchQuery(searchQuery);
+    dispatch({ type: ACTION_TYPE.changeQuery, payload: { query: searchQuery } });
     localStorage.setItem('searchBarValue', value);
   };
 

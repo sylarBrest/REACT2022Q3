@@ -1,5 +1,5 @@
-import { AboutUsPage, FormsPage, HomePage, NotFoundPage } from 'pages';
 import { Routes, Route } from 'react-router-dom';
+import { AboutUsPage, FormsPage, HomePage, NotFoundPage } from 'pages';
 
 import './Main.css';
 

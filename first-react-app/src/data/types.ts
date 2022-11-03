@@ -1,3 +1,4 @@
+import { Dispatch } from 'react';
 import { Path, UseFormRegister } from 'react-hook-form';
 import { ACTION_TYPE, GENDERS } from './constants';
 
@@ -141,7 +142,7 @@ type SaveFormDataActionType = {
   payload: FormDataPropsType;
 };
 
-export type FormActions = SaveFormDataActionType;
+export type FormActionsType = SaveFormDataActionType;
 
 type ChangeQueryActionType = {
   type: ACTION_TYPE.changeQuery;
@@ -168,9 +169,18 @@ type SaveSearchResultsActionType = {
   payload: SearchData;
 };
 
-export type SearchActions =
+export type SearchActionsType =
   | ChangeQueryActionType
   | ChangeImageTypeActionType
   | ChangePerPageActionType
   | ChangePageActionType
   | SaveSearchResultsActionType;
+
+export type ActionsType = SearchActionsType | FormActionsType;
+
+export type GlobalContextType = {
+  state: InitialStateType;
+  dispatch: Dispatch<ActionsType>;
+};
+
+export type AppProviderProps = { children: React.ReactNode };
