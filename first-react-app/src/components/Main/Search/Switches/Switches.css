@@ -1,0 +1,23 @@
+.switches {
+  display: flex;
+  gap: 20px;
+  align-self: flex-start;
+}
+
+.legend {
+  margin-left: 10px;
+}
+
+.image-type-switches {
+  display: flex;
+  gap: 3px;
+  padding: 5px;
+}
+
+.image-type-switch {
+  margin-left: 5px;
+}
+
+label + .image-type-switch {
+  padding-left: 5px;
+}

@@ -9,16 +9,12 @@ export const SearchBar = () => {
 
   const [value, setValue] = useState(localStorage.getItem('searchBarValue') || '');
 
-  const fetchData = async (newQuery: string) => {
-    const fetchedData: SearchData = await basicGetMethod({ query: newQuery });
-    dispatch({ type: ACTION_TYPE.saveSearchResults, payload: fetchedData });
-  };
-
-  const changeValue = () => {
+  const changeValue = async () => {
     const searchQuery = value.toLowerCase();
     setValue(value);
     dispatch({ type: ACTION_TYPE.changeQuery, payload: { query: searchQuery } });
-    fetchData(searchQuery);
+    const fetchedData: SearchData = await basicGetMethod({ query: value });
+    dispatch({ type: ACTION_TYPE.saveSearchResults, payload: fetchedData });
     localStorage.setItem('searchBarValue', value);
   };
 

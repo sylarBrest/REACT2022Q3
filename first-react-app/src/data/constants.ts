@@ -49,3 +49,5 @@ export enum ACTION_TYPE {
   changePage = 'CHANGE_PAGE',
   saveSearchResults = 'SAVE_SEARCH_RESULTS',
 }
+
+export const IMAGE_TYPES = ['all', 'photo', 'illustration', 'vector'];

@@ -48,7 +48,7 @@ export type FormCardsContainerPropsType = {
 export type SearchParametersType = {
   query: string;
   perPage?: number;
-  order?: string;
+  imageType?: string;
 };
 
 export type UrlParametersType = Partial<SearchParametersType> & {
@@ -185,3 +185,7 @@ export type GlobalContextType = {
 };
 
 export type AppProviderProps = { children: React.ReactNode };
+
+export type ImageTypeSwitchPropsType = {
+  value: string;
+};
