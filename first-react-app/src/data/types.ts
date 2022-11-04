@@ -47,6 +47,7 @@ export type FormCardsContainerPropsType = {
 
 export type SearchParametersType = {
   query: string;
+  page: number;
   perPage?: number;
   imageType?: string;
 };

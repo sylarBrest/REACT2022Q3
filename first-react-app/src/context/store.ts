@@ -5,7 +5,7 @@ export const initialState: GlobalStateType = {
     query: '',
     imageType: 'all',
     pagination: {
-      perPage: 20,
+      perPage: 24,
       page: 1,
     },
     results: {

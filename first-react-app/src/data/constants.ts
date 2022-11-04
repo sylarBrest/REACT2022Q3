@@ -50,4 +50,6 @@ export enum ACTION_TYPE {
   saveSearchResults = 'SAVE_SEARCH_RESULTS',
 }
 
-export const IMAGE_TYPES = ['all', 'photo', 'illustration', 'vector'];
+export const IMAGE_TYPES: string[] = ['all', 'photo', 'illustration', 'vector'];
+
+export const PER_PAGE_VALUES = [12, 24, 36, 48, 60];
