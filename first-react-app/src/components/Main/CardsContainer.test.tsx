@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { AppProvider } from 'context/globalContext';
 import { badSearch, goodSearch, mockData } from 'mocks/mockData';
 import { SearchWrapper } from './SearchWrapper';
 
@@ -8,8 +9,12 @@ describe('SearchWrapper component', () => {
   let card: HTMLDivElement;
 
   beforeEach(() => {
-    render(<SearchWrapper />);
-    searchBar = screen.getByTestId('search-bar');
+    render(
+      <AppProvider>
+        <SearchWrapper />
+      </AppProvider>
+    );
+    searchBar = screen.getByTestId('search-bar-input');
   });
 
   const typeSearch = (search: string) => {

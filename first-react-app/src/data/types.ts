@@ -126,6 +126,7 @@ export type SearchStateType = {
   imageType: string;
   pagination: PaginationType;
   results: SearchData;
+  isLoading: boolean;
 };
 
 export type FormStateType = {

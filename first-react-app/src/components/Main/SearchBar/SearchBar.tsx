@@ -9,15 +9,9 @@ export const SearchBar = () => {
 
   const [value, setValue] = useState(localStorage.getItem('searchBarValue') || '');
 
-  /* useEffect(() => {
-    const searchQuery = localStorage.getItem('searchBarValue') || '';
-    setValue(searchQuery);
-  }, [getSearchQuery, props, state]); */
   const fetchData = async (newQuery: string) => {
     const fetchedData: SearchData = await basicGetMethod({ query: newQuery });
     dispatch({ type: ACTION_TYPE.saveSearchResults, payload: fetchedData });
-    /* setIsLoading(false); */
-    /* !fetchedData.hits.length ? setIsEmptyData(true) : setIsEmptyData(false); */
   };
 
   const changeValue = () => {
@@ -35,9 +29,7 @@ export const SearchBar = () => {
   };
 
   const handleKeyPress = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter') {
-      changeValue();
-    }
+    event.key === 'Enter' && changeValue();
   };
 
   const handleClick = () => {
@@ -53,10 +45,10 @@ export const SearchBar = () => {
         defaultValue={value}
         onChange={handleChange}
         onKeyPress={handleKeyPress}
-        data-testid="search-bar"
+        data-testid="search-bar-input"
         autoFocus
       />
-      <button className="search-button" onClick={handleClick} />
+      <button className="search-button" onClick={handleClick} data-testid="search-bar-button" />
     </div>
   );
 };

@@ -8,7 +8,7 @@ describe('SearchBar component', () => {
 
   beforeEach(() => {
     render(<SearchWrapper />);
-    searchBar = screen.getByTestId('search-bar');
+    searchBar = screen.getByTestId('search-bar-input');
   });
 
   it('should render onto the screen', () => {
@@ -23,6 +23,11 @@ describe('SearchBar component', () => {
 
   it('should save value after pressing Enter', () => {
     userEvent.type(searchBar, '{enter}');
+    expect(searchBar).toHaveValue(testSearch);
+  });
+
+  it('should save value after clicking on button', () => {
+    userEvent.click(screen.getByTestId('search-bar-button'));
     expect(searchBar).toHaveValue(testSearch);
   });
 

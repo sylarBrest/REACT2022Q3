@@ -1,5 +1,6 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { AppProvider } from 'context/globalContext';
 import { FormWrapper } from './FormWrapper';
 
 describe('component Form', () => {
@@ -14,7 +15,11 @@ describe('component Form', () => {
 
   beforeEach(async () => {
     await act(async () => {
-      render(<FormWrapper />);
+      render(
+        <AppProvider>
+          <FormWrapper />
+        </AppProvider>
+      );
     });
   });
 

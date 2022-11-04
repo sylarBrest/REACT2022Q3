@@ -20,26 +20,31 @@ export const searchReducer = (state: SearchStateType, action: ActionsType) => {
     case ACTION_TYPE.changeQuery: {
       const newState = { ...state };
       newState.query = payload.query;
+      newState.isLoading = true;
       return newState;
     }
     case ACTION_TYPE.changeImageType: {
       const newState = { ...state };
       newState.imageType = payload.imageType;
+      newState.isLoading = true;
       return newState;
     }
     case ACTION_TYPE.changePerPage: {
       const newState = { ...state };
       newState.pagination.perPage = payload.perPage;
+      newState.isLoading = true;
       return newState;
     }
     case ACTION_TYPE.changePage: {
       const newState = { ...state };
       newState.pagination.page = payload.page;
+      newState.isLoading = true;
       return newState;
     }
     case ACTION_TYPE.saveSearchResults: {
       const newState = { ...state };
       newState.results = { ...payload };
+      newState.isLoading = false;
       return newState;
     }
     default:
