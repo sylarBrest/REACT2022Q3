@@ -1,5 +1,5 @@
 import { ACTION_TYPE } from 'data/constants';
-import { ActionsType, FormStateType, InitialStateType, SearchStateType } from 'data/types';
+import { ActionsType, FormStateType, GlobalStateType, SearchStateType } from 'data/types';
 
 export const formReducer = (state: FormStateType, action: ActionsType) => {
   const { type, payload } = action;
@@ -53,9 +53,9 @@ export const searchReducer = (state: SearchStateType, action: ActionsType) => {
 };
 
 export const mainReducer = (
-  { search, form }: InitialStateType,
+  { search, form }: GlobalStateType,
   action: ActionsType
-): InitialStateType => ({
+): GlobalStateType => ({
   search: searchReducer(search, action),
   form: formReducer(form, action),
 });

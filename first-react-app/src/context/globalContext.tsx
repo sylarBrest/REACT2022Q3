@@ -1,28 +1,9 @@
 import { ACTION_TYPE } from 'data/constants';
 import React, { useContext, useEffect, useReducer } from 'react';
 import { basicGetMethod } from 'services/basicGetMethod';
-import { AppProviderProps, GlobalContextType, InitialStateType, SearchData } from '../data/types';
+import { AppProviderProps, GlobalContextType, SearchData } from '../data/types';
 import { mainReducer } from './reducers';
-
-export const initialState: InitialStateType = {
-  search: {
-    query: '',
-    imageType: 'all',
-    pagination: {
-      perPage: 20,
-      page: 1,
-    },
-    results: {
-      hits: [],
-      total: 0,
-      totalHits: 0,
-    },
-    isLoading: true,
-  },
-  form: {
-    data: [],
-  },
-};
+import { initialState } from './store';
 
 export const GlobalContext = React.createContext<GlobalContextType>({
   state: initialState,

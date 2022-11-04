@@ -1,4 +1,4 @@
-import { SearchWrapper } from 'components/Main/SearchWrapper';
+import { SearchWrapper } from 'components/Main/Search/SearchWrapper';
 
 export const HomePage = () => {
   return (

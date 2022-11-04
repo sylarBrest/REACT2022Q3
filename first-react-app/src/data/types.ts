@@ -133,7 +133,7 @@ export type FormStateType = {
   data: FormDataArrayType;
 };
 
-export type InitialStateType = {
+export type GlobalStateType = {
   search: SearchStateType;
   form: FormStateType;
 };
@@ -180,7 +180,7 @@ export type SearchActionsType =
 export type ActionsType = SearchActionsType | FormActionsType;
 
 export type GlobalContextType = {
-  state: InitialStateType;
+  state: GlobalStateType;
   dispatch: Dispatch<ActionsType>;
 };
 
