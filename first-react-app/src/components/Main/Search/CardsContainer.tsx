@@ -6,7 +6,7 @@ import { useGlobalContext } from 'context/globalContext';
 
 export const CardsContainer = () => {
   const { state } = useGlobalContext();
-  const { query, results, isLoading } = state.search;
+  const { results, isLoading } = state.search;
 
   const [isEmptyData, setIsEmptyData] = useState(false);
   const [modalData, setModalData] = useState<SearchHitType | undefined>(undefined);
@@ -43,18 +43,11 @@ export const CardsContainer = () => {
   }
 
   return (
-    <>
-      {query && (
-        <div className="cards-stub results">
-          We found {results.totalHits} results for the query &quot;<b>{query}</b>&quot;:
-        </div>
-      )}
-      <div className="cards" data-testid="cards-container">
-        {results.hits.map((cardData: SearchHitType) => (
-          <Card {...cardData} key={cardData.id} getPhotoId={passDataToModal} />
-        ))}
-        {modalData && isModalVisible && <Modal onCloseModal={hideModal} {...modalData} />}
-      </div>
-    </>
+    <div className="cards" data-testid="cards-container">
+      {results.hits.map((cardData: SearchHitType) => (
+        <Card {...cardData} key={cardData.id} getPhotoId={passDataToModal} />
+      ))}
+      {modalData && isModalVisible && <Modal onCloseModal={hideModal} {...modalData} />}
+    </div>
   );
 };

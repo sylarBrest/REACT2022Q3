@@ -50,7 +50,6 @@ export type UrlParametersType = {
   page: number;
   perPage: number;
   imageType: string;
-  id?: number;
 };
 
 export type SearchHitType = {
