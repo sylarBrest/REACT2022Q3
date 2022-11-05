@@ -7,14 +7,23 @@ export const ImageTypeSwitch = (props: ImageTypeSwitchPropsType) => {
   const { value } = props;
   const valueF = value[0].toUpperCase() + value.slice(1);
   const { state, dispatch } = useGlobalContext();
+  const {
+    query,
+    pagination: { perPage },
+  } = state.search;
   const checked = state.search.imageType === value;
 
   const handleChange = async (event: React.ChangeEvent) => {
     const imageTypeRadio = event.target as HTMLInputElement;
-    dispatch({ type: ACTION_TYPE.changeImageType, payload: { imageType: imageTypeRadio.value } });
+    dispatch({
+      type: ACTION_TYPE.changeImageType,
+      payload: { imageType: imageTypeRadio.value, page: 1, perPage, query },
+    });
     const fetchedData: SearchData = await basicGetMethod({
-      query: state.search.query,
+      query,
       imageType: imageTypeRadio.value,
+      page: 1,
+      perPage,
     });
     dispatch({ type: ACTION_TYPE.saveSearchResults, payload: fetchedData });
   };

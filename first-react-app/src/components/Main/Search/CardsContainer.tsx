@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Card } from './Card/Card';
 import { SearchHitType } from 'data/types';
-import { basicGetMethod } from 'services/basicGetMethod';
 import { Modal } from './Modal/Modal';
 import { useGlobalContext } from 'context/globalContext';
 
@@ -17,9 +16,9 @@ export const CardsContainer = () => {
     !results.hits.length ? setIsEmptyData(true) : setIsEmptyData(false);
   }, [results.hits.length]);
 
-  const passIdToModal = async (id: number) => {
-    const data = await basicGetMethod({ id });
-    setModalData(data.hits[0]);
+  const passDataToModal = (id: number) => {
+    const cardData = state.search.results.hits.filter((data) => data.id === id);
+    setModalData(cardData[0]);
     setIsModalVisible(true);
   };
 
@@ -47,12 +46,12 @@ export const CardsContainer = () => {
     <>
       {query && (
         <div className="cards-stub results">
-          We found {results.total} results for the query &quot;<b>{query}</b>&quot;:
+          We found {results.totalHits} results for the query &quot;<b>{query}</b>&quot;:
         </div>
       )}
       <div className="cards" data-testid="cards-container">
         {results.hits.map((cardData: SearchHitType) => (
-          <Card {...cardData} key={cardData.id} getPhotoId={passIdToModal} />
+          <Card {...cardData} key={cardData.id} getPhotoId={passDataToModal} />
         ))}
         {modalData && isModalVisible && <Modal onCloseModal={hideModal} {...modalData} />}
       </div>

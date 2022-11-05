@@ -5,15 +5,28 @@ import { SearchData } from 'data/types';
 import { basicGetMethod } from 'services/basicGetMethod';
 
 export const SearchBar = () => {
-  const { dispatch } = useGlobalContext();
+  const { state, dispatch } = useGlobalContext();
+
+  const {
+    imageType,
+    pagination: { perPage },
+  } = state.search;
 
   const [value, setValue] = useState(localStorage.getItem('searchBarValue') || '');
 
   const changeValue = async () => {
     const searchQuery = value.toLowerCase();
     setValue(value);
-    dispatch({ type: ACTION_TYPE.changeQuery, payload: { query: searchQuery } });
-    const fetchedData: SearchData = await basicGetMethod({ query: value });
+    dispatch({
+      type: ACTION_TYPE.changeQuery,
+      payload: { query: searchQuery, imageType, page: 1, perPage },
+    });
+    const fetchedData: SearchData = await basicGetMethod({
+      query: searchQuery,
+      imageType,
+      page: 1,
+      perPage,
+    });
     dispatch({ type: ACTION_TYPE.saveSearchResults, payload: fetchedData });
     localStorage.setItem('searchBarValue', value);
   };

@@ -5,17 +5,26 @@ import { basicGetMethod } from 'services/basicGetMethod';
 
 export const PageSelect = () => {
   const { state, dispatch } = useGlobalContext();
-  const totalPages = Math.ceil(state.search.results.totalHits / state.search.pagination.perPage);
+  const {
+    query,
+    imageType,
+    pagination: { perPage },
+    results: { totalHits },
+  } = state.search;
+  const totalPages = Math.ceil(totalHits / perPage);
+  const arrayNumPages = new Array(totalPages).fill(1).map((val, ind) => val * (ind + 1));
 
   const handleChange = async (event: React.ChangeEvent) => {
     const selectPerPage = event.target as HTMLSelectElement;
-    dispatch({ type: ACTION_TYPE.changePage, payload: { page: +selectPerPage.value } });
-    console.log(state.search.pagination.page, selectPerPage.value);
+    dispatch({
+      type: ACTION_TYPE.changePage,
+      payload: { page: +selectPerPage.value, query, imageType, perPage },
+    });
     const fetchedData: SearchData = await basicGetMethod({
-      query: state.search.query,
-      imageType: state.search.imageType,
+      query,
+      imageType,
       page: +selectPerPage.value,
-      perPage: state.search.pagination.perPage,
+      perPage,
     });
     dispatch({ type: ACTION_TYPE.saveSearchResults, payload: fetchedData });
   };
@@ -23,10 +32,10 @@ export const PageSelect = () => {
   return (
     <div className="page-switch">
       {'Page: '}
-      <select className="page-select" onChange={handleChange}>
-        {new Array(totalPages).fill(1).map((_page, index) => (
-          <option value={index + 1} key={index + 1}>
-            {index + 1}
+      <select className="page-select" onChange={handleChange} value={state.search.pagination.page}>
+        {arrayNumPages.map((page) => (
+          <option value={page} key={page}>
+            {page}
           </option>
         ))}
       </select>

@@ -14,7 +14,6 @@ export const useGlobalContext = () => useContext(GlobalContext);
 
 export const AppProvider = ({ children }: AppProviderProps) => {
   const [state, dispatch] = useReducer(mainReducer, initialState);
-
   const {
     imageType,
     pagination: { page, perPage },
@@ -31,7 +30,6 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       });
       dispatch({ type: ACTION_TYPE.saveSearchResults, payload: fetchedData });
     };
-    dispatch({ type: ACTION_TYPE.changeQuery, payload: { query: searchQuery } });
     fetchData(searchQuery);
   }, [dispatch, imageType, page, perPage]);
 

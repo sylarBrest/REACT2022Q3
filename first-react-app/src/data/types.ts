@@ -45,14 +45,11 @@ export type FormCardsContainerPropsType = {
   formData: FormDataArrayType;
 };
 
-export type SearchParametersType = {
+export type UrlParametersType = {
   query: string;
   page: number;
-  perPage?: number;
-  imageType?: string;
-};
-
-export type UrlParametersType = Partial<SearchParametersType> & {
+  perPage: number;
+  imageType: string;
   id?: number;
 };
 
@@ -148,22 +145,22 @@ export type FormActionsType = SaveFormDataActionType;
 
 type ChangeQueryActionType = {
   type: ACTION_TYPE.changeQuery;
-  payload: { query: string };
+  payload: UrlParametersType;
 };
 
 type ChangeImageTypeActionType = {
   type: ACTION_TYPE.changeImageType;
-  payload: { imageType: string };
+  payload: UrlParametersType;
 };
 
 type ChangePerPageActionType = {
   type: ACTION_TYPE.changePerPage;
-  payload: { perPage: number };
+  payload: UrlParametersType;
 };
 
 type ChangePageActionType = {
   type: ACTION_TYPE.changePage;
-  payload: { page: number };
+  payload: UrlParametersType;
 };
 
 type SaveSearchResultsActionType = {
