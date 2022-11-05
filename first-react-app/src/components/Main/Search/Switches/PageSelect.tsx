@@ -1,7 +1,5 @@
 import { useGlobalContext } from 'context/globalContext';
 import { ACTION_TYPE } from 'data/constants';
-import { SearchData } from 'data/types';
-import { basicGetMethod } from 'services/basicGetMethod';
 
 export const PageSelect = () => {
   const { state, dispatch } = useGlobalContext();
@@ -14,19 +12,11 @@ export const PageSelect = () => {
   const totalPages = Math.ceil(totalHits / perPage);
   const arrayNumPages = new Array(totalPages).fill(1).map((val, ind) => val * (ind + 1));
 
-  const handleChange = async (event: React.ChangeEvent) => {
-    const selectPerPage = event.target as HTMLSelectElement;
+  const handleChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch({
       type: ACTION_TYPE.changePage,
-      payload: { page: +selectPerPage.value, query, imageType, perPage },
+      payload: { page: +event.target.value, query, imageType, perPage },
     });
-    const fetchedData: SearchData = await basicGetMethod({
-      query,
-      imageType,
-      page: +selectPerPage.value,
-      perPage,
-    });
-    dispatch({ type: ACTION_TYPE.saveSearchResults, payload: fetchedData });
   };
 
   return (

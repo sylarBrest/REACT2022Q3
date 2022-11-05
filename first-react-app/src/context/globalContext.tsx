@@ -15,27 +15,27 @@ export const useGlobalContext = () => useContext(GlobalContext);
 export const AppProvider = ({ children }: AppProviderProps) => {
   const [state, dispatch] = useReducer(mainReducer, initialState);
   const {
+    query,
     imageType,
     pagination: { page, perPage },
   } = state.search;
 
   useEffect(() => {
-    const searchQuery = localStorage.getItem('searchBarValue') || '';
     dispatch({
       type: ACTION_TYPE.changeQuery,
-      payload: { query: searchQuery, imageType, page, perPage },
+      payload: { query, imageType, page, perPage },
     });
-    const fetchData = async (newQuery: string) => {
+    const fetchData = async () => {
       const fetchedData: SearchData = await basicGetMethod({
-        query: newQuery,
+        query,
         page,
         perPage,
         imageType,
       });
       dispatch({ type: ACTION_TYPE.saveSearchResults, payload: fetchedData });
     };
-    fetchData(searchQuery);
-  }, [dispatch, imageType, page, perPage]);
+    fetchData();
+  }, [dispatch, query, imageType, page, perPage]);
 
   return <GlobalContext.Provider value={{ state, dispatch }}>{children}</GlobalContext.Provider>;
 };

@@ -7,14 +7,6 @@ export type RoutePropsType = {
   name: string;
 };
 
-export type SearchBarPropsType = {
-  getSearchQuery: (searchQuery: string) => void;
-};
-
-export type FormPropsType = {
-  updateData: (formData: FormDataPropsType) => void;
-};
-
 export type FormDataPropsType = {
   photo: Blob;
   name: string;
@@ -39,10 +31,6 @@ export type ValidationMessagePropsType = {
 export type BannerPropsType = {
   name: string;
   isVisible: boolean;
-};
-
-export type FormCardsContainerPropsType = {
-  formData: FormDataArrayType;
 };
 
 export type UrlParametersType = {
@@ -83,10 +71,6 @@ export type SearchData = {
   hits: SearchHitsArrayType;
   total: number;
   totalHits: number;
-};
-
-export type CardsContainerPropsType = {
-  searchQuery: string;
 };
 
 export type CardPropsType = SearchHitType & {

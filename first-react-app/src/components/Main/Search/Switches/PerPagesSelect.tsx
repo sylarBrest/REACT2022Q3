@@ -1,26 +1,15 @@
 import { useGlobalContext } from 'context/globalContext';
 import { ACTION_TYPE, PER_PAGE_VALUES } from 'data/constants';
-import { SearchData } from 'data/types';
-import { basicGetMethod } from 'services/basicGetMethod';
 
 export const PerPageSelect = () => {
   const { state, dispatch } = useGlobalContext();
   const { query, imageType } = state.search;
 
-  const handleChange = async (event: React.ChangeEvent) => {
-    console.log('per page', query);
-    const selectPerPage = event.target as HTMLSelectElement;
+  const handleChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch({
       type: ACTION_TYPE.changePerPage,
-      payload: { perPage: +selectPerPage.value, query, imageType, page: 1 },
+      payload: { perPage: +event.target.value, query, imageType, page: 1 },
     });
-    const fetchedData: SearchData = await basicGetMethod({
-      query,
-      imageType,
-      page: 1,
-      perPage: +selectPerPage.value,
-    });
-    dispatch({ type: ACTION_TYPE.saveSearchResults, payload: fetchedData });
   };
 
   return (

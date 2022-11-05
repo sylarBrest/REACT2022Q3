@@ -52,4 +52,4 @@ export enum ACTION_TYPE {
 
 export const IMAGE_TYPES: string[] = ['all', 'photo', 'illustration', 'vector'];
 
-export const PER_PAGE_VALUES = [12, 24, 36, 48, 60];
+export const PER_PAGE_VALUES: number[] = [12, 24, 36, 48, 60];

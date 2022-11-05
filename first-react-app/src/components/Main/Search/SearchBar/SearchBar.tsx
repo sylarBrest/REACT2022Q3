@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useGlobalContext } from 'context/globalContext';
 import { ACTION_TYPE } from 'data/constants';
-import { SearchData } from 'data/types';
-import { basicGetMethod } from 'services/basicGetMethod';
 
 export const SearchBar = () => {
   const { state, dispatch } = useGlobalContext();
@@ -21,13 +19,6 @@ export const SearchBar = () => {
       type: ACTION_TYPE.changeQuery,
       payload: { query: searchQuery, imageType, page: 1, perPage },
     });
-    const fetchedData: SearchData = await basicGetMethod({
-      query: searchQuery,
-      imageType,
-      page: 1,
-      perPage,
-    });
-    dispatch({ type: ACTION_TYPE.saveSearchResults, payload: fetchedData });
     localStorage.setItem('searchBarValue', value);
   };
 
