@@ -21,6 +21,10 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
   useEffect(() => {
     const searchQuery = localStorage.getItem('searchBarValue') || '';
+    dispatch({
+      type: ACTION_TYPE.changeQuery,
+      payload: { query: searchQuery, imageType, page, perPage },
+    });
     const fetchData = async (newQuery: string) => {
       const fetchedData: SearchData = await basicGetMethod({
         query: newQuery,

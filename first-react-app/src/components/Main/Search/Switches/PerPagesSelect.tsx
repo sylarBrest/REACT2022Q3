@@ -8,6 +8,7 @@ export const PerPageSelect = () => {
   const { query, imageType } = state.search;
 
   const handleChange = async (event: React.ChangeEvent) => {
+    console.log('per page', query);
     const selectPerPage = event.target as HTMLSelectElement;
     dispatch({
       type: ACTION_TYPE.changePerPage,

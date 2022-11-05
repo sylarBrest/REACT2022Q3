@@ -20,7 +20,7 @@ export const searchReducer = (state: SearchStateType, action: ActionsType) => {
     case ACTION_TYPE.changeQuery: {
       const newState: SearchStateType = JSON.parse(JSON.stringify(state));
       newState.query = payload.query;
-      newState.pagination.page = 1;
+      newState.pagination.page = payload.page;
       newState.isLoading = true;
       return newState;
     }
