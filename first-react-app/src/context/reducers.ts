@@ -5,7 +5,7 @@ export const formReducer = (state: FormStateType, action: ActionsType) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPE.saveFormData: {
-      const newState: FormStateType = JSON.parse(JSON.stringify(state));
+      const newState: FormStateType = { ...state };
       newState.data = [...payload];
       return newState;
     }
@@ -18,34 +18,34 @@ export const searchReducer = (state: SearchStateType, action: ActionsType) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPE.changeQuery: {
-      const newState: SearchStateType = JSON.parse(JSON.stringify(state));
+      const newState: SearchStateType = { ...state };
       newState.query = payload.query;
       newState.pagination.page = payload.page;
       newState.isLoading = true;
       return newState;
     }
     case ACTION_TYPE.changeImageType: {
-      const newState: SearchStateType = JSON.parse(JSON.stringify(state));
+      const newState: SearchStateType = { ...state };
       newState.imageType = payload.imageType;
       newState.pagination.page = 1;
       newState.isLoading = true;
       return newState;
     }
     case ACTION_TYPE.changePerPage: {
-      const newState: SearchStateType = JSON.parse(JSON.stringify(state));
+      const newState: SearchStateType = { ...state };
       newState.pagination.perPage = payload.perPage;
       newState.pagination.page = 1;
       newState.isLoading = true;
       return newState;
     }
     case ACTION_TYPE.changePage: {
-      const newState: SearchStateType = JSON.parse(JSON.stringify(state));
+      const newState: SearchStateType = { ...state };
       newState.pagination.page = payload.page;
       newState.isLoading = true;
       return newState;
     }
     case ACTION_TYPE.saveSearchResults: {
-      const newState: SearchStateType = JSON.parse(JSON.stringify(state));
+      const newState: SearchStateType = { ...state };
       newState.results = { ...payload };
       newState.isLoading = false;
       return newState;
