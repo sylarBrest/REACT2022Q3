@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from 'App';
-import { badSearch, goodSearch, mockData } from 'mocks/mockData';
+import { badSearch, goodSearch } from 'mocks/mockData';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('SearchWrapper component', () => {
@@ -23,7 +23,7 @@ describe('SearchWrapper component', () => {
   };
 
   const openImageInfoPage = async () => {
-    const imageLink = await screen.findByTestId(`card-link-${mockData.hits[0].id}`);
+    const imageLink = await screen.findByTestId('card-link');
     await waitFor(() => {
       userEvent.click(imageLink);
     });
@@ -37,13 +37,13 @@ describe('SearchWrapper component', () => {
 
   it('should render card(s) if data came back from api', async () => {
     expect(searchBar).toHaveValue(goodSearch);
-    card = await screen.findByTestId(`card-${mockData.hits[0].id}`);
+    card = await screen.findByTestId('card');
     expect(card).toBeInTheDocument();
   });
 
   it('should open dynamic "Image info" page by click on card', async () => {
     await openImageInfoPage();
-    expect(await screen.findByTestId(`image-info-${mockData.hits[0].id}`)).toBeInTheDocument();
+    expect(await screen.findByTestId('image-info')).toBeInTheDocument();
   });
 
   it('should render "No results found" if no data came back from api', async () => {

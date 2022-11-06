@@ -6,8 +6,8 @@ export const Card = (props: CardPropsType) => {
   const { id, webformatURL } = props;
 
   return (
-    <div className="card" data-testid={`card-${id}`}>
-      <Link className="card-link" to={`/image-info/${id}`} data-testid={`card-link-${id}`}>
+    <div className="card" data-testid={'card'}>
+      <Link className="card-link" to={`/image-info/${id}`} data-testid={'card-link'}>
         <img className="card-image" src={webformatURL} alt="Result Image" />
       </Link>
     </div>
