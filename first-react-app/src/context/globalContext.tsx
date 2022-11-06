@@ -25,6 +25,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       type: ACTION_TYPE.changeQuery,
       payload: { query, imageType, page, perPage },
     });
+
     const fetchData = async () => {
       const fetchedData: SearchData = await basicGetMethod({
         query,
@@ -34,6 +35,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       });
       dispatch({ type: ACTION_TYPE.saveSearchResults, payload: fetchedData });
     };
+
     fetchData();
   }, [dispatch, query, imageType, page, perPage]);
 
