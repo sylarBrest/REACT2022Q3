@@ -1,6 +1,7 @@
 .switches {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 20px;
   align-self: flex-start;
 }
