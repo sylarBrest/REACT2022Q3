@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Card } from './Card/Card';
 import { SearchHitType } from 'data/types';
 import { useGlobalContext } from 'context/globalContext';
@@ -6,12 +5,6 @@ import { useGlobalContext } from 'context/globalContext';
 export const CardsContainer = () => {
   const { state } = useGlobalContext();
   const { results, isLoading } = state.search;
-
-  const [isEmptyData, setIsEmptyData] = useState(false);
-
-  useEffect(() => {
-    !results.hits.length ? setIsEmptyData(true) : setIsEmptyData(false);
-  }, [results.hits.length]);
 
   if (isLoading) {
     return (
@@ -21,10 +14,10 @@ export const CardsContainer = () => {
     );
   }
 
-  if (isEmptyData) {
+  if (!results.hits.length) {
     return (
       <div className="cards-stub" data-testid="no-results-stub">
-        No results found for {state.search.query}, try another search...
+        No results found, try another search...
       </div>
     );
   }
