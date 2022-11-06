@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from 'App';
 import { badSearch, goodSearch, mockData } from 'mocks/mockData';
@@ -22,6 +22,13 @@ describe('SearchWrapper component', () => {
     expect(searchBar).toHaveValue(search);
   };
 
+  const openImageInfoPage = async () => {
+    const imageLink = await screen.findByTestId(`card-link-${mockData.hits[0].id}`);
+    await waitFor(() => {
+      userEvent.click(imageLink);
+    });
+  };
+
   it('should render "Loading..." while fetching data', () => {
     expect(searchBar).toHaveValue(goodSearch);
     userEvent.type(searchBar, '{enter}');
@@ -32,6 +39,11 @@ describe('SearchWrapper component', () => {
     expect(searchBar).toHaveValue(goodSearch);
     card = await screen.findByTestId(`card-${mockData.hits[0].id}`);
     expect(card).toBeInTheDocument();
+  });
+
+  it('should open dynamic "Image info" page by click on card', async () => {
+    await openImageInfoPage();
+    expect(await screen.findByTestId(`image-info-${mockData.hits[0].id}`)).toBeInTheDocument();
   });
 
   it('should render "No results found" if no data came back from api', async () => {

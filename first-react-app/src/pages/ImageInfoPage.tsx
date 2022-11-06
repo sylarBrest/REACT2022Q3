@@ -19,7 +19,7 @@ export const ImageInfoPage = () => {
       ) : (
         <Navigate replace to="/" />
       )}
-      <Link className="back-link" to="/">
+      <Link className="back-link" to="/" data-testid="back-link">
         &lt; Back to search
       </Link>
     </section>
