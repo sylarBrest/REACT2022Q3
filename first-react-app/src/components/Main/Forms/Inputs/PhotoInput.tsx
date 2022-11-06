@@ -5,8 +5,7 @@ import { convertToMbytes } from 'utils';
 import photoIcon from 'assets/svg/photo.svg';
 import { ValidationMessage } from '../ValidationMessage';
 
-export const PhotoInput = (props: InputPropsType) => {
-  const { label, register, error } = props;
+export const PhotoInput = ({ label, register, error }: InputPropsType) => {
   const nameF = label[0].toUpperCase() + label.slice(1);
 
   return (

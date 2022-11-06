@@ -2,15 +2,15 @@ import { useGlobalContext } from 'context/globalContext';
 import { ACTION_TYPE } from 'data/constants';
 import { ImageTypeSwitchPropsType } from 'data/types';
 
-export const ImageTypeSwitch = (props: ImageTypeSwitchPropsType) => {
-  const { value } = props;
-  const valueF = value[0].toUpperCase() + value.slice(1);
+export const ImageTypeSwitch = ({ value }: ImageTypeSwitchPropsType) => {
   const { state, dispatch } = useGlobalContext();
   const {
     query,
     pagination: { perPage },
   } = state.search;
   const checked = state.search.imageType === value;
+
+  const valueF = value[0].toUpperCase() + value.slice(1);
 
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({

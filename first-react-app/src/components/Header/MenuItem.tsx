@@ -1,14 +1,10 @@
 import { Link } from 'react-router-dom';
 import { RoutePropsType } from 'data/types';
 
-export const MenuLink = (props: RoutePropsType) => {
+export const MenuLink = ({ path, name }: RoutePropsType) => {
   return (
-    <Link
-      className="link"
-      to={props.path}
-      data-testid={`${props.name.replace(/\s/g, '-').toLowerCase()}-link`}
-    >
-      {props.name}
+    <Link className="link" to={path} data-testid={`${name.replace(/\s/g, '-').toLowerCase()}-link`}>
+      {name}
     </Link>
   );
 };

@@ -7,9 +7,16 @@ import viewIcon from 'assets/svg/view.svg';
 import commentIcon from 'assets/svg/comment.svg';
 import './ImageInfo.css';
 
-export const ImageInfoContent = (props: ImageInfoContentType) => {
-  const { largeImageURL, userImageURL, user, likes, views, comments, downloads, tags } = props;
-
+export const ImageInfoContent = ({
+  largeImageURL,
+  userImageURL,
+  user,
+  likes,
+  views,
+  comments,
+  downloads,
+  tags,
+}: ImageInfoContentType) => {
   return (
     <div className="image-info" data-testid={'image-info'}>
       <img className="image-info-image" src={largeImageURL} alt="image-info photo" />

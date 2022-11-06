@@ -2,8 +2,7 @@ import { InputPropsType } from 'data/types';
 import { ValidationMessage } from '../ValidationMessage';
 import { RadioInput } from './RadioInput';
 
-export const RadioGroup = (props: InputPropsType) => {
-  const { label, register, error } = props;
+export const RadioGroup = ({ label, register, error }: InputPropsType) => {
   const nameF = label[0].toUpperCase() + label.slice(1);
 
   return (

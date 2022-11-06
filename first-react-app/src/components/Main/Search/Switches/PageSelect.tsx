@@ -9,6 +9,7 @@ export const PageSelect = () => {
     pagination: { perPage },
     results: { totalHits },
   } = state.search;
+
   const totalPages = Math.ceil(totalHits / perPage);
   const arrayNumPages = new Array(totalPages).fill(1).map((val, ind) => val * (ind + 1));
 

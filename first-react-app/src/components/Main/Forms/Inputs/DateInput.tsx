@@ -2,8 +2,7 @@ import { InputPropsType } from 'data/types';
 import { isValidBirthDate } from 'utils';
 import { ValidationMessage } from '../ValidationMessage';
 
-export const DateInput = (props: InputPropsType) => {
-  const { label, register, error } = props;
+export const DateInput = ({ label, register, error }: InputPropsType) => {
   const nameL = label.toLowerCase();
 
   return (

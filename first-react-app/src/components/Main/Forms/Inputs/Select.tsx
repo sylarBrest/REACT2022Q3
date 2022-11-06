@@ -3,8 +3,7 @@ import { COUNTRIES, SELECT_DEFAULT_OPTION } from 'data/constants';
 import { ValidationMessage } from '../ValidationMessage';
 import { isValidCountry } from 'utils';
 
-export const Select = (props: InputPropsType) => {
-  const { label, register, error } = props;
+export const Select = ({ label, register, error }: InputPropsType) => {
   const nameF = label[0].toUpperCase() + label.slice(1);
 
   return (

@@ -1,8 +1,6 @@
 import { FormCardItemPropsType } from 'data/types';
 
-export const CardItem = (props: FormCardItemPropsType) => {
-  const { label, value } = props;
-
+export const CardItem = ({ label, value }: FormCardItemPropsType) => {
   return (
     <p className="card-item">
       <span className="item-label">{label}</span>

@@ -2,9 +2,7 @@ import { FormDataPropsType } from 'data/types';
 import { CardItem } from './CardItem';
 import './Card.css';
 
-export const Card = (props: FormDataPropsType) => {
-  const { photo, name, surname, birthDate, gender, country } = props;
-
+export const Card = ({ photo, name, surname, birthDate, gender, country }: FormDataPropsType) => {
   return (
     <div className="personal-card" data-testid="form-card-data">
       <img className="card-photo" src={URL.createObjectURL(photo)} alt={`${name} ${surname}`} />

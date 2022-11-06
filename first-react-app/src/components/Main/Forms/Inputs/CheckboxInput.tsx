@@ -2,9 +2,7 @@ import { InputPropsType } from 'data/types';
 import { MIN_AGE } from 'data/constants';
 import { ValidationMessage } from '../ValidationMessage';
 
-export const CheckboxInput = (props: InputPropsType) => {
-  const { label, register, error } = props;
-
+export const CheckboxInput = ({ label, register, error }: InputPropsType) => {
   return (
     <div className={label}>
       <input

@@ -1,8 +1,6 @@
 import { CountItemPropsType } from 'data/types';
 
-export const CountItem = (props: CountItemPropsType) => {
-  const { label, icon, value } = props;
-
+export const CountItem = ({ label, icon, value }: CountItemPropsType) => {
   return (
     <div className="count-item" title={label}>
       <img className="count-icon" src={icon} alt={`${label} icon`} />
