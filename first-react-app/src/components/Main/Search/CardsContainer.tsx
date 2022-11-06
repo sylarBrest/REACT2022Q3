@@ -9,7 +9,7 @@ export const CardsContainer = () => {
   if (isLoading) {
     return (
       <div className="cards-stub" data-testid="loading-stub">
-        Loading...
+        <span>Loading...</span>
       </div>
     );
   }
@@ -17,7 +17,7 @@ export const CardsContainer = () => {
   if (!results.hits.length) {
     return (
       <div className="cards-stub" data-testid="no-results-stub">
-        No results found, try another search...
+        <span>No results found, try another search...</span>
       </div>
     );
   }

@@ -14,7 +14,7 @@ export const PerPageSelect = () => {
 
   return (
     <div className="per-page-switch">
-      {'Results per page: '}
+      <span>Results per page: </span>
       <select
         className="per-page-select"
         onChange={handleChange}
