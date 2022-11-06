@@ -22,12 +22,20 @@ export const PageSelect = () => {
   return (
     <div className="page-switch">
       {'Page: '}
-      <select className="page-select" onChange={handleChange} value={state.search.pagination.page}>
-        {arrayNumPages.map((page) => (
-          <option value={page} key={page}>
-            {page}
-          </option>
-        ))}
+      <select
+        className="page-select"
+        onChange={handleChange}
+        value={state.search.pagination.page || 1}
+      >
+        {arrayNumPages.length ? (
+          arrayNumPages.map((page) => (
+            <option value={page} key={page}>
+              {page}
+            </option>
+          ))
+        ) : (
+          <option value={1}>1</option>
+        )}
       </select>
       {' / '}
       {totalPages}

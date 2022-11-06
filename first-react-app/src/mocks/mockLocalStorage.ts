@@ -1,5 +1,7 @@
+import { goodSearch } from './mockData';
+
 export const mockLocalStorage = (function () {
-  let store: { [key: string]: string } = {};
+  let store: { [key: string]: string } = { searchBarValue: goodSearch };
 
   return {
     getItem(key: string) {

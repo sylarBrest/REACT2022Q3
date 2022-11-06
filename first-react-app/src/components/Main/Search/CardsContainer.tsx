@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Card } from './Card/Card';
 import { SearchHitType } from 'data/types';
-import { Modal } from './Modal/Modal';
 import { useGlobalContext } from 'context/globalContext';
 
 export const CardsContainer = () => {
@@ -9,22 +8,10 @@ export const CardsContainer = () => {
   const { results, isLoading } = state.search;
 
   const [isEmptyData, setIsEmptyData] = useState(false);
-  const [modalData, setModalData] = useState<SearchHitType | undefined>(undefined);
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     !results.hits.length ? setIsEmptyData(true) : setIsEmptyData(false);
   }, [results.hits.length]);
-
-  const passDataToModal = (id: number) => {
-    const cardData = state.search.results.hits.filter((data) => data.id === id);
-    setModalData(cardData[0]);
-    setIsModalVisible(true);
-  };
-
-  const hideModal = () => {
-    setIsModalVisible(false);
-  };
 
   if (isLoading) {
     return (
@@ -37,7 +24,7 @@ export const CardsContainer = () => {
   if (isEmptyData) {
     return (
       <div className="cards-stub" data-testid="no-results-stub">
-        No results found, try another search...
+        No results found for {state.search.query}, try another search...
       </div>
     );
   }
@@ -45,9 +32,8 @@ export const CardsContainer = () => {
   return (
     <div className="cards" data-testid="cards-container">
       {results.hits.map((cardData: SearchHitType) => (
-        <Card {...cardData} key={cardData.id} getPhotoId={passDataToModal} />
+        <Card {...cardData} key={cardData.id} />
       ))}
-      {modalData && isModalVisible && <Modal onCloseModal={hideModal} {...modalData} />}
     </div>
   );
 };

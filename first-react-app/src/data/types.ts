@@ -73,13 +73,7 @@ export type SearchData = {
   totalHits: number;
 };
 
-export type CardPropsType = SearchHitType & {
-  getPhotoId: (id: number) => void;
-};
-
-export type ModalPropsType = SearchHitType & {
-  onCloseModal: () => void;
-};
+export type CardPropsType = SearchHitType;
 
 export type CountItemPropsType = {
   label: string;
@@ -169,4 +163,10 @@ export type AppProviderProps = { children: React.ReactNode };
 
 export type ImageTypeSwitchPropsType = {
   value: string;
+};
+
+export type ImageInfoContentType = SearchHitType;
+
+export type ImageInfoRouterPropsType = {
+  imageId: string;
 };

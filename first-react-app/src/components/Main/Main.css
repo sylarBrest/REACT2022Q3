@@ -46,3 +46,11 @@
     align-self: center;
   }
 }
+
+.back-link {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: #b4b4b4;
+  text-decoration: none;
+  color: #000000;
+}

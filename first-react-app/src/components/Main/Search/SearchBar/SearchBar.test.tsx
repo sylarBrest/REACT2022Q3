@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { goodSearch } from 'mocks/mockData';
 import { SearchWrapper } from '../SearchWrapper';
 
 describe('SearchBar component', () => {
   let searchBar: HTMLInputElement;
-  const testSearch = 'test';
 
   beforeEach(() => {
     render(<SearchWrapper />);
@@ -16,26 +16,26 @@ describe('SearchBar component', () => {
   });
 
   it('should change value when typing', () => {
-    expect(searchBar).toHaveValue('');
-    userEvent.type(searchBar, testSearch);
-    expect(searchBar).toHaveValue(testSearch);
+    expect(searchBar).toHaveValue(goodSearch);
+    userEvent.type(searchBar, '{enter}');
+    expect(searchBar).toHaveValue(goodSearch);
   });
 
   it('should save value after pressing Enter', () => {
     userEvent.type(searchBar, '{enter}');
-    expect(searchBar).toHaveValue(testSearch);
+    expect(searchBar).toHaveValue(goodSearch);
   });
 
   it('should save value after clicking on button', () => {
     userEvent.click(screen.getByTestId('search-bar-button'));
-    expect(searchBar).toHaveValue(testSearch);
+    expect(searchBar).toHaveValue(goodSearch);
   });
 
   it('should save value to LocalStorage when unmounting', () => {
-    expect(window.localStorage.getItem('searchBarValue')).toBe(testSearch);
+    expect(window.localStorage.getItem('searchBarValue')).toBe(goodSearch);
   });
 
   it('should take value from LocalStorage when rendering', () => {
-    expect(searchBar).toHaveValue(testSearch);
+    expect(searchBar).toHaveValue(goodSearch);
   });
 });

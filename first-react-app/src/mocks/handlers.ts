@@ -6,9 +6,7 @@ export const handlers = [
   rest.get(BASE_URL, (req, res, ctx) => {
     return res(
       ctx.status(200),
-      req.url.searchParams.get('q') === goodSearch || req.url.searchParams.get('id')
-        ? ctx.json(mockData)
-        : ctx.json(mockEmptyData)
+      req.url.searchParams.get('q') === goodSearch ? ctx.json(mockData) : ctx.json(mockEmptyData)
     );
   }),
 ];
