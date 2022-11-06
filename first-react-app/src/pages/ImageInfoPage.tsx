@@ -11,14 +11,14 @@ export const ImageInfoPage = () => {
 
   const imageInfoData = hits.filter((image) => imageId && image.id === +imageId);
 
+  if (!imageInfoData.length) {
+    return <Navigate replace to="/" />;
+  }
+
   return (
     <section className="section image-info-section" data-testid="image-info-page">
       <h1 className="title">Id {imageId}</h1>
-      {imageInfoData.length ? (
-        <ImageInfoContent {...imageInfoData[0]} />
-      ) : (
-        <Navigate replace to="/" />
-      )}
+      <ImageInfoContent {...imageInfoData[0]} />
       <Link className="back-link" to="/" data-testid="back-link">
         &lt; Back to search
       </Link>
