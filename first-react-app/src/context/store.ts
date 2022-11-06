@@ -1,4 +1,4 @@
-import { GlobalStateType } from 'data/types';
+import { GlobalStateType } from './types';
 
 export const initialState: GlobalStateType = {
   search: {

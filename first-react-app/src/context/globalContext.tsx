@@ -1,9 +1,10 @@
 import { ACTION_TYPE } from 'data/constants';
 import React, { useContext, useEffect, useReducer } from 'react';
 import { basicGetMethod } from 'services/basicGetMethod';
-import { AppProviderProps, GlobalContextType, SearchData } from '../data/types';
+import { AppProviderProps, GlobalContextType } from './types';
 import { mainReducer } from './reducers';
 import { initialState } from './store';
+import { SearchData } from 'data/types';
 
 export const GlobalContext = React.createContext<GlobalContextType>({
   state: initialState,

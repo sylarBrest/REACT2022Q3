@@ -1,5 +1,5 @@
 import { ACTION_TYPE } from 'data/constants';
-import { ActionsType, FormStateType, GlobalStateType, SearchStateType } from 'data/types';
+import { ActionsType, FormStateType, GlobalStateType, SearchStateType } from './types';
 
 export const formReducer = (state: FormStateType, action: ActionsType) => {
   const { type, payload } = action;
