@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/sylarbrest-REACT2022Q3/static/css/main.940af686.css",
+    "main.css": "/sylarbrest-REACT2022Q3/static/css/main.e6ea9b00.css",
     "main.js": "/sylarbrest-REACT2022Q3/static/js/main.57f87418.js",
     "static/media/download.svg": "/sylarbrest-REACT2022Q3/static/media/download.e688f806b45a79f85c879f8bccb6ea10.svg",
     "static/media/photo.svg": "/sylarbrest-REACT2022Q3/static/media/photo.d86dba7f98bb618e748962f1a3a80e61.svg",
@@ -9,11 +9,11 @@
     "static/media/view.svg": "/sylarbrest-REACT2022Q3/static/media/view.a02dc08d5429ba89846f5e0a125fc866.svg",
     "static/media/search.svg": "/sylarbrest-REACT2022Q3/static/media/search.f7a26ab2c1e6ae877b07.svg",
     "index.html": "/sylarbrest-REACT2022Q3/index.html",
-    "main.940af686.css.map": "/sylarbrest-REACT2022Q3/static/css/main.940af686.css.map",
+    "main.e6ea9b00.css.map": "/sylarbrest-REACT2022Q3/static/css/main.e6ea9b00.css.map",
     "main.57f87418.js.map": "/sylarbrest-REACT2022Q3/static/js/main.57f87418.js.map"
   },
   "entrypoints": [
-    "static/css/main.940af686.css",
+    "static/css/main.e6ea9b00.css",
     "static/js/main.57f87418.js"
   ]
 }
