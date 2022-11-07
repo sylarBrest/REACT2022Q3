@@ -1,54 +1,68 @@
 import { ACTION_TYPE } from 'data/constants';
 import { ActionsType, FormStateType, GlobalStateType, SearchStateType } from './types';
 
-export const formReducer = (state: FormStateType, action: ActionsType) => {
+export const formReducer = (state: FormStateType, action: ActionsType): FormStateType => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPE.saveFormData: {
-      const newState: FormStateType = { ...state };
-      newState.data = [...payload];
-      return newState;
+      return { ...state, data: payload };
     }
     default:
       return state;
   }
 };
 
-export const searchReducer = (state: SearchStateType, action: ActionsType) => {
+export const searchReducer = (state: SearchStateType, action: ActionsType): SearchStateType => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPE.changeQuery: {
-      const newState: SearchStateType = { ...state };
-      newState.query = payload.query;
-      newState.pagination.page = payload.page;
-      newState.isLoading = true;
-      return newState;
+      return {
+        ...state,
+        query: payload.query,
+        isLoading: true,
+        pagination: {
+          page: payload.page,
+          perPage: payload.perPage,
+        },
+      };
     }
     case ACTION_TYPE.changeImageType: {
-      const newState: SearchStateType = { ...state };
-      newState.imageType = payload.imageType;
-      newState.pagination.page = 1;
-      newState.isLoading = true;
-      return newState;
+      return {
+        ...state,
+        imageType: payload.imageType,
+        isLoading: true,
+        pagination: {
+          page: payload.page,
+          perPage: payload.perPage,
+        },
+      };
     }
     case ACTION_TYPE.changePerPage: {
-      const newState: SearchStateType = { ...state };
-      newState.pagination.perPage = payload.perPage;
-      newState.pagination.page = 1;
-      newState.isLoading = true;
-      return newState;
+      return {
+        ...state,
+        isLoading: true,
+        pagination: {
+          page: payload.page,
+          perPage: payload.perPage,
+        },
+      };
     }
     case ACTION_TYPE.changePage: {
-      const newState: SearchStateType = { ...state };
-      newState.pagination.page = payload.page;
-      newState.isLoading = true;
-      return newState;
+      return {
+        ...state,
+        isLoading: true,
+        pagination: {
+          page: payload.page,
+          perPage: payload.perPage,
+        },
+      };
     }
     case ACTION_TYPE.saveSearchResults: {
-      const newState: SearchStateType = { ...state };
-      newState.results = { ...payload };
-      newState.isLoading = false;
-      return newState;
+      return {
+        ...state,
+        isLoading: false,
+        results: payload,
+      };
     }
     default:
       return state;
