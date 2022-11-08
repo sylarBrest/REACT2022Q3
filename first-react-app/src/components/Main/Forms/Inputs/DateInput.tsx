@@ -1,3 +1,4 @@
+import { MIN_AGE } from 'data/constants';
 import { InputPropsType } from 'data/types';
 import { isValidBirthDate } from 'utils';
 import { ValidationMessage } from '../ValidationMessage';
@@ -17,7 +18,8 @@ export const DateInput = ({ label, register, error }: InputPropsType) => {
         {...register('birthDate', {
           validate: {
             emptyValue: (birthDate) => !!birthDate || 'Choose or type your date of birth',
-            under18: (birthDate) => isValidBirthDate(birthDate) || 'You must be 18 years old',
+            under18: (birthDate) =>
+              isValidBirthDate(birthDate) || `You must be ${MIN_AGE} years old`,
           },
         })}
         data-testid={`form-input-${nameL}`}
