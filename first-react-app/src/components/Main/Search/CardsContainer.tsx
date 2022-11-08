@@ -1,6 +1,6 @@
 import { Card } from './Card/Card';
 import { SearchHitType } from 'data/types';
-import { useAppSelector } from 'redux/types';
+import { useAppSelector } from 'redux/hooks';
 
 export const CardsContainer = () => {
   const results = useAppSelector((state) => state.search.results);

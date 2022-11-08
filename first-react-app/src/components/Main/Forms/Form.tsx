@@ -7,7 +7,7 @@ import './Form.css';
 import { useEffect, useState } from 'react';
 import { RadioGroup } from './Inputs/RadioGroup';
 import { saveFormData } from 'redux/formSlice';
-import { useAppDispatch, useAppSelector } from 'redux/types';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 
 export const Form = () => {
   const dispatch = useAppDispatch();

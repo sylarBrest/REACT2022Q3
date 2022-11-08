@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAppDispatch } from 'redux/types';
+import { useAppDispatch } from 'redux/hooks';
 import { changeQuery } from 'redux/searchSlice';
 
 export const SearchBar = () => {

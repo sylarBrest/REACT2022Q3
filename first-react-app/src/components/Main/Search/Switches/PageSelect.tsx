@@ -1,5 +1,5 @@
 import { changePage } from 'redux/searchSlice';
-import { useAppDispatch, useAppSelector } from 'redux/types';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 
 export const PageSelect = () => {
   const dispatch = useAppDispatch();

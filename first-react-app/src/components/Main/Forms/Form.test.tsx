@@ -1,6 +1,7 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { AppProvider } from 'context/globalContext';
+import { Provider } from 'react-redux';
+import { store } from 'redux/store';
 import { FormWrapper } from './FormWrapper';
 
 describe('component Form', () => {
@@ -13,14 +14,12 @@ describe('component Form', () => {
     country: HTMLSelectElement,
     consent: HTMLInputElement;
 
-  beforeEach(async () => {
-    await act(async () => {
-      render(
-        <AppProvider>
-          <FormWrapper />
-        </AppProvider>
-      );
-    });
+  beforeEach(() => {
+    render(
+      <Provider store={store}>
+        <FormWrapper />
+      </Provider>
+    );
   });
 
   const fillAllFields = () => {
@@ -83,22 +82,20 @@ describe('component Form', () => {
   it('should disabled submit button if submit success', async () => {
     fillAllFields();
 
+    submit = screen.getByTestId('form-input-submit');
+    userEvent.click(submit);
+
     await waitFor(() => {
-      submit = screen.getByTestId('form-input-submit');
-      userEvent.click(submit);
       expect(submit).toBeDisabled();
     });
   });
 
-  it('should display one card after successful submit', async () => {
-    fillAllFields();
-    await waitFor(() => {
-      const card = screen.getByTestId('form-card-data');
-      expect(card).toBeInTheDocument();
-    });
+  it('should display one card after successful submit', () => {
+    const card = screen.getByTestId('form-card-data');
+    expect(card).toBeInTheDocument();
   });
 
-  it('should hide banner with 5 seconds after succesful submit', async () => {
+  it('should hide banner with 5 seconds after succesful submit', () => {
     fillAllFields();
     jest.useFakeTimers();
 

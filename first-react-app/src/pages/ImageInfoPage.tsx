@@ -1,15 +1,13 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { ImageInfoRouterPropsType } from 'data/types';
 import { ImageInfoContent } from 'components/Main/ImageInfo/ImageInfoContent';
-import { useGlobalContext } from 'context/globalContext';
+import { useAppSelector } from 'redux/hooks';
 
 export const ImageInfoPage = () => {
   const { imageId } = useParams<ImageInfoRouterPropsType>();
-  const { state } = useGlobalContext();
-
-  const { hits } = state.search.results;
-
-  const imageInfoData = hits.filter((image) => imageId && image.id === +imageId);
+  const imageInfoData = useAppSelector((state) =>
+    state.search.results.hits.filter((image) => imageId && image.id === +imageId)
+  );
 
   if (!imageInfoData.length) {
     return <Navigate replace to="/" />;

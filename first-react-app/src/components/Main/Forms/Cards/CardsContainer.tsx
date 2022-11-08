@@ -1,4 +1,4 @@
-import { useAppSelector } from 'redux/types';
+import { useAppSelector } from 'redux/hooks';
 import { Card } from './Card';
 
 export const CardsContainer = () => {

@@ -1,13 +1,19 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { goodSearch } from 'mocks/mockData';
+import { Provider } from 'react-redux';
+import { store } from 'redux/store';
 import { SearchWrapper } from '../SearchWrapper';
 
 describe('SearchBar component', () => {
   let searchBar: HTMLInputElement;
 
   beforeEach(() => {
-    render(<SearchWrapper />);
+    render(
+      <Provider store={store}>
+        <SearchWrapper />
+      </Provider>
+    );
     searchBar = screen.getByTestId('search-bar-input');
   });
 

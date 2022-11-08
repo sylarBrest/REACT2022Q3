@@ -1,14 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from 'App';
+import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
+import { store } from 'redux/store';
 
 describe('React Router', () => {
   beforeEach(() => {
     render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </Provider>
     );
   });
 
@@ -32,9 +36,11 @@ describe('React Router', () => {
 
   it('should route to the "Not Found" page if path not exist', () => {
     render(
-      <MemoryRouter initialEntries={['/test']}>
-        <App />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/test']}>
+          <App />
+        </MemoryRouter>
+      </Provider>
     );
     expect(screen.getByTestId('not-found-page')).toBeInTheDocument();
   });

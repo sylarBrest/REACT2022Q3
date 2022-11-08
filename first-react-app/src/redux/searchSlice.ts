@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { SearchData } from 'data/types';
+import { SearchData, UrlParametersType } from 'data/types';
 import { SearchStateType } from './types';
+import { basicGetMethod } from 'services/basicGetMethod';
 
 const initialState: SearchStateType = {
   query: localStorage.getItem('searchBarValue') || '',
@@ -25,30 +26,36 @@ export const searchSlice = createSlice({
     changeQuery: (state, action: PayloadAction<string>) => {
       state.query = action.payload;
       state.pagination.page = 1;
-      state.isLoading = true;
     },
     changeImageType: (state, action: PayloadAction<string>) => {
       state.imageType = action.payload;
       state.pagination.page = 1;
-      state.isLoading = true;
     },
     changePerPage: (state, action: PayloadAction<number>) => {
       state.pagination.perPage = action.payload;
       state.pagination.page = 1;
-      state.isLoading = true;
     },
     changePage: (state, action: PayloadAction<number>) => {
       state.pagination.page = action.payload;
-      state.isLoading = true;
     },
-    saveResults: (state, action: PayloadAction<SearchData>) => {
-      state.results = action.payload;
-      state.isLoading = false;
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchData.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchData.fulfilled, (state, action: PayloadAction<SearchData>) => {
+        state.results = action.payload;
+        state.isLoading = false;
+      });
   },
 });
 
-export const { changeQuery, changeImageType, changePerPage, changePage, saveResults } =
-  searchSlice.actions;
+export const { changeQuery, changeImageType, changePerPage, changePage } = searchSlice.actions;
 
 export default searchSlice.reducer;
+
+export const fetchData = createAsyncThunk(
+  'search/fetchData',
+  async (params: UrlParametersType) => await basicGetMethod(params)
+);

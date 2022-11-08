@@ -2,7 +2,9 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from 'App';
 import { badSearch, goodSearch } from 'mocks/mockData';
+import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
+import { store } from 'redux/store';
 
 describe('SearchWrapper component', () => {
   let searchBar: HTMLInputElement;
@@ -11,7 +13,9 @@ describe('SearchWrapper component', () => {
   beforeEach(() => {
     render(
       <MemoryRouter>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </MemoryRouter>
     );
     searchBar = screen.getByTestId('search-bar-input');

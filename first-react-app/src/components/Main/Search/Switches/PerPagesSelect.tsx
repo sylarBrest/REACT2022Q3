@@ -1,6 +1,6 @@
 import { PER_PAGE_VALUES } from 'data/constants';
 import { changePerPage } from 'redux/searchSlice';
-import { useAppDispatch, useAppSelector } from 'redux/types';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 
 export const PerPageSelect = () => {
   const dispatch = useAppDispatch();
