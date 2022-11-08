@@ -82,9 +82,6 @@ describe('component Form', () => {
   it('should disabled submit button if submit success', async () => {
     fillAllFields();
 
-    submit = screen.getByTestId('form-input-submit');
-    userEvent.click(submit);
-
     await waitFor(() => {
       expect(submit).toBeDisabled();
     });
