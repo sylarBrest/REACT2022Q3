@@ -1,6 +1,6 @@
 import { GlobalStateType } from './types';
 
-export const initialState: GlobalStateType = {
+export const initialStateContext: GlobalStateType = {
   search: {
     query: localStorage.getItem('searchBarValue') || '',
     imageType: 'all',

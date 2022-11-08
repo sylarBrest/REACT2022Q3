@@ -6,11 +6,11 @@ import { Banner } from './Banner/Banner';
 import './Form.css';
 import { useEffect, useState } from 'react';
 import { RadioGroup } from './Inputs/RadioGroup';
-import { useGlobalContext } from 'context/globalContext';
-import { ACTION_TYPE } from 'data/constants';
+import { useDispatch } from 'react-redux';
+import { saveFormData } from 'redux/formSlice';
 
 export const Form = () => {
-  const { state, dispatch } = useGlobalContext();
+  const dispatch = useDispatch();
 
   const {
     reset,
@@ -33,7 +33,7 @@ export const Form = () => {
   const onSubmit: SubmitHandler<FormDataPropsType> = (data) => {
     const cardData: FormDataPropsType = { ...data };
     cardData.photo = (cardData.photo as unknown as FileList)[0];
-    dispatch({ type: ACTION_TYPE.saveFormData, payload: [...state.form.data, cardData] });
+    dispatch(saveFormData(cardData));
   };
 
   return (

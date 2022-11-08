@@ -3,18 +3,18 @@ import React, { useContext, useEffect, useReducer } from 'react';
 import { basicGetMethod } from 'services/basicGetMethod';
 import { AppProviderProps, GlobalContextType } from './types';
 import { mainReducer } from './reducers';
-import { initialState } from './store';
+import { initialStateContext } from './store';
 import { SearchData } from 'data/types';
 
 export const GlobalContext = React.createContext<GlobalContextType>({
-  state: initialState,
+  state: initialStateContext,
   dispatch: () => null,
 });
 
 export const useGlobalContext = () => useContext(GlobalContext);
 
 export const AppProvider = ({ children }: AppProviderProps) => {
-  const [state, dispatch] = useReducer(mainReducer, initialState);
+  const [state, dispatch] = useReducer(mainReducer, initialStateContext);
   const {
     query,
     imageType,

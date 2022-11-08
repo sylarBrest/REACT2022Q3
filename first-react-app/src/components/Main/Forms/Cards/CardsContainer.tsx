@@ -1,12 +1,13 @@
-import { useGlobalContext } from 'context/globalContext';
+import { useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
 import { Card } from './Card';
 
 export const CardsContainer = () => {
-  const { state } = useGlobalContext();
+  const formData = useSelector((state: RootState) => state.form.data);
 
   return (
     <div className="personal-cards">
-      {state.form.data.map((data) => (
+      {formData.map((data) => (
         <Card {...data} key={data.name + data.surname} />
       ))}
     </div>
