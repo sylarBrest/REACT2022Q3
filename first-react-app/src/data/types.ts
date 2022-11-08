@@ -7,7 +7,8 @@ export type RoutePropsType = {
 };
 
 export type FormDataPropsType = {
-  photo: Blob;
+  id: number;
+  photo: string;
   name: string;
   surname: string;
   birthDate: string;

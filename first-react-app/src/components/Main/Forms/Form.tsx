@@ -6,11 +6,12 @@ import { Banner } from './Banner/Banner';
 import './Form.css';
 import { useEffect, useState } from 'react';
 import { RadioGroup } from './Inputs/RadioGroup';
-import { useDispatch } from 'react-redux';
 import { saveFormData } from 'redux/formSlice';
+import { useAppDispatch, useAppSelector } from 'redux/types';
 
 export const Form = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const currentId = useAppSelector((state) => state.form.data.length);
 
   const {
     reset,
@@ -32,7 +33,8 @@ export const Form = () => {
 
   const onSubmit: SubmitHandler<FormDataPropsType> = (data) => {
     const cardData: FormDataPropsType = { ...data };
-    cardData.photo = (cardData.photo as unknown as FileList)[0];
+    cardData.photo = URL.createObjectURL((cardData.photo as unknown as FileList)[0]);
+    cardData.id = currentId;
     dispatch(saveFormData(cardData));
   };
 

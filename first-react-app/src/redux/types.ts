@@ -1,6 +1,8 @@
 import { Dispatch } from 'react';
 import { ACTION_TYPE } from 'data/constants';
 import { SearchData, FormDataArrayType, UrlParametersType } from 'data/types';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from './store';
 
 export type PaginationType = {
   perPage: number;
@@ -71,3 +73,7 @@ export type GlobalContextType = {
 };
 
 export type AppProviderProps = { children: React.ReactNode };
+
+export const useAppDispatch: () => AppDispatch = useDispatch;
+
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

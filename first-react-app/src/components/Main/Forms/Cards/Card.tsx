@@ -5,7 +5,7 @@ import './Card.css';
 export const Card = ({ photo, name, surname, birthDate, gender, country }: FormDataPropsType) => {
   return (
     <div className="personal-card" data-testid="form-card-data">
-      <img className="card-photo" src={URL.createObjectURL(photo)} alt={`${name} ${surname}`} />
+      <img className="card-photo" src={photo} alt={`${name} ${surname}`} />
       <div className="personal-card-data">
         <CardItem label="Name: " value={name} />
         <CardItem label="Surname: " value={surname} />
