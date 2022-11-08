@@ -1,29 +1,23 @@
-import { useGlobalContext } from 'context/globalContext';
-import { ACTION_TYPE } from 'data/constants';
+import { changePage } from 'redux/searchSlice';
+import { useAppDispatch, useAppSelector } from 'redux/types';
 
 export const PageSelect = () => {
-  const { state, dispatch } = useGlobalContext();
-  const {
-    query,
-    imageType,
-    pagination: { perPage },
-    results: { totalHits },
-  } = state.search;
+  const dispatch = useAppDispatch();
+  const curPage = useAppSelector((state) => state.search.pagination.page);
 
-  const totalPages = Math.ceil(totalHits / perPage);
+  const totalPages = useAppSelector((state) =>
+    Math.ceil(state.search.results.totalHits / state.search.pagination.perPage)
+  );
   const arrayNumPages = new Array(totalPages).fill(1).map((val, ind) => val * (ind + 1));
 
   const handleChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch({
-      type: ACTION_TYPE.changePage,
-      payload: { page: +event.target.value, query, imageType, perPage },
-    });
+    dispatch(changePage(+event.target.value));
   };
 
   return (
     <div className="page-switch">
       <span>Page: </span>
-      <select className="page-select" onChange={handleChange} value={state.search.pagination.page}>
+      <select className="page-select" onChange={handleChange} value={curPage}>
         {arrayNumPages.map((page) => (
           <option value={page} key={page}>
             {page}

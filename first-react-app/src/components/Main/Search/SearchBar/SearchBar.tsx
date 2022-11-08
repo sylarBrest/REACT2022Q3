@@ -1,24 +1,16 @@
 import React, { useState } from 'react';
-import { useGlobalContext } from 'context/globalContext';
-import { ACTION_TYPE } from 'data/constants';
+import { useAppDispatch } from 'redux/types';
+import { changeQuery } from 'redux/searchSlice';
 
 export const SearchBar = () => {
-  const { state, dispatch } = useGlobalContext();
-
-  const {
-    imageType,
-    pagination: { perPage },
-  } = state.search;
+  const dispatch = useAppDispatch();
 
   const [value, setValue] = useState(localStorage.getItem('searchBarValue') || '');
 
   const changeValue = async () => {
     const searchQuery = value.toLowerCase();
     setValue(value);
-    dispatch({
-      type: ACTION_TYPE.changeQuery,
-      payload: { query: searchQuery, imageType, page: 1, perPage },
-    });
+    dispatch(changeQuery(searchQuery));
     localStorage.setItem('searchBarValue', value);
   };
 

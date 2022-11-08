@@ -1,22 +1,18 @@
-import { useGlobalContext } from 'context/globalContext';
-import { ACTION_TYPE } from 'data/constants';
 import { ImageTypeSwitchPropsType } from 'data/types';
+import { changeImageType } from 'redux/searchSlice';
+import { useAppDispatch, useAppSelector } from 'redux/types';
 
 export const ImageTypeSwitch = ({ value }: ImageTypeSwitchPropsType) => {
-  const { state, dispatch } = useGlobalContext();
-  const {
-    query,
-    pagination: { perPage },
-  } = state.search;
-  const checked = state.search.imageType === value;
+  const dispatch = useAppDispatch();
+
+  const imageType = useAppSelector((state) => state.search.imageType);
+
+  const checked = imageType === value;
 
   const valueF = value[0].toUpperCase() + value.slice(1);
 
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: ACTION_TYPE.changeImageType,
-      payload: { imageType: event.target.value, page: 1, perPage, query },
-    });
+    dispatch(changeImageType(event.target.value));
   };
 
   return (

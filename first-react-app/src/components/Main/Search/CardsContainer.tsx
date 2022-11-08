@@ -1,10 +1,10 @@
 import { Card } from './Card/Card';
 import { SearchHitType } from 'data/types';
-import { useGlobalContext } from 'context/globalContext';
+import { useAppSelector } from 'redux/types';
 
 export const CardsContainer = () => {
-  const { state } = useGlobalContext();
-  const { results, isLoading } = state.search;
+  const results = useAppSelector((state) => state.search.results);
+  const isLoading = useAppSelector((state) => state.search.isLoading);
 
   if (isLoading) {
     return (
